@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Secret Hitler</string>
+    <string name="start">START</string>
+    <string name="settings">SETTINGS</string>
+    <string name="rules">RULES</string>
+    <string name="about">ABOUT</string>
+</resources>
