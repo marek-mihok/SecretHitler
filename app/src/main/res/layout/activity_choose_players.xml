@@ -9,12 +9,14 @@
     android:orientation="vertical"
     tools:context=".ChoosePlayersActivity">
 
-    <com.woxthebox.draglistview.DragListView
-        android:id="@+id/mDragListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </com.woxthebox.draglistview.DragListView>
+
+    <!--<com.woxthebox.draglistview.DragListView-->
+        <!--android:id="@+id/mDragListView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+    <!--</com.woxthebox.draglistview.DragListView>-->
 
     <!--<ImageView-->
     <!--android:id="@+id/imageView2"-->
@@ -22,5 +24,28 @@
     <!--android:layout_height="match_parent"-->
     <!--android:scaleType="centerCrop"-->
     <!--app:srcCompat="@drawable/paper_background" />-->
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please enter player names:"
+        android:textSize="@dimen/fontSizeMenu"
+        android:padding="20dp"
+        android:textAlignment="center"
+        android:paddingBottom="8dp"
+        android:paddingEnd="32dp"
+        android:paddingStart="32dp"
+        android:paddingTop="8dp"
+        android:background="@color/backgroundOrange"
+        android:fontFamily="@font/rokkitt_bold"
+        android:textColor="@color/secretGray"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_player_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
 </LinearLayout>
