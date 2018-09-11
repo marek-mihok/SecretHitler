@@ -39,14 +39,14 @@ class MainMenu : AppCompatActivity() {
     }
 
     fun startButtonPressed(sender: View){
-//        Log.d("test","Start button pressed")
         val intent = Intent(this, ChoosePlayersActivity::class.java)
 //        intent.putExtra("keyIdentifier", value) //to pass any data to next activity
         startActivity(intent)
     }
 
     fun settingsButtonPressed(sender: View){
-
+        val intent = Intent(this, RevealIdentity::class.java)
+        startActivity(intent)
     }
 
     fun rulesButtonPressed(sender: View){
