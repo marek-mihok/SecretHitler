@@ -23,7 +23,7 @@ class MainMenu : AppCompatActivity() {
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
-        //hideNav()
+        hideNav() // to hide when using chatHeads
     }
 
     // Function to hide navigation bar needs to be called at onCreate
