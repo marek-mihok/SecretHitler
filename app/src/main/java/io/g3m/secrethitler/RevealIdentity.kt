@@ -19,8 +19,27 @@ class RevealIdentity : AppCompatActivity() {
             }
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                val rotation = (progress - 180)
+                var newRotation = rotation
                 textView2.text = progress.toString()
-                imageView2.rotationY = progress.toFloat()
+
+
+                if (rotation > -90 || rotation < 90) {
+                    imageView2.setImageResource(R.drawable.img_liberal_role)
+                }
+
+                if (rotation < -90) {
+                    newRotation = rotation + 180
+                    imageView2.setImageResource(R.drawable.img_fascist_role)
+                }
+
+                if (rotation > 90) {
+                    newRotation = rotation + 180
+                    imageView2.setImageResource(R.drawable.img_fascist_role)
+                }
+
+                imageView2.rotationY = newRotation.toFloat()
+
             }
 
         })
