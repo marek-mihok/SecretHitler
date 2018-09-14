@@ -35,7 +35,7 @@ class RevealIdentity : AppCompatActivity() {
 
                 if (rotation > 90) {
                     newRotation = rotation + 180
-                    imageView2.setImageResource(R.drawable.img_fascist_role)
+                    imageView2.setImageResource(R.drawable.img_hitla_role)
                 }
 
                 imageView2.rotationY = newRotation.toFloat()
