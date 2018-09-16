@@ -1,6 +1,7 @@
 package io.g3m.secrethitler
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -50,11 +51,16 @@ class MainMenu : AppCompatActivity() {
     }
 
     fun rulesButtonPressed(sender: View){
+        val editor = getSharedPreferences("Settings", 0).edit()
+        editor.putBoolean("vibrations", true)
+        editor.apply()
 
     }
 
     fun aboutButtonPressed(sender: View){
-
+        val editor = getSharedPreferences("Settings", 0).edit()
+        editor.putBoolean("vibrations", false)
+        editor.apply()
     }
 
 }

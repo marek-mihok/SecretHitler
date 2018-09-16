@@ -9,6 +9,7 @@
         <item name="colorPrimary">@color/backgroundOrange</item>
         <item name="colorPrimaryDark">@color/secretGray</item>
         <item name="colorAccent">@color/secretWhite</item>
+        <item name="cardViewStyle">@style/CardView</item>
     </style>
 
 </resources>
