@@ -1,10 +1,11 @@
 package io.g3m.secrethitler
 
-import android.os.Bundle
-import android.os.PersistableBundle
+import android.annotation.SuppressLint
+import android.os.*
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 
+@SuppressLint("Registered")
 open class FullScreenActivity :  AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +24,7 @@ open class FullScreenActivity :  AppCompatActivity() {
     }
 
     // Function to hide navigation bar needs to be called at onCreate
-    fun hideNav() {
+    private fun hideNav() {
         window.decorView.apply {
             systemUiVisibility = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                     or View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -33,5 +34,6 @@ open class FullScreenActivity :  AppCompatActivity() {
                     or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
         }
     }
+
 
 }

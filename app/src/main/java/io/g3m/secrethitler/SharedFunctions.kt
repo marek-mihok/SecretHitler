@@ -1,14 +1,21 @@
 package io.g3m.secrethitler
 
+import android.content.Context
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.support.v7.app.AppCompatActivity
 
-public fun vibrate(vibrationDuration: Long, vb: Vibrator, shouldVibrate: Boolean) {
+
+fun AppCompatActivity.vibrate() {
+    val vb = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+    val sp = getSharedPreferences("Settings", 0)
+    val shouldVibrate = sp.getBoolean("vibrations", false)
+    val vibrationDuration = resources.getInteger(R.integer.vibration_duration).toLong()
 
     if (shouldVibrate) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vb.vibrate(VibrationEffect.createOneShot(vibrationDuration,1))
+            vb.vibrate(VibrationEffect.createOneShot(vibrationDuration,VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
             vb.vibrate(vibrationDuration)
         }
