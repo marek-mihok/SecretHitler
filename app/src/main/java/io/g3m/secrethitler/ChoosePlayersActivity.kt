@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_choose_players.*
 //https://android.jlelse.eu/using-recyclerview-in-android-kotlin-722991e86bf3
 //alternative source: https://github.com/woxblom/DragListView
 
-class ChoosePlayersActivity : AppCompatActivity() {
+class ChoosePlayersActivity : FullScreenActivity() {
 
     // Initializing an empty ArrayList to be filled with animals
     val players: ArrayList<String> = ArrayList()
@@ -22,8 +22,6 @@ class ChoosePlayersActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_players)
-
-        hideNav()
 
         // Loads animals into the ArrayList
         addPlayers()
@@ -72,26 +70,4 @@ class ChoosePlayersActivity : AppCompatActivity() {
         players.add("Viktor")
     }
 
-
-    override fun onResume() {
-        super.onResume()
-        hideNav()
-    }
-
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        //hideNav()
-    }
-
-    // Function to hide navigation bar needs to be called at onCreate
-    fun hideNav() {
-        window.decorView.apply {
-            systemUiVisibility = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-        }
-    }
 }

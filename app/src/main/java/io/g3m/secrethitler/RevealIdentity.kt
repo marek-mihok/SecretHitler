@@ -15,7 +15,7 @@ import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_reveal_identity.*
 import java.lang.Math.round
 
-class RevealIdentity : AppCompatActivity() {
+class RevealIdentity : FullScreenActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
