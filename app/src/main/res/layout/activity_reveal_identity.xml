@@ -5,23 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundBlended"
-    android:splitMotionEvents="false"
-    android:windowEnableSplitTouch="false"
+    android:padding="0dp"
     tools:context=".RevealIdentity">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/rokkitt_bold"
-        android:text="PLAYER"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/envelopeFront"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/nameLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="66dp"
+        android:background="@color/secretDarkBrown"
+        android:orientation="vertical"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@color/secretRed" />
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/rokkitt_bold"
+            android:text="PLAYER"
+            android:textAlignment="center"
+            android:textColor="@color/backgroundBlended"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/envelopeFront"
@@ -36,7 +56,7 @@
         app:layout_constraintBottom_toTopOf="@+id/revealButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        app:layout_constraintTop_toBottomOf="@+id/nameLinearLayout">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -52,7 +72,7 @@
             app:srcCompat="@drawable/img_envelope_front" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/smallNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PLAYER'S"
@@ -81,6 +101,23 @@
             app:layout_constraintTop_toTopOf="@+id/imageView2"
             app:layout_constraintVertical_bias="0.22000003" />
 
+        <FrameLayout
+            android:id="@+id/fakeCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/roleCardWhite"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </FrameLayout>
+
         <ImageView
             android:id="@+id/envelopeBack"
             android:layout_width="0dp"
@@ -99,20 +136,34 @@
 
     <ImageView
         android:id="@+id/secretRoleImage"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/envelopeFront"
+        app:layout_constraintEnd_toEndOf="@+id/envelopeFront"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/envelopeFront"
+        app:layout_constraintTop_toTopOf="@+id/envelopeFront"
         app:srcCompat="@drawable/img_fascist_role" />
+
+    <ImageView
+        android:id="@+id/envelopeFakeBack"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/envelopeFront"
+        app:layout_constraintEnd_toEndOf="@+id/envelopeFront"
+        app:layout_constraintStart_toStartOf="@+id/envelopeFront"
+        app:layout_constraintTop_toTopOf="@+id/envelopeFront"
+        app:srcCompat="@drawable/img_envelope_back" />
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/revealButton"

@@ -17,12 +17,15 @@ class MainMenu : FullScreenActivity() {
 
     fun startButtonPressed(sender: View){
         val intent = Intent(this, ChoosePlayersActivity::class.java)
-//        intent.putExtra("keyIdentifier", value) //to pass any data to next activity
         startActivity(intent)
     }
 
     fun settingsButtonPressed(sender: View){
         val intent = Intent(this, RevealIdentity::class.java)
+        val b = Bundle()
+        b.putIntegerArrayList("player_roles", arrayListOf(0,1,2))
+        b.putStringArrayList("player_names", arrayListOf("Michal", "Marek", "Peto"))
+        intent.putExtras(b)
         startActivity(intent)
     }
 

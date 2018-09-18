@@ -12,4 +12,5 @@
     <color name="backgroundBlended">#ce8f5e</color>
     <color name="lightGray">#b4afa6</color>
     <color name="lighterGray">#f0eeee</color>
+    <color name="roleCardWhite">#f6e2c3</color>
 </resources>
