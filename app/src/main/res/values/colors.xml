@@ -3,8 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="backgroundYellow">#FBB969</color>
+    <color name="backgroundYellow">#e0a96d</color>
     <color name="backgroundOrange">#ca714d</color>
     <color name="secretGray">#373633</color>
-    <color name="secretWhite">#F3E5C3</color>
+    <color name="secretWhite">#f3e5c3</color>
+    <color name="secretRed">#973248</color>
+    <color name="secretDarkBrown">#bc754f</color>
+    <color name="backgroundBlended">#ce8f5e</color>
+    <color name="lightGray">#b4afa6</color>
+    <color name="lighterGray">#f0eeee</color>
 </resources>
