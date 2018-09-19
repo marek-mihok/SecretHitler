@@ -195,6 +195,7 @@ class RevealIdentity : FullScreenActivity() {
                                 b.putIntegerArrayList("player_roles", playerRoles)
                                 intent.putExtras(b)
                                 startActivity(intent)
+                                overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out)
                                 finish()
                             } else {
                                 // TU TREBA HODIT ODKAZ NA ZACATIE HRY
