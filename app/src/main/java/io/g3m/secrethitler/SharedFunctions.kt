@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity
 fun AppCompatActivity.vibrate() {
     val vb = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
     val sp = getSharedPreferences("Settings", 0)
-    val shouldVibrate = sp.getBoolean("vibrations", false)
+    val shouldVibrate = sp.getBoolean("vibrations", true)
     val vibrationDuration = resources.getInteger(R.integer.vibration_duration).toLong()
 
     if (shouldVibrate) {

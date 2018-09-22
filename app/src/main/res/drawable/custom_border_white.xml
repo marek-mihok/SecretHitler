@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <solid android:color="@color/roleCardWhite" />
+    <size android:width="10dp"/>
+    <padding android:bottom="0dp" android:left="0dp" android:right="0dp" android:top="0dp"/>
+    <corners android:topLeftRadius="@dimen/buttonCornerRadius" android:bottomLeftRadius="@dimen/buttonCornerRadius"
+        android:topRightRadius="@dimen/buttonCornerRadius" android:bottomRightRadius="@dimen/buttonCornerRadius"/>
+</shape>

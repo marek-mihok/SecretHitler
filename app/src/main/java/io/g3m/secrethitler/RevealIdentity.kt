@@ -9,8 +9,7 @@ import android.os.CountDownTimer
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
+import android.view.animation.*
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_reveal_identity.*
 import java.lang.Math.round
@@ -21,30 +20,11 @@ class RevealIdentity : FullScreenActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reveal_identity)
 
-        var shouldContinue = true
+        val playerIndex = intent.getIntExtra("playerIndex", 0)
+        setPlayerName(PlayersInfo.getPlayerName(playerIndex))
+        setPlayerRole(PlayersInfo.getPlayerIdentity(playerIndex))
 
-        var playerNames = ArrayList<String>()
-        var playerRoles = ArrayList<Int>()
-
-        @Suppress("UNCHECKED_CAST")
-        if (intent?.extras?.get("player_names") != null) {
-            playerNames = intent?.extras?.get("player_names") as ArrayList<String>
-            setPlayerName(playerNames.first())
-            playerNames.removeAt(0)
-            if (playerNames.isEmpty()) {
-                shouldContinue = false
-            }
-        }
-
-        @Suppress("UNCHECKED_CAST")
-        if (intent?.extras?.get("player_roles") != null) {
-            playerRoles = intent?.extras?.get("player_roles") as ArrayList<Int>
-            setPlayerRole(playerRoles[0])
-            playerRoles.removeAt(0)
-            if (playerRoles.isEmpty()) {
-                shouldContinue = false
-            }
-        }
+        this.setOtherFascistsView(playerIndex)
 
         var revealed = false
         var reallyRevealed = false
@@ -66,6 +46,16 @@ class RevealIdentity : FullScreenActivity() {
 
         val envelopeFrontAnim = AnimatorInflater.loadAnimator(this,R.animator.rotate)
         envelopeFrontAnim.setTarget(envelopeFront)
+
+        val helpTextFadeInAni = AlphaAnimation(0F, 0.66F)
+        helpTextFadeInAni.interpolator = LinearInterpolator()
+        helpTextFadeInAni.duration = 1000
+        helpTextFadeInAni.startOffset = 1000
+        helpTextFadeInAni.isFillEnabled = true
+        helpTextFadeInAni.fillAfter = true
+
+        val helpTextFadeOutAni = AlphaAnimation(0.66F, 0F)
+        helpTextFadeInAni.duration = 250
 
 
         progressView.alpha = 0F
@@ -102,6 +92,7 @@ class RevealIdentity : FullScreenActivity() {
         val timer = object: CountDownTimer(1500,1500) {
             override fun onFinish() {
                 revealed = true
+                revealPlayerInfoTextView.startAnimation(helpTextFadeInAni)
                 revealButtonTextView.text = "RELEASE BUTTON"
                 this@RevealIdentity.vibrate()
             }
@@ -151,6 +142,7 @@ class RevealIdentity : FullScreenActivity() {
 
                         revealButton.cardElevation = round(4 * density).toFloat()
 
+                        revealPlayerInfoTextView.clearAnimation()
                         progressView.clearAnimation()
                         progressView.startAnimation(fadeOutAnim)
 
@@ -161,12 +153,15 @@ class RevealIdentity : FullScreenActivity() {
                             shiftToFinalPosition(secretRoleImage, envelopeFront)
 
                             secretRoleImage.startAnimation(roleToCenterAnim)
+                            revealPlayerInfoTextView.startAnimation(helpTextFadeOutAni)
 
+                            // Hack pre postupne spustanie animacii lebo poli pototo vrstvy pri animacii
                             val timerAnim = object: CountDownTimer(750,750) {
                                 override fun onFinish() {
                                     envelopeFakeBack.startAnimation(hideEnvelopeAnim)
                                     envelopeFront.startAnimation(hideEnvelopeAnim)
                                     reallyRevealed = true
+                                    showOtherFascistsView()
                                 }
 
                                 override fun onTick(millisUntilFinished: Long) { }
@@ -187,13 +182,9 @@ class RevealIdentity : FullScreenActivity() {
                         }
 
                         if (confirmed) {
-                            if (shouldContinue) {
-                                // Toast.makeText(this@RevealIdentity,"Time for another player",Toast.LENGTH_SHORT).show()
+                            if (playerIndex < PlayersInfo.getPlayersCount() - 1) {
                                 val intent = Intent(this, RevealIdentity::class.java)
-                                val b = Bundle()
-                                b.putStringArrayList("player_names", playerNames)
-                                b.putIntegerArrayList("player_roles", playerRoles)
-                                intent.putExtras(b)
+                                intent.putExtra("playerIndex", playerIndex + 1)
                                 startActivity(intent)
                                 overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out)
                                 finish()
@@ -228,11 +219,46 @@ class RevealIdentity : FullScreenActivity() {
         nameTextView.text = name
     }
 
+
     private fun setPlayerRole(num: Int){
         when (num) {
             0 -> secretRoleImage.setImageResource(R.drawable.img_liberal_role)
             1 -> secretRoleImage.setImageResource(R.drawable.img_fascist_role)
             2 -> secretRoleImage.setImageResource(R.drawable.img_hitla_role)
         }
+    }
+
+
+    private fun setOtherFascistsView(playerIndex: Int) {
+        val otherFascists = PlayersInfo.getRevealedFascists(playerIndex)
+
+        if (otherFascists[0] == "") {
+            hitler_row.visibility = View.GONE
+        }
+
+        if (otherFascists[1] == "") {
+            fascist_one_row.visibility = View.GONE
+        }
+
+        if (otherFascists[2] == "") {
+            fascist_two_row.visibility = View.GONE
+        }
+
+        hitlerNameTextView.text = otherFascists[0]
+        facsistOneTextView.text = otherFascists[1]
+        facsistTwoTextView.text = otherFascists[2]
+
+
+        if (otherFascists[0] == "" && otherFascists[1] == "" && otherFascists[2] == "") {
+            otherFascistsView.visibility = View.GONE
+        } else {
+            otherFascistsView.visibility = View.VISIBLE
+        }
+    }
+
+    fun showOtherFascistsView() {
+        val anim = AnimationUtils.loadAnimation(this,R.anim.shift_up)
+        otherFascistsView.startAnimation(anim)
+        Log.d("debug", "should show")
     }
 }
