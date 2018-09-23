@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
+import java.util.*
 
 
 fun AppCompatActivity.vibrate() {
@@ -23,7 +24,8 @@ fun AppCompatActivity.vibrate() {
 }
 
 
-
+fun IntRange.random() =
+        Random().nextInt((endInclusive + 1) - start) +  start
 
 
 // KOMENTAY KTORE JE NAM LUTO VYMAZAT :D ...
