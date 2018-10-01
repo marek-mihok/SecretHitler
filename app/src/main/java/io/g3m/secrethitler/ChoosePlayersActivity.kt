@@ -31,6 +31,7 @@ class ChoosePlayersActivity : FullScreenActivity() {
         rv_player_list.layoutManager = manager
 
         // Access the RecyclerView Adapter and load the data into it
+
         val itemAdapter = PlayersAdapter(players, this)
         rv_player_list.adapter = itemAdapter
 

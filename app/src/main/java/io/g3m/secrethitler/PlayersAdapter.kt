@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.player_list_item.view.*
-
+//class PlayersAdapter(val items : ArrayList<String>, val context: Context, val clickListener: (String) -> Unit) : RecyclerView.Adapter<ViewHolder>() {
 class PlayersAdapter(val items : ArrayList<String>, val context: Context) : RecyclerView.Adapter<ViewHolder>() {
 
     // Gets the number of animals in the list
@@ -22,7 +22,12 @@ class PlayersAdapter(val items : ArrayList<String>, val context: Context) : Recy
 
     // Binds each animal in the ArrayList to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder?.tvPlayerType?.text = items.get(position)
+        holder.tvPlayerType?.text = items.get(position)
+
+        // Populate ViewHolder with data that corresponds to the position in the list
+        // which we are told to load
+        //(holder).bind(items[position], clickListener)
+
     }
 
     /**
@@ -31,11 +36,11 @@ class PlayersAdapter(val items : ArrayList<String>, val context: Context) : Recy
     fun swapItems(fromPosition: Int, toPosition: Int) {
         if (fromPosition < toPosition) {
             for (i in fromPosition..toPosition - 1) {
-                items.set(i, items.set(i+1, items.get(i)));
+                items.set(i, items.set(i+1, items.get(i)))
             }
         } else {
             for (i in fromPosition..toPosition + 1) {
-                items.set(i, items.set(i-1, items.get(i)));
+                items.set(i, items.set(i-1, items.get(i)))
             }
         }
 
@@ -47,4 +52,9 @@ class PlayersAdapter(val items : ArrayList<String>, val context: Context) : Recy
 class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     // Holds the TextView that will add each animal to
     val tvPlayerType = view.tv_player_type
+
+    fun bind(name: String, clickListener: (String) -> Unit) {
+        itemView.setOnClickListener { clickListener(name)}
+    }
+
 }
