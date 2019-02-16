@@ -1,6 +1,6 @@
 package io.g3m.secrethitler
 
-import android.util.Log
+import io.g3m.secrethitler.common.PlayersInfo
 import org.junit.Test
 
 import org.junit.Assert.*

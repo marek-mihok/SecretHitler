@@ -1,12 +1,11 @@
 package io.g3m.secrethitler
 
 import android.content.Intent
-import android.content.SharedPreferences
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import kotlinx.android.synthetic.main.activity_main_menu.*
+import io.g3m.secrethitler.common.ConfirmDialog
+import io.g3m.secrethitler.common.FullScreenActivity
+import io.g3m.secrethitler.common.PlayersInfo
 
 class MainMenu : FullScreenActivity() {
 
@@ -29,9 +28,7 @@ class MainMenu : FullScreenActivity() {
                 "Player #2",
                 "Player #3",
                 "Player #4",
-                "Player #5",
-                "Player #6",
-                "Player #7"))
+                "Player #5"))
 
         intent.putExtra("playerIndex", 0)
         startActivity(intent)
