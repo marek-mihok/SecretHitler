@@ -48,6 +48,7 @@ open class FullScreenActivity :  AppCompatActivity(), ConfirmDialog.ConfirmDialo
     override fun onBackPressed() {
         if(askToGetBack) {
             val confirmDialog = ConfirmDialog()
+            confirmDialog.isCancelable = false
             confirmDialog.show(supportFragmentManager, "confirm dialog")
         } else {
             super.onBackPressed()
