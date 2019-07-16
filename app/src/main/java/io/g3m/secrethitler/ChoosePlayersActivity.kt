@@ -1,7 +1,6 @@
 package io.g3m.secrethitler
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
+import android.os.Bundlex`
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.DividerItemDecoration
 import android.view.View
@@ -10,6 +9,7 @@ import android.support.v7.widget.helper.ItemTouchHelper
 import android.text.InputType
 import android.widget.EditText
 import android.widget.Toast
+import io.g3m.secrethitler.common.FullScreenActivity
 import kotlinx.android.synthetic.main.activity_choose_players.*
 import kotlinx.android.synthetic.main.player_list_item.*
 

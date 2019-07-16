@@ -1,10 +1,11 @@
-package io.g3m.secrethitler
+package io.g3m.secrethitler.common
 
 import android.content.Context
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
+import io.g3m.secrethitler.R
 import java.util.*
 
 

@@ -1,4 +1,4 @@
-package io.g3m.secrethitler
+package io.g3m.secrethitler.common
 
 import android.annotation.SuppressLint
 import android.os.*
@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 
 @SuppressLint("Registered")
-open class FullScreenActivity :  AppCompatActivity() {
+open class FullScreenActivity :  AppCompatActivity(), ConfirmDialog.ConfirmDialogListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,5 +35,24 @@ open class FullScreenActivity :  AppCompatActivity() {
         }
     }
 
+
+    // Help functions to add dialog to really go back
+    var askToGetBack = false
+
+    override fun confirmDialogResult(back: Boolean) {
+        if(back){
+            super.onBackPressed()
+        }
+    }
+
+    override fun onBackPressed() {
+        if(askToGetBack) {
+            val confirmDialog = ConfirmDialog()
+            confirmDialog.isCancelable = false
+            confirmDialog.show(supportFragmentManager, "confirm dialog")
+        } else {
+            super.onBackPressed()
+        }
+    }
 
 }

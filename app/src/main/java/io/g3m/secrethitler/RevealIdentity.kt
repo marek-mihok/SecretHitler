@@ -6,25 +6,31 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.*
-import android.widget.Toast
+import io.g3m.secrethitler.common.*
 import kotlinx.android.synthetic.main.activity_reveal_identity.*
 import java.lang.Math.round
 
+@SuppressLint("SetTextI18n")
 class RevealIdentity : FullScreenActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reveal_identity)
 
+        // Needed to use same activity to show different players
         val playerIndex = intent.getIntExtra("playerIndex", 0)
         setPlayerName(PlayersInfo.getPlayerName(playerIndex))
         setPlayerRole(PlayersInfo.getPlayerIdentity(playerIndex))
 
         this.setOtherFascistsView(playerIndex)
+
+        this.askToGetBack = true
 
         var revealed = false
         var reallyRevealed = false
@@ -32,35 +38,23 @@ class RevealIdentity : FullScreenActivity() {
 
         val density = resources.displayMetrics.density
 
-        val roleToCenterAnim = AnimationUtils.loadAnimation(this,R.anim.shift_to_center)
-
-
         val fadeOutAnim = AnimationUtils.loadAnimation(this,R.anim.fade_out)
+        val helpTextFadeInAni = CustomAnimations.textFadeIn
+        val helpTextFadeOutAni = CustomAnimations.textFadeOut
 
-        val showBackAnim = AnimationUtils.loadAnimation(this,R.anim.show_back_in_middle)
+        val roleToCenterAnim = AnimationUtils.loadAnimation(this,R.anim.reveal_identitiy_shift_to_center)
+        val showBackAnim = AnimationUtils.loadAnimation(this,R.anim.reveal_identitiy_show_back_in_middle)
+        val hideEnvelopeAnim = AnimationUtils.loadAnimation(this,R.anim.reveal_identitiy_hide_envelope_shift_left)
+        val shiftAnim = AnimationUtils.loadAnimation(this,R.anim.reveal_identitiy_shift_back)
+
         val progressButtonAnimation = AnimationUtils.loadAnimation(this,R.anim.translate_x)
-
-        val hideEnvelopeAnim = AnimationUtils.loadAnimation(this,R.anim.hide_envelope_shift_left)
-
-        val shiftAnim = AnimationUtils.loadAnimation(this,R.anim.shift_back)
+        progressButtonAnimation.duration = 1500
 
         val envelopeFrontAnim = AnimatorInflater.loadAnimator(this,R.animator.rotate)
         envelopeFrontAnim.setTarget(envelopeFront)
 
-        val helpTextFadeInAni = AlphaAnimation(0F, 0.66F)
-        helpTextFadeInAni.interpolator = LinearInterpolator()
-        helpTextFadeInAni.duration = 1000
-        helpTextFadeInAni.startOffset = 1000
-        helpTextFadeInAni.isFillEnabled = true
-        helpTextFadeInAni.fillAfter = true
-
-        val helpTextFadeOutAni = AlphaAnimation(0.66F, 0F)
-        helpTextFadeInAni.duration = 250
-
-
         progressView.alpha = 0F
         progressView.visibility = View.VISIBLE
-        progressButtonAnimation.duration = 1500
 
         val distance = (160 * 18.1).toInt()
         envelopeFront.cameraDistance = distance * density
@@ -78,7 +72,8 @@ class RevealIdentity : FullScreenActivity() {
             override fun onAnimationEnd(animation: Animation?) {
                 progressView.alpha = 0F
                 if (revealed) {
-                    fakeCard.setBackgroundColor(resources.getColor(R.color.backgroundYellow))
+                    val backgroundYellow = ContextCompat.getColor(this@RevealIdentity, R.color.backgroundYellow)
+                    fakeCard.setBackgroundColor(backgroundYellow)
                 }
             }
 
@@ -87,6 +82,7 @@ class RevealIdentity : FullScreenActivity() {
             }
 
         })
+
 
 
         val timer = object: CountDownTimer(1500,1500) {
@@ -104,7 +100,6 @@ class RevealIdentity : FullScreenActivity() {
         val timerAfterReveal = object: CountDownTimer(1500,1500) {
             override fun onFinish() {
                 confirmed = true
-                // Toast.makeText(this@RevealIdentity,"Confirmed",Toast.LENGTH_SHORT).show()
                 revealButtonTextView.text = "RELEASE BUTTON"
                 this@RevealIdentity.vibrate()
             }
@@ -147,7 +142,8 @@ class RevealIdentity : FullScreenActivity() {
                         progressView.startAnimation(fadeOutAnim)
 
                         if (revealed && !reallyRevealed) {
-                            fakeCard.setBackgroundColor(resources.getColor(R.color.backgroundYellow))
+                            val backgroundYellow = ContextCompat.getColor(this@RevealIdentity, R.color.backgroundYellow)
+                            fakeCard.setBackgroundColor(backgroundYellow)
 
                             shiftToFinalPosition(envelopeFakeBack, envelopeFront)
                             shiftToFinalPosition(secretRoleImage, envelopeFront)
@@ -189,7 +185,7 @@ class RevealIdentity : FullScreenActivity() {
                                 overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out)
                                 finish()
                             } else {
-                                // TU TREBA HODIT ODKAZ NA ZACATIE HRY
+                                // TODO: TU TREBA HODIT ODKAZ NA ZACATIE HRY
                                 finish()
                             }
                         }
@@ -200,6 +196,8 @@ class RevealIdentity : FullScreenActivity() {
         }
     }
 
+
+    // Used to shift envelope to final position
     private fun shiftToFinalPosition(view: View, shiftedView: View){
         view.translationX = -0.95F * shiftedView.width.toFloat() * 0.85F
         view.scaleX = 0.85F
@@ -208,7 +206,7 @@ class RevealIdentity : FullScreenActivity() {
     }
 
 
-    @SuppressLint("SetTextI18n")
+    // Add s on the end of name ... with little grammar
     private fun setPlayerName(pName: String) {
         val name = pName.toUpperCase()
         if (name.last().toString() == "S"){
@@ -220,6 +218,7 @@ class RevealIdentity : FullScreenActivity() {
     }
 
 
+    // Set appropriate image for player role
     private fun setPlayerRole(num: Int){
         when (num) {
             0 -> secretRoleImage.setImageResource(R.drawable.img_liberal_role)
@@ -229,6 +228,7 @@ class RevealIdentity : FullScreenActivity() {
     }
 
 
+    // Fill view with names of other fascists if needed
     private fun setOtherFascistsView(playerIndex: Int) {
         val otherFascists = PlayersInfo.getRevealedFascists(playerIndex)
 
@@ -256,9 +256,9 @@ class RevealIdentity : FullScreenActivity() {
         }
     }
 
+    // Shows view with other fascists
     fun showOtherFascistsView() {
-        val anim = AnimationUtils.loadAnimation(this,R.anim.shift_up)
+        val anim = AnimationUtils.loadAnimation(this,R.anim.reveal_identitiy_shift_up)
         otherFascistsView.startAnimation(anim)
-        Log.d("debug", "should show")
     }
 }
