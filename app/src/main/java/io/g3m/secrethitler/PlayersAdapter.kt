@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.player_list_item.view.*
-//class PlayersAdapter(val items : ArrayList<String>, val context: Context, val clickListener: (String) -> Unit) : RecyclerView.Adapter<ViewHolder>() {
-class PlayersAdapter(val items : ArrayList<String>, val context: Context) : RecyclerView.Adapter<ViewHolder>() {
+class PlayersAdapter(val items : ArrayList<String>, val context: Context, val clickListener: (String) -> Unit) : RecyclerView.Adapter<ViewHolder>() {
+//class PlayersAdapter(val items : ArrayList<String>, val context: Context) : RecyclerView.Adapter<ViewHolder>() {
 
     // Gets the number of animals in the list
     override fun getItemCount(): Int {
@@ -20,13 +20,13 @@ class PlayersAdapter(val items : ArrayList<String>, val context: Context) : Recy
     }
 //    https://stackoverflow.com/questions/49086840/class-mainadapter-is-not-abstract-and-does-not-implement-abstract-base-class-m
 
-    // Binds each animal in the ArrayList to a view
+    // Binds each player in the ArrayList to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvPlayerType?.text = items.get(position)
 
         // Populate ViewHolder with data that corresponds to the position in the list
         // which we are told to load
-        //(holder).bind(items[position], clickListener)
+        (holder).bind(items[position], clickListener)
 
     }
 
