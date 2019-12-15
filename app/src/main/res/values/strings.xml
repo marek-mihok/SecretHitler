@@ -1,7 +1,24 @@
 <resources>
     <string name="app_name">Secret Hitler</string>
+
+    <!-- Main screen -->
     <string name="start">START</string>
     <string name="settings">SETTINGS</string>
     <string name="rules">RULES</string>
     <string name="about">ABOUT</string>
+
+    <!-- Role distribution screen -->
+    <string name="player">PLAYER</string>
+    <string name="envelope_front">Envelope front</string>
+    <string name="player_s">PLAYER\'S</string>
+    <string name="only">ONLY</string>
+    <string name="envelope_back">Envelope back</string>
+    <string name="fascist_role_image">Fascist role image</string>
+    <string name="envelope_fake_back">Envelope fake back</string>
+    <string name="release_to_show_card">Card will be shown automatically after you release the button</string>
+    <string name="hitler">Hitler:</string>
+    <string name="question_mark_placeholder">\? ? ?</string>
+    <string name="other_fascists">Other fascists:</string>
+    <string name="skull_image">Skull image</string>
+    <string name="hold_to_reveal">HOLD TO REVEAL</string>
 </resources>
