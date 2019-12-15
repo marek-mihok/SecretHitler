@@ -7,13 +7,12 @@ import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.*
 import io.g3m.secrethitler.common.*
 import kotlinx.android.synthetic.main.activity_reveal_identity.*
-import java.lang.Math.round
+import java.util.*
 
 @SuppressLint("SetTextI18n")
 class RevealIdentity : FullScreenActivity() {
@@ -40,7 +39,6 @@ class RevealIdentity : FullScreenActivity() {
 
         val fadeOutAnim = AnimationUtils.loadAnimation(this,R.anim.fade_out)
         val helpTextFadeInAni = CustomAnimations.textFadeIn
-        val helpTextFadeOutAni = CustomAnimations.textFadeOut
 
         val roleToCenterAnim = AnimationUtils.loadAnimation(this,R.anim.reveal_identitiy_shift_to_center)
         val showBackAnim = AnimationUtils.loadAnimation(this,R.anim.reveal_identitiy_show_back_in_middle)
@@ -117,7 +115,7 @@ class RevealIdentity : FullScreenActivity() {
                 when(event?.action){
                     MotionEvent.ACTION_DOWN -> {
 
-                        revealButton.cardElevation = round(2 * density).toFloat()
+                        revealButton.cardElevation = kotlin.math.round(2 * density)
                         this@RevealIdentity.vibrate()
                         progressView.alpha = 1F
                         progressView.startAnimation(progressButtonAnimation)
@@ -135,7 +133,7 @@ class RevealIdentity : FullScreenActivity() {
                     MotionEvent.ACTION_UP -> {
                         timer.cancel()
 
-                        revealButton.cardElevation = round(4 * density).toFloat()
+                        revealButton.cardElevation = kotlin.math.round(4 * density)
 
                         revealPlayerInfoTextView.clearAnimation()
                         progressView.clearAnimation()
@@ -149,7 +147,6 @@ class RevealIdentity : FullScreenActivity() {
                             shiftToFinalPosition(secretRoleImage, envelopeFront)
 
                             secretRoleImage.startAnimation(roleToCenterAnim)
-                            revealPlayerInfoTextView.startAnimation(helpTextFadeOutAni)
 
                             // Hack pre postupne spustanie animacii lebo poli pototo vrstvy pri animacii
                             val timerAnim = object: CountDownTimer(750,750) {
@@ -208,7 +205,7 @@ class RevealIdentity : FullScreenActivity() {
 
     // Add s on the end of name ... with little grammar
     private fun setPlayerName(pName: String) {
-        val name = pName.toUpperCase()
+        val name = pName.toUpperCase(Locale.ROOT)
         if (name.last().toString() == "S"){
             smallNameTextView.text = "$name'S"
         } else {
