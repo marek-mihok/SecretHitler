@@ -1,6 +1,6 @@
 package io.g3m.secrethitler
 
-import android.os.Bundlex`
+import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.DividerItemDecoration
 import android.view.View
