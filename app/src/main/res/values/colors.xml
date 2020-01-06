@@ -13,4 +13,6 @@
     <color name="lightGray">#b4afa6</color>
     <color name="lighterGray">#f0eeee</color>
     <color name="roleCardWhite">#f6e2c3</color>
+    <color name="transparent">#00000000</color>
+    <color name="playerNameCard">#000000</color>
 </resources>

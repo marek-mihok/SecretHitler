@@ -5,14 +5,14 @@ import kotlin.collections.ArrayList
 
 object PlayersInfo {
 
-    private var playerNames: ArrayList<String> = arrayListOf<String>()
-    private var playerRoles: ArrayList<Int> = arrayListOf<Int>()
+    private var playerNames: ArrayList<String> = arrayListOf()
+    private var playerRoles: ArrayList<Int> = arrayListOf()
 
 
     // Set names of players and assign them secret roles
     fun setNames(players: ArrayList<String>){
         playerNames = players
-        playerRoles = ArrayList<Int>(Collections.nCopies(getPlayersCount(), 0))
+        playerRoles = ArrayList(Collections.nCopies(getPlayersCount(), 0))
 
         // Randomly pick hitler position
         val hitlerPosition = (0 until getPlayersCount()).random()
