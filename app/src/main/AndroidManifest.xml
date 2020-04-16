@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.g3m.secrethitler">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="sk.ferinaf.secrethitler">
 
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".AddPlayersActivity"></activity>
+        android:theme="@style/AppTheme.NoActionBar"
+        android:fullBackupContent="true">
+
         <activity
-            android:name=".MainMenu"
+            android:name="sk.ferinaf.secrethitler.activities.AddPlayersActivity"/>
+
+        <activity
+            android:name="sk.ferinaf.secrethitler.activities.MainMenuActivity"
             android:screenOrientation="sensorPortrait"
-            android:theme="@style/AppTheme.NoActionBar.Launcher">
+            android:theme="@style/AppTheme.NoActionBar.Launcher"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".ChoosePlayersActivity"
-            android:screenOrientation="sensorPortrait"></activity>
-        <activity
-            android:name=".RevealIdentity"
-            android:screenOrientation="sensorPortrait"></activity>
+            android:name="sk.ferinaf.secrethitler.activities.RevealIdentityActivity"
+            android:screenOrientation="sensorPortrait"
+            tools:ignore="LockedOrientationActivity"/>
+
     </application>
 
 </manifest>

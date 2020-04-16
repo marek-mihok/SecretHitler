@@ -12,6 +12,13 @@
         <item name="cardViewStyle">@style/CardView</item>
     </style>
 
+    <style name="ButtonMainMenu">
+        <item name="android:background">@drawable/main_menu_button</item>
+        <item name="android:fontFamily">@font/rokkitt_bold</item>
+        <item name="android:textColor">@color/backgroundOrange</item>
+        <item name="android:textSize">@dimen/fontSizeMenu</item>
+    </style>
+
 
     <!-- The launcher theme. It sets the main window background to the launch_screen drawable -->
     <style name="AppTheme.NoActionBar.Launcher">

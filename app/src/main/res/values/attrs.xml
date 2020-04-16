@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ShHeader">
+        <attr name="ShHeader_text_color" format="color"/>
+        <attr name="ShHeader_text_title" format="string"/>
+    </declare-styleable>
+
+</resources>

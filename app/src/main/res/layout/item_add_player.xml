@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/item_add_player">
+
+    <Button
+        android:id="@+id/add_player_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+
+        android:textAllCaps="false"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/add_player_button"
+        android:fontFamily="@font/rokkitt_bold"
+
+        android:padding="8dp"
+        android:text="@string/add_player"
+        android:textColor="@color/addPlayers_background"
+        android:textSize="18sp" />
+
+</LinearLayout>

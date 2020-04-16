@@ -7,6 +7,10 @@
     <string name="rules">RULES</string>
     <string name="about">ABOUT</string>
 
+    <!--  Add players  -->
+    <string name="players_screen_title">PLAYERS</string>
+    <string name="add_player">Add player</string>
+
     <!-- Role distribution screen -->
     <string name="player">PLAYER</string>
     <string name="envelope_front">Envelope front</string>

@@ -7,7 +7,7 @@
     android:background="@color/backgroundYellow"
     android:keepScreenOn="true"
     android:orientation="vertical"
-    tools:context=".ChoosePlayersActivity">
+    tools:context=".activities.ChoosePlayersActivity">
 
 
 
@@ -42,7 +42,7 @@
         android:textColor="@color/secretGray"
         />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_player_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

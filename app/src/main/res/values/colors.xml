@@ -15,4 +15,7 @@
     <color name="roleCardWhite">#f6e2c3</color>
     <color name="transparent">#00000000</color>
     <color name="playerNameCard">#000000</color>
+
+    <!--  Add players  -->
+    <color name="addPlayers_background">@color/backgroundOrange</color>
 </resources>

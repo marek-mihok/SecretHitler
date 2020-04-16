@@ -7,9 +7,9 @@
     android:background="@color/backgroundOrange"
     android:keepScreenOn="true"
     android:orientation="vertical"
-    tools:context=".MainMenu">
+    tools:context=".activities.MainMenuActivity">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -29,19 +29,16 @@
             app:srcCompat="@drawable/ic_basic_title" />
 
         <Button
-            android:id="@+id/startButton"
+            android:id="@+id/mainMenu_startButton"
+            style="@style/ButtonMainMenu"
+            android:onClick="startButtonPressed"
+            android:text="@string/start"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/main_menu_button"
-            android:fontFamily="@font/rokkitt_bold"
-            android:onClick="startButtonPressed"
-            android:text="@string/start"
-            android:textColor="@color/backgroundOrange"
-            android:textSize="@dimen/fontSizeMenu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,18 +47,15 @@
 
         <Button
             android:id="@+id/rulesButton"
+            style="@style/ButtonMainMenu"
+            android:onClick="rulesButtonPressed"
+            android:text="@string/rules"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/main_menu_button"
-            android:fontFamily="@font/rokkitt_bold"
-            android:onClick="rulesButtonPressed"
-            android:text="@string/rules"
-            android:textColor="@color/backgroundOrange"
-            android:textSize="@dimen/fontSizeMenu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
@@ -71,18 +65,15 @@
 
         <Button
             android:id="@+id/settingsButton"
+            style="@style/ButtonMainMenu"
+            android:onClick="settingsButtonPressed"
+            android:text="@string/settings"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/main_menu_button"
-            android:fontFamily="@font/rokkitt_bold"
-            android:onClick="settingsButtonPressed"
-            android:text="@string/settings"
-            android:textColor="@color/backgroundOrange"
-            android:textSize="@dimen/fontSizeMenu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -91,22 +82,19 @@
 
         <Button
             android:id="@+id/aboutButton"
+            style="@style/ButtonMainMenu"
+            android:onClick="aboutButtonPressed"
+            android:text="@string/about"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/main_menu_button"
-            android:fontFamily="@font/rokkitt_bold"
-            android:onClick="aboutButtonPressed"
-            android:text="@string/about"
-            android:textColor="@color/backgroundOrange"
-            android:textSize="@dimen/fontSizeMenu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.9" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
