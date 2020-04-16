@@ -1,18 +1,14 @@
 package sk.ferinaf.secrethitler.activities
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import kotlinx.android.synthetic.main.activity_add_players.*
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.adapters.AddPlayersAdapter
 import sk.ferinaf.secrethitler.adapters.AddPlayersTouchHelper
-import sk.ferinaf.secrethitler.common.vibrate
 import sk.ferinaf.secrethitler.dialogs.AddPlayerDialog
 import sk.ferinaf.secrethitler.dialogs.ConfirmDialog
 
