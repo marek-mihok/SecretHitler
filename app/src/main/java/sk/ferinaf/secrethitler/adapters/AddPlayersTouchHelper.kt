@@ -35,6 +35,7 @@ class AddPlayersTouchHelper(val playersAdapter: AddPlayersAdapter) : ItemTouchHe
             ObjectAnimator.ofFloat(item.cardView, "cardElevation", 0f).start()
         }
         playersAdapter.saveCurrentList()
+        playersAdapter.notifyDataSetChanged()
     }
 
 })

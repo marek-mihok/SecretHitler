@@ -15,10 +15,10 @@
 
         android:textAllCaps="false"
 
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/add_player_button"
+        android:background="@drawable/button_add_player"
         android:fontFamily="@font/rokkitt_bold"
 
         android:padding="8dp"

@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">@color/backgroundOrange</color>
+    <color name="colorPrimaryDark">@color/secretGray</color>
+    <color name="colorAccent">@color/secretWhite</color>
+
+    <color name="transparent">#00000000</color>
+
+    <!--  GENERIC COLORS  -->
+    <!--  Basic background colors  -->
     <color name="backgroundYellow">#e0a96d</color>
     <color name="backgroundOrange">#ca714d</color>
+    <color name="backgroundBlended">#ce8f5e</color>
+
+    <!--  App palette  -->
     <color name="secretGray">#373633</color>
     <color name="secretWhite">#f3e5c3</color>
     <color name="secretRed">#973248</color>
     <color name="secretDarkBrown">#bc754f</color>
-    <color name="backgroundBlended">#ce8f5e</color>
+
+    <!--  Shades of gray  -->
     <color name="lightGray">#b4afa6</color>
     <color name="lighterGray">#f0eeee</color>
+
     <color name="roleCardWhite">#f6e2c3</color>
-    <color name="transparent">#00000000</color>
     <color name="playerNameCard">#000000</color>
 
+
+    <!--  SEMANTIC COLORS  -->
     <!--  Add players  -->
     <color name="addPlayers_background">@color/backgroundOrange</color>
+    <color name="addPlayer_item">@color/secretGray</color>
+
 </resources>

@@ -2,15 +2,14 @@ package sk.ferinaf.secrethitler.adapters
 
 import android.content.SharedPreferences
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.common.SavedPlayers
-import sk.ferinaf.secrethitler.common.asColor
 
 class AddPlayersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
@@ -22,10 +21,12 @@ class AddPlayersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
         private var mUserTextView: TextView? = null
         var cardView: CardView? = null
+        var removeButton: ImageButton? = null
 
         init {
             mUserTextView = itemView.findViewById(R.id.item_player_textView)
             cardView = itemView.findViewById(R.id.item_player_cardView)
+            removeButton = itemView.findViewById(R.id.item_player_removeButton)
         }
 
         fun bind(name: String, onClick: ()->Unit) {
@@ -60,17 +61,24 @@ class AddPlayersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     }
 
     private var sp: SharedPreferences? = null
-    private var userList = SavedPlayers.players
+
+    var userList = SavedPlayers.players
     var onItemSelected: (position: Int) -> Unit = {}
     var onAddPlayerSelected: ()->Unit = {}
 
+    /**
+     * Updates current list from Saved Players
+     */
     fun updateList() {
         userList = SavedPlayers.players
         notifyDataSetChanged()
     }
 
+    /**
+     * Update saved players from current list
+     */
     fun saveCurrentList() {
-        SavedPlayers.relpaceList(userList)
+        SavedPlayers.replaceList(userList)
     }
 
     fun swipe(origin: Int, target: Int) {
@@ -99,6 +107,11 @@ class AddPlayersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is PlayerVH) {
             holder.bind(userList[position]) { onItemSelected(position) }
+            holder.removeButton?.setOnClickListener {
+                userList.removeAt(position)
+                saveCurrentList()
+                notifyDataSetChanged()
+            }
         } else if (holder is AddPlayerListItem) {
             holder.bind(onAddPlayerSelected)
         }

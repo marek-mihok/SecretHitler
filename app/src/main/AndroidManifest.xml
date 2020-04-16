@@ -16,7 +16,9 @@
         android:fullBackupContent="true">
 
         <activity
-            android:name="sk.ferinaf.secrethitler.activities.AddPlayersActivity"/>
+            android:name="sk.ferinaf.secrethitler.activities.AddPlayersActivity"
+            android:screenOrientation="sensorPortrait"
+            tools:ignore="LockedOrientationActivity"/>
 
         <activity
             android:name="sk.ferinaf.secrethitler.activities.MainMenuActivity"

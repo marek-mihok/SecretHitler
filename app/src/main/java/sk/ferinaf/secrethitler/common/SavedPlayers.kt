@@ -50,9 +50,9 @@ object SavedPlayers {
         }
     }
 
-    fun relpaceList(newList: ArrayList<String>) {
+    fun replaceList(newList: ArrayList<String>) {
         val spEdit = sp.edit()
-        spEdit.putString(SAVED_PLAYERS, newList.toString())
+        spEdit.putString(SAVED_PLAYERS, newList.toJSONString())
         spEdit.apply()
     }
 

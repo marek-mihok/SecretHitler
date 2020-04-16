@@ -5,10 +5,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:id="@+id/widget_yes_button">
+    android:id="@+id/widget_white_button">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/widget_yesButton_cardView"
+        android:id="@+id/widget_whiteButton_cardView"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <Button
-            android:id="@+id/widget_jaButton"
+            android:id="@+id/widget_whiteButton_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent" />
@@ -56,6 +56,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/whiteButton_primaryText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/germania"
@@ -66,6 +67,7 @@
                 android:textSize="36sp" />
 
             <TextView
+                android:id="@+id/whiteButton_secondaryText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/futura_medium_bt"

@@ -1,33 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:fontFamily="@font/futura_medium_bt"
+        android:textSize="18sp"
+        android:text="@string/add_player_dialog_title" />
 
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/addPlayerDialog_editText"
+        android:theme="@style/EditTextTheme"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:hint="Meno hráča"
+        android:hint="@string/add_player_dialog_hint"
         android:importantForAutofill="no"
-        android:inputType="textCapWords"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:inputType="textCapWords" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp">
+
+        <sk.ferinaf.secrethitler.widgets.CardButton
+            android:id="@+id/addPlayerDialog_cancelButton"
+            app:CardButton_type="CardButtonBlack"
+            app:CardButton_primaryText="meh"
+            app:CardButton_secondaryText="( C A N C E L )"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="RtlHardcoded"
+            android:layout_marginRight="12dp" />
+
+        <sk.ferinaf.secrethitler.widgets.CardButton
+            android:id="@+id/addPlayerDialog_confirmButton"
+            app:CardButton_type="CardButtonWhite"
+            app:CardButton_primaryText="ok!"
+            app:CardButton_secondaryText="( C O N F I R M )"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="RtlHardcoded"
+            android:layout_marginLeft="12dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

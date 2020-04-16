@@ -10,6 +10,21 @@
     <!--  Add players  -->
     <string name="players_screen_title">PLAYERS</string>
     <string name="add_player">Add player</string>
+    <string name="add_player_dialog_title">Player\'s name:</string>
+    <string name="add_player_dialog_hint">Type here …</string>
+
+    <string name="add_more_players">Add at least\n%d more players</string>
+    <string name="add_more_player">Add at least\n%d more player</string>
+
+    <plurals name="add_more_players">
+        <item quantity="one">@string/add_more_player</item>
+        <item quantity="other">@string/add_more_players</item>
+    </plurals>
+
+    <string name="add_player_start_assignment">START (%d/10)</string>
+
+    <!--  Confirm dialog  -->
+    <string name="confirm_return">Do you really want to return?</string>
 
     <!-- Role distribution screen -->
     <string name="player">PLAYER</string>

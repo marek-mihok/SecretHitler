@@ -6,4 +6,13 @@
         <attr name="ShHeader_text_title" format="string"/>
     </declare-styleable>
 
+    <declare-styleable name="CardButton">
+        <attr name="CardButton_type" format="enum">
+            <enum name="CardButtonWhite" value="0"/>
+            <enum name="CardButtonBlack" value="1"/>
+        </attr>
+        <attr name="CardButton_primaryText" format="string"/>
+        <attr name="CardButton_secondaryText" format="string"/>
+    </declare-styleable>
+
 </resources>

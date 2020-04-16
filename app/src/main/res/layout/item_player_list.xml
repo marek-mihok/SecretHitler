@@ -13,9 +13,9 @@
         app:cardCornerRadius="8dp"
         app:cardBackgroundColor="@color/backgroundYellow"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="4dp">
 
         <TextView
             android:id="@+id/item_player_textView"
@@ -23,11 +23,23 @@
             android:layout_height="48dp"
             android:background="@color/transparent"
             android:fontFamily="@font/futura_bold"
+            android:textColor="@color/addPlayer_item"
             android:gravity="center_vertical"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="Player"
             android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/item_player_removeButton"
+            android:tint="@color/addPlayer_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="4dp"
+            android:background="@color/transparent"
+            android:padding="8dp"
+            app:srcCompat="@drawable/ic_clear_24dp" />
 
     </androidx.cardview.widget.CardView>
 

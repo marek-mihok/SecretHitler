@@ -6,9 +6,10 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.MotionEvent
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import org.json.JSONArray
+import org.json.JSONStringer
 import sk.ferinaf.secrethitler.App
 import sk.ferinaf.secrethitler.R
 import java.util.*
@@ -36,6 +37,8 @@ fun IntRange.random() =
 
 fun Int.asColor() = ContextCompat.getColor(App.context, this)
 
+fun Int.asString(): String = App.context.resources.getString(this)
+
 fun View.touchInside(view: View, event: MotionEvent): Boolean {
     val viewLocation = IntArray(2)
     view.getLocationOnScreen(viewLocation)
@@ -47,6 +50,19 @@ fun View.touchInside(view: View, event: MotionEvent): Boolean {
             && event.rawY <= viewMaxY && event.rawY >= viewLocation[1])
 }
 
+fun View.showKeyboard() {
+    requestFocus()
+    postDelayed({
+        val imm = (context.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
+        imm?.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+    }, 100)
+}
+
+fun View.hideKeyboard() {
+    val imm = (context.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
+    imm?.hideSoftInputFromWindow(windowToken,0)
+}
+
 @Suppress("UNCHECKED_CAST")
 fun <T> JSONArray.toArrayList(): ArrayList<T> {
     val arrayList = arrayListOf<T>()
@@ -56,6 +72,21 @@ fun <T> JSONArray.toArrayList(): ArrayList<T> {
         }
     }
     return arrayList
+}
+
+fun <T> ArrayList<T>.toJSONString(): String {
+    val stringer = JSONStringer().array()
+    for (item in this) {
+        stringer.value(item)
+    }
+    stringer.endArray()
+    return stringer.toString()
+}
+
+fun View.setForceEnable(enabled: Boolean) {
+    isEnabled = enabled
+    val mOpacity = if (enabled) 1f else 0.38f
+    alpha = mOpacity
 }
 
 // KOMENTAY KTORE JE NAM LUTO VYMAZAT :D ...
