@@ -37,7 +37,7 @@
         <sk.ferinaf.secrethitler.widgets.CardButton
             android:id="@+id/dialog_button_no"
             app:CardButton_type="CardButtonBlack"
-            app:CardButton_primaryText="nein!"
+            app:CardButton_primaryText="nein"
             app:CardButton_secondaryText="( N O )"
             tools:ignore="RtlHardcoded"
             android:layout_marginLeft="4dp"
@@ -48,7 +48,7 @@
         <sk.ferinaf.secrethitler.widgets.CardButton
             android:id="@+id/dialog_button_yes"
             app:CardButton_type="CardButtonWhite"
-            app:CardButton_primaryText="ja"
+            app:CardButton_primaryText="ja!"
             app:CardButton_secondaryText="( Y E S )"
             tools:ignore="RtlHardcoded"
             android:layout_marginLeft="12dp"
