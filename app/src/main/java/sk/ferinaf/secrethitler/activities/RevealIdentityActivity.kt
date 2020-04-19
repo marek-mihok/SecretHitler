@@ -6,16 +6,14 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import androidx.core.content.ContextCompat
-import android.view.MotionEvent
 import android.view.View
 import android.view.animation.*
 import sk.ferinaf.secrethitler.R
 import kotlinx.android.synthetic.main.activity_reveal_identity.*
-import sk.ferinaf.secrethitler.common.CustomAnimations
-import sk.ferinaf.secrethitler.common.FullScreenActivity
-import sk.ferinaf.secrethitler.common.PlayersInfo
-import sk.ferinaf.secrethitler.common.vibrate
+import kotlinx.android.synthetic.main.activity_reveal_identity.otherFascistsView
+import kotlinx.android.synthetic.main.item_other_fascists.*
+import sk.ferinaf.secrethitler.common.*
+import sk.ferinaf.secrethitler.widgets.ConfirmButton
 import java.util.*
 
 @SuppressLint("SetTextI18n")
@@ -23,176 +21,159 @@ class RevealIdentityActivity : FullScreenActivity() {
 
     override var askToGetBack = true
 
+    private var playerIndex: Int = 0
+    private var revealedFirstStage = false
+    private var revealedSecondStage = false
+    private var confirmed = false
+    private var revealTimer: CountDownTimer? = null
+    private var confirmTimer: CountDownTimer? = null
+
+    private val showBackAnim by lazy { AnimationUtils.loadAnimation(this, R.anim.reveal_identitiy_show_back_in_middle) }
+    private val shiftAnim by lazy { AnimationUtils.loadAnimation(this, R.anim.reveal_identitiy_shift_back) }
+    private val envelopeFrontAnim by lazy { AnimatorInflater.loadAnimator(this, R.animator.rotate) }
+    private val roleToCenterAnim by lazy { AnimationUtils.loadAnimation(this, R.anim.reveal_identitiy_shift_to_center) }
+    private val hideEnvelopeAnim by lazy { AnimationUtils.loadAnimation(this, R.anim.reveal_identitiy_hide_envelope_shift_left) }
+
+    private val backgroundYellow by lazy { R.color.backgroundYellow.asColor() }
+    private val density by lazy { resources.displayMetrics.density }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reveal_identity)
 
         // Needed to use same activity to show different players
-        val playerIndex = intent.getIntExtra("playerIndex", 0)
+        playerIndex = intent.getIntExtra("playerIndex", 0)
         setPlayerName(PlayersInfo.getPlayerName(playerIndex))
         setPlayerRole(PlayersInfo.getPlayerIdentity(playerIndex))
 
+        // SETUP VIEWS
         this.setOtherFascistsView(playerIndex)
-
-        var revealed = false
-        var reallyRevealed = false
-        var confirmed = false
-
-        val density = resources.displayMetrics.density
-
-        val fadeOutAnim = AnimationUtils.loadAnimation(this, R.anim.fade_out)
-        val helpTextFadeInAni = CustomAnimations.textFadeIn
-
-        val roleToCenterAnim = AnimationUtils.loadAnimation(this, R.anim.reveal_identitiy_shift_to_center)
-        val showBackAnim = AnimationUtils.loadAnimation(this, R.anim.reveal_identitiy_show_back_in_middle)
-        val hideEnvelopeAnim = AnimationUtils.loadAnimation(this, R.anim.reveal_identitiy_hide_envelope_shift_left)
-        val shiftAnim = AnimationUtils.loadAnimation(this, R.anim.reveal_identitiy_shift_back)
-
-        val progressButtonAnimation = AnimationUtils.loadAnimation(this, R.anim.translate_x)
-        progressButtonAnimation.duration = 1500
-
-        val envelopeFrontAnim = AnimatorInflater.loadAnimator(this, R.animator.rotate)
-        envelopeFrontAnim.setTarget(envelopeFront)
-
-        progressView.alpha = 0F
-        progressView.visibility = View.VISIBLE
 
         val distance = (160 * 18.1).toInt()
         envelopeFront.cameraDistance = distance * density
         envelopeBack.cameraDistance = distance * density
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            revealButtonTextView.letterSpacing = 0.05F
+            revealButton?.textView?.letterSpacing = 0.05F
         }
 
+        // SET ANIMATIONS
+        envelopeFrontAnim.setTarget(envelopeFront)
 
-        fadeOutAnim.setAnimationListener(object: Animation.AnimationListener{
-            override fun onAnimationRepeat(animation: Animation?) {}
-
-            override fun onAnimationEnd(animation: Animation?) {
-                progressView.alpha = 0F
-                if (revealed) {
-                    val backgroundYellow = ContextCompat.getColor(this@RevealIdentityActivity, R.color.backgroundYellow)
-                    fakeCard.setBackgroundColor(backgroundYellow)
-                }
-            }
-
-            override fun onAnimationStart(animation: Animation?) {
-                progressView.alpha = 1F
-            }
-
-        })
-
-
-
-        val timer = object: CountDownTimer(1500,1500) {
+        val animationDuration = 1500L
+        val helpTextFadeInAni = CustomAnimations.textFadeIn
+        revealTimer = object: CountDownTimer(animationDuration, animationDuration) {
             override fun onFinish() {
-                revealed = true
+                revealedFirstStage = true
                 revealPlayerInfoTextView.startAnimation(helpTextFadeInAni)
-                revealButtonTextView.text = "RELEASE BUTTON"
+                revealButton?.textView?.text = "RELEASE BUTTON" // TODO: Resource
                 this@RevealIdentityActivity.vibrate()
             }
 
             override fun onTick(millisUntilFinished: Long) { }
         }
 
-
-        val timerAfterReveal = object: CountDownTimer(1500,1500) {
+        confirmTimer = object: CountDownTimer(animationDuration, animationDuration) {
             override fun onFinish() {
                 confirmed = true
-                revealButtonTextView.text = "RELEASE BUTTON"
+                revealButton?.textView?.text = "RELEASE BUTTON"
                 this@RevealIdentityActivity.vibrate()
             }
 
             override fun onTick(millisUntilFinished: Long) { }
         }
 
-
-        revealButton.setOnTouchListener { v, event ->
-
-            v?.performClick()
-
-            if (event.pointerCount < 2) {
-
-                when(event?.action){
-                    MotionEvent.ACTION_DOWN -> {
-
-                        revealButton.cardElevation = kotlin.math.round(2 * density)
-                        this@RevealIdentityActivity.vibrate()
-                        progressView.alpha = 1F
-                        progressView.startAnimation(progressButtonAnimation)
-
-                        if (!revealed) {
-                            timer.start()
-                            envelopeBack.startAnimation(showBackAnim)
-                            fakeCard.startAnimation(showBackAnim)
-                            envelopeFront.startAnimation(shiftAnim)
-                            envelopeFrontAnim.start()
-                        } else {
-                            timerAfterReveal.start()
-                        }
-                    }
-                    MotionEvent.ACTION_UP -> {
-                        timer.cancel()
-
-                        revealButton.cardElevation = kotlin.math.round(4 * density)
-
-                        revealPlayerInfoTextView.clearAnimation()
-                        progressView.clearAnimation()
-                        progressView.startAnimation(fadeOutAnim)
-
-                        if (revealed && !reallyRevealed) {
-                            val backgroundYellow = ContextCompat.getColor(this@RevealIdentityActivity, R.color.backgroundYellow)
-                            fakeCard.setBackgroundColor(backgroundYellow)
-
-                            shiftToFinalPosition(envelopeFakeBack, envelopeFront)
-                            shiftToFinalPosition(secretRoleImage, envelopeFront)
-
-                            secretRoleImage.startAnimation(roleToCenterAnim)
-
-                            // Hack pre postupne spustanie animacii lebo poli pototo vrstvy pri animacii
-                            val timerAnim = object: CountDownTimer(750,750) {
-                                override fun onFinish() {
-                                    envelopeFakeBack.startAnimation(hideEnvelopeAnim)
-                                    envelopeFront.startAnimation(hideEnvelopeAnim)
-                                    reallyRevealed = true
-                                    showOtherFascistsView()
-                                }
-
-                                override fun onTick(millisUntilFinished: Long) { }
-                            }
-                            timerAnim.start()
-                            revealButtonTextView.text = "HOLD TO CONFIRM"
-
-                        } else if (!reallyRevealed) {
-                            fakeCard.clearAnimation()
-                            envelopeFrontAnim.start()
-                            envelopeFrontAnim.cancel()
-                            envelopeBack.clearAnimation()
-                            envelopeFront.clearAnimation()
-                            envelopeFakeBack.clearAnimation()
-                            secretRoleImage.clearAnimation()
-                        } else if (reallyRevealed) {
-                            timerAfterReveal.cancel()
-                        }
-
-                        if (confirmed) {
-                            if (playerIndex < PlayersInfo.getPlayersCount() - 1) {
-                                val intent = Intent(this, RevealIdentityActivity::class.java)
-                                intent.putExtra("playerIndex", playerIndex + 1)
-                                startActivity(intent)
-                                overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out)
-                                finish()
-                            } else {
-                                // TODO: TU TREBA HODIT ODKAZ NA ZACATIE HRY
-                                finish()
-                            }
-                        }
-                    }
-                }
+        // SET PROGRESS LISTENER
+        revealButton.setProgressListener(animationDuration, object : ConfirmButton.ProgressListener {
+            override fun onStart() {
+                onConfirmStart()
             }
-            true
+
+            override fun onCancel() {
+                onConfirmCancel()
+            }
+
+            override fun onConfirm() { }
+
+            override fun onFinish() {
+                onConfirmFinish()
+            }
+
+            override fun onActionDown() {
+                revealButton?.cardElevation = kotlin.math.round(2 * density)
+            }
+
+            override fun onActionUp() {
+                revealButton?.cardElevation = kotlin.math.round(4 * density)
+            }
+        })
+    }
+
+    private fun onConfirmStart() {
+        if (!revealedFirstStage) {
+            revealTimer?.start()
+            envelopeBack.startAnimation(showBackAnim)
+            fakeCard.startAnimation(showBackAnim)
+            envelopeFront.startAnimation(shiftAnim)
+            envelopeFrontAnim.start()
+        } else {
+            confirmTimer?.start()
         }
+    }
+
+    private fun onConfirmCancel() {
+        if (!revealedFirstStage) {
+            revealTimer?.cancel()
+            fakeCard?.clearAnimation()
+            envelopeBack?.clearAnimation()
+            envelopeFront?.clearAnimation()
+            envelopeFakeBack?.clearAnimation()
+            secretRoleImage?.clearAnimation()
+            envelopeFrontAnim.start()
+            envelopeFrontAnim.cancel()
+        } else {
+            confirmTimer?.cancel()
+        }
+    }
+
+    private fun onConfirmFinish() {
+        if (revealedFirstStage && !revealedSecondStage) {
+            revealButton?.textView?.text = "HOLD TO CONFIRM"
+            revealPlayerInfoTextView.clearAnimation()
+            fakeCard.setBackgroundColor(backgroundYellow)
+
+            shiftToFinalPosition(envelopeFakeBack, envelopeFront)
+            shiftToFinalPosition(secretRoleImage, envelopeFront)
+
+            secretRoleImage.startAnimation(roleToCenterAnim)
+
+            val timerShowRole = object: CountDownTimer(750,750) {
+                override fun onFinish() {
+                    envelopeFakeBack.startAnimation(hideEnvelopeAnim)
+                    envelopeFront.startAnimation(hideEnvelopeAnim)
+                    revealedSecondStage = true
+                    showOtherFascistsView()
+                }
+
+                override fun onTick(millisUntilFinished: Long) { }
+            }
+            timerShowRole.start()
+        }
+
+        if (revealedSecondStage) {
+            revealButton?.interactionEnabled = false
+            if (playerIndex < PlayersInfo.getPlayersCount() - 1) {
+                val intent = Intent(this, RevealIdentityActivity::class.java)
+                intent.putExtra("playerIndex", playerIndex + 1)
+                startActivity(intent)
+                overridePendingTransition(R.anim.activity_slide_in, R.anim.activity_slide_out)
+                finish()
+            } else {
+                // TODO: TU TREBA HODIT ODKAZ NA ZACATIE HRY
+                finish()
+            }
+        }
+
     }
 
 

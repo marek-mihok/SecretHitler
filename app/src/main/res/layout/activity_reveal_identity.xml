@@ -162,177 +162,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/otherFascistsView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_border_dark_brown"
-        app:layout_constraintEnd_toEndOf="@+id/revealButton"
-        app:layout_constraintStart_toStartOf="@id/revealButton"
-        app:layout_constraintTop_toTopOf="@+id/frameLayout">
-
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="match_parent"
+    <include layout="@layout/item_other_fascists"
+            android:id="@+id/otherFascistsView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:background="@drawable/custom_border_white"
-            android:gravity="center"
-            android:minHeight="52dp"
-            android:paddingBottom="4dp"
-            android:paddingTop="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:background="@drawable/custom_border_dark_brown"
+            app:layout_constraintEnd_toEndOf="@+id/revealButton"
+            app:layout_constraintStart_toStartOf="@id/revealButton"
+            app:layout_constraintTop_toTopOf="@+id/frameLayout"/>
 
-            <TableRow
-                android:id="@+id/hitler_row"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:gravity="start|center_vertical"
-                android:visibility="visible">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/rokkitt_bold"
-                    android:text="@string/hitler"
-                    android:textAlignment="textEnd"
-                    android:textSize="18sp"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/hitlerNameTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/rokkitt_regular"
-                    android:text="@string/question_mark_placeholder"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="@+id/facsistOneTextView" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/fascist_one_row"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:gravity="start|center_vertical"
-                android:visibility="visible">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/rokkitt_bold"
-                    android:text="@string/other_fascists"
-                    android:textAlignment="textEnd"
-                    android:textSize="18sp"
-                    android:visibility="visible"
-                    app:layout_constraintStart_toStartOf="parent"/>
-
-                <TextView
-                    android:id="@+id/facsistOneTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/rokkitt_regular"
-                    android:text="@string/question_mark_placeholder"
-                    android:textSize="18sp" />
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/fascist_two_row"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:gravity="start|center_vertical"
-                android:visibility="visible">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/rokkitt_regular"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <TextView
-                    android:id="@+id/facsistTwoTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/rokkitt_regular"
-                    android:text="@string/question_mark_placeholder"
-                    android:textSize="18sp" />
-            </TableRow>
-
-        </TableLayout>
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tableLayout"
-            app:srcCompat="@drawable/ic_skull"
-            android:contentDescription="@string/skull_image" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.cardview.widget.CardView
+    <sk.ferinaf.secrethitler.widgets.ConfirmButton
         android:id="@+id/revealButton"
         android:layout_width="0dp"
         android:layout_height="64dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
         android:layout_marginBottom="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:visibility="visible"
-        app:cardBackgroundColor="@color/secretDarkBrown"
         app:cardCornerRadius="@dimen/buttonCornerRadius"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/envelopeFront"
         app:layout_constraintStart_toStartOf="@+id/envelopeFront"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/custom_border" />
-
-
-        <View
-            android:id="@+id/progressView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/secretDarkBrown"
-            android:visibility="invisible" />
-
-        <TextView
-            android:id="@+id/revealButtonTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/futura_bold"
-            android:text="@string/hold_to_reveal"
-            android:textColor="@color/secretRed"
-            android:textSize="18sp" />
-
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintVertical_bias="1.0"/>
 
     <FrameLayout
         android:id="@+id/frameLayout"
