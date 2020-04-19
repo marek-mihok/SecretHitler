@@ -205,14 +205,10 @@ class RevealIdentityActivity : FullScreenActivity() {
     }
 
 
-    // Add s on the end of name ... with little grammar
+    // Add s on the end of name
     private fun setPlayerName(pName: String) {
         val name = pName.toUpperCase(Locale.ROOT)
-        if (name.last().toString() == "S"){
-            smallNameTextView.text = "$name'S"
-        } else {
-            smallNameTextView.text = name + "S"
-        }
+        smallNameTextView.text = "$name'S"
         revealIdentity_title?.setTitle(name)
     }
 
