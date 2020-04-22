@@ -4,11 +4,9 @@ import android.animation.*
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_policy.*
+import kotlinx.android.synthetic.main.item_policy_cards_small_linear_layout.*
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.common.centerToView
 import sk.ferinaf.secrethitler.common.touchInside

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="horizontal">
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.1" />
+
+    <sk.ferinaf.secrethitler.widgets.PolicyCard
+        android:id="@+id/policy_card_first"
+        style="@style/PolicyCardSmall"
+        app:PolicyCard_cornerRadius="6dp"
+        app:PolicyCard_elevation="4dp" />
+
+    <sk.ferinaf.secrethitler.widgets.PolicyCard
+        android:id="@+id/policy_card_second"
+        style="@style/PolicyCardSmall"
+        app:PolicyCard_cornerRadius="6dp"
+        app:PolicyCard_elevation="4dp" />
+
+    <sk.ferinaf.secrethitler.widgets.PolicyCard
+        android:id="@+id/policy_card_third"
+        style="@style/PolicyCardSmall"
+        android:visibility="visible"
+        app:PolicyCard_cornerRadius="6dp"
+        app:PolicyCard_elevation="4dp" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.1" />
+
+</LinearLayout>
