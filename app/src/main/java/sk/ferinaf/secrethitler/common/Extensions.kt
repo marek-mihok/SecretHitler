@@ -1,6 +1,7 @@
 package sk.ferinaf.secrethitler.common
 
 import android.content.Context
+import android.graphics.Point
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
@@ -26,6 +27,7 @@ fun Context.vibrate() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             vb.vibrate(VibrationEffect.createOneShot(vibrationDuration,VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
+            @Suppress("DEPRECATION")
             vb.vibrate(vibrationDuration)
         }
     }
@@ -39,15 +41,36 @@ fun Int.asColor() = ContextCompat.getColor(App.context, this)
 
 fun Int.asString(): String = App.context.resources.getString(this)
 
-fun View.touchInside(view: View, event: MotionEvent): Boolean {
+fun View.touchInside(event: MotionEvent): Boolean {
+    val rawLocation = getRawXY()
+
+    val viewMaxX = rawLocation.x + width - 1
+    val viewMaxY = rawLocation.y + height - 1
+
+    return (event.rawX <= viewMaxX && event.rawX >= rawLocation.x
+            && event.rawY <= viewMaxY && event.rawY >= rawLocation.y)
+}
+
+fun View.getRawXY(): Point {
     val viewLocation = IntArray(2)
-    view.getLocationOnScreen(viewLocation)
+    getLocationOnScreen(viewLocation)
+    return Point(viewLocation[0], viewLocation[1])
+}
 
-    val viewMaxX = viewLocation[0] + view.width - 1
-    val viewMaxY = viewLocation[1] + view.height - 1
+fun View.getRawCorrection(): Point {
+    val point = getRawXY()
+    point.x = point.x - x.toInt()
+    point.y = point.y - y.toInt()
+    return point
+}
 
-    return (event.rawX <= viewMaxX && event.rawX >= viewLocation[0]
-            && event.rawY <= viewMaxY && event.rawY >= viewLocation[1])
+fun View.centerToView(v: View?) {
+    if (v != null) {
+        val rawCorrectionThis = getRawCorrection()
+        val rawCorrectionView = v.getRawCorrection()
+        x = v.x + rawCorrectionView.x - rawCorrectionThis.x + v.width / 2 - width / 2
+        y = v.y + rawCorrectionView.y - rawCorrectionThis.y + v.height / 2 - height / 2
+    }
 }
 
 fun View.showKeyboard() {

@@ -17,6 +17,15 @@
     <color name="secretWhite">#f3e5c3</color>
     <color name="secretRed">#973248</color>
     <color name="secretDarkBrown">#bc754f</color>
+    <color name="secretGreen">#61c3a0</color>
+
+    <color name="redLight">#f65f4b</color>
+    <color name="redMedium">#da4031</color>
+    <color name="redDark">#a6120e</color>
+
+    <color name="blueLight">#77c9d6</color>
+    <color name="blueMedium">#64b1c2</color>
+    <color name="blueDark">#2e6b86</color>
 
     <!--  Shades of gray  -->
     <color name="lightGray">#b4afa6</color>

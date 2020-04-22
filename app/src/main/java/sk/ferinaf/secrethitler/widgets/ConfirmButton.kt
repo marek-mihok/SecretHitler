@@ -34,20 +34,48 @@ class ConfirmButton @JvmOverloads constructor(
     private val fadeOutAnim by lazy { AnimationUtils.loadAnimation(context, R.anim.fade_out) }
     private val progressButtonAnimation by lazy { AnimationUtils.loadAnimation(context, R.anim.translate_x) }
 
+    private var timer: CountDownTimer? = null
+    private var confirmed = false
+
+    private var mListener: ProgressListener? = null
+    var listener: ProgressListener?
+        get() = mListener
+        set(value) {
+            mListener = value
+        }
+
+    private var mDuration = 1500L
+    var duration: Long
+        get() = mDuration
+        set(value) {
+            mDuration = value
+            progressButtonAnimation.duration = mDuration
+
+            timer = object: CountDownTimer(duration, duration) {
+                override fun onFinish() {
+                    // On confirm
+                    confirmed = true
+                    context.vibrate()
+                    listener?.onConfirm()
+                }
+
+                override fun onTick(millisUntilFinished: Long) { }
+            }
+        }
+
+
+    /**
+     * INITIALISATION
+     */
     init {
         View.inflate(context, R.layout.widget_confirm_button, this)
 
         textView = findViewById(R.id.confirmButton_TextView)
 
-//        val attributes = context.obtainStyledAttributes(attrs, R.styleable.ShHeader)
-//        val colorId = attributes.getColor(R.styleable.ShHeader_ShHeader_text_color, 0)
-//        headerWidget_title_textView?.setTextColor(colorId)
-//        headerWidget_title_textView?.text = attributes.getString(R.styleable.ShHeader_ShHeader_text_title)
-//        attributes.recycle()
-    }
-
-    fun setProgressListener(duration: Long = 1500, listener: ProgressListener) {
-        var confirmed = false
+        val attributes = context.obtainStyledAttributes(attrs, R.styleable.ConfirmButton)
+        val colorId = attributes.getColor(R.styleable.ConfirmButton_ConfirmButton_TextColor, 0)
+        textView?.setTextColor(colorId)
+        attributes.recycle()
 
         progressButtonAnimation.duration = duration
         confirmButton_progressView?.alpha = 0F
@@ -66,12 +94,12 @@ class ConfirmButton @JvmOverloads constructor(
 
         })
 
-        val timer = object: CountDownTimer(duration, duration) {
+        timer = object: CountDownTimer(duration, duration) {
             override fun onFinish() {
                 // On confirm
                 confirmed = true
                 context.vibrate()
-                listener.onConfirm()
+                listener?.onConfirm()
             }
 
             override fun onTick(millisUntilFinished: Long) { }
@@ -87,18 +115,18 @@ class ConfirmButton @JvmOverloads constructor(
                 MotionEvent.ACTION_DOWN -> {
                     // On start
                     confirmed = false
-                    listener.onActionDown()
+                    listener?.onActionDown()
                     context.vibrate()
                     confirmButton_progressView?.alpha = 1F
                     confirmButton_progressView?.startAnimation(progressButtonAnimation)
 
-                    timer.start()
-                    listener.onStart()
+                    timer?.start()
+                    listener?.onStart()
                 }
 
                 MotionEvent.ACTION_UP -> {
-                    timer.cancel()
-                    listener.onActionUp()
+                    timer?.cancel()
+                    listener?.onActionUp()
 
                     if (shouldFade) {
                         confirmButton_progressView?.clearAnimation()
@@ -107,15 +135,16 @@ class ConfirmButton @JvmOverloads constructor(
 
                     if (confirmed) {
                         // On finish
-                        listener.onFinish()
+                        listener?.onFinish()
                     } else {
                         // On cancel
-                        listener.onCancel()
+                        listener?.onCancel()
                     }
                 }
 
             }
             true
         }
+
     }
 }

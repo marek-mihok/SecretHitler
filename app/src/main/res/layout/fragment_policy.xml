@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:background="@color/backgroundBlended">
+
+    <sk.ferinaf.secrethitler.widgets.ShHeader
+        android:id="@+id/policy_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ShHeader_text_title="DISCARD POLICY"
+        app:ShHeader_text_color="@color/backgroundBlended"
+        app:ShHeader_color="@color/secretGray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/policy_header">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1" />
+
+        <sk.ferinaf.secrethitler.widgets.PolicyCard
+            android:id="@+id/policy_card_first"
+            style="@style/PolicyCardSmall"
+            app:PolicyCard_cornerRadius="6dp"
+            app:PolicyCard_elevation="4dp" />
+
+        <sk.ferinaf.secrethitler.widgets.PolicyCard
+            android:id="@+id/policy_card_second"
+            style="@style/PolicyCardSmall"
+            app:PolicyCard_cornerRadius="6dp"
+            app:PolicyCard_elevation="4dp" />
+
+        <sk.ferinaf.secrethitler.widgets.PolicyCard
+            android:id="@+id/policy_card_third"
+            style="@style/PolicyCardSmall"
+            android:visibility="visible"
+            app:PolicyCard_cornerRadius="6dp"
+            app:PolicyCard_elevation="4dp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1" />
+
+    </LinearLayout>
+
+    <sk.ferinaf.secrethitler.widgets.PolicyCard
+        android:id="@+id/policy_card_moving"
+        android:layout_width="wrap_content"
+        android:layout_height="192dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="200dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:PolicyCard_cornerRadius="10dp"
+        app:PolicyCard_elevation="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <sk.ferinaf.secrethitler.widgets.ConfirmButton
+        android:id="@+id/policy_confirmButton"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        app:ConfirmButton_TextColor="@color/secretGray"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

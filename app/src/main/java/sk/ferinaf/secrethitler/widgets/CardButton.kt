@@ -48,7 +48,7 @@ class CardButton @JvmOverloads constructor(
                 }
                 MotionEvent.ACTION_UP -> {
                     setCardElevation(4f)
-                    if(touchInside(v, event)) {
+                    if(v.touchInside(event)) {
                         onClick()
                     }
                 }

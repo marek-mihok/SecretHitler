@@ -84,7 +84,7 @@ class RevealIdentityActivity : FullScreenActivity() {
         }
 
         // SET PROGRESS LISTENER
-        revealButton.setProgressListener(animationDuration, object : ConfirmButton.ProgressListener {
+        revealButton.listener = object : ConfirmButton.ProgressListener {
             override fun onStart() {
                 onConfirmStart()
             }
@@ -106,7 +106,7 @@ class RevealIdentityActivity : FullScreenActivity() {
             override fun onActionUp() {
                 revealButton?.cardElevation = kotlin.math.round(4 * density)
             }
-        })
+        }
     }
 
     private fun onConfirmStart() {

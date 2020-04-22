@@ -40,4 +40,9 @@
     <string name="other_fascists">Other fascists:</string>
     <string name="skull_image">Skull image</string>
     <string name="hold_to_reveal">HOLD TO REVEAL</string>
+
+    <!--  Navigation  -->
+    <string name="navigation_game">GAME</string>
+    <string name="navigation_enact_policy">ENACT POLICY</string>
+    <string name="navigation_players">PLAYERS</string>
 </resources>

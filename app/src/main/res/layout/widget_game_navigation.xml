@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:background="@color/backgroundBlended">
+
+    <sk.ferinaf.secrethitler.widgets.GameNavigationItem
+        android:id="@+id/navigation_gameButton"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        app:GameNavigationItem_image="@drawable/ic_face_24dp"
+        app:GameNavigationItem_title="@string/navigation_game" />
+
+
+    <sk.ferinaf.secrethitler.widgets.GameNavigationItem
+        android:id="@+id/navigation_policyButton"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        app:GameNavigationItem_image="@drawable/ic_policy_24dp"
+        app:GameNavigationItem_title="@string/navigation_enact_policy" />
+
+
+    <sk.ferinaf.secrethitler.widgets.GameNavigationItem
+        android:id="@+id/navigation_playersButton"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        app:GameNavigationItem_image="@drawable/ic_players_24dp"
+        app:GameNavigationItem_title="@string/navigation_players" />
+
+</LinearLayout>

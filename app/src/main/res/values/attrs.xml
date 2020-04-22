@@ -2,6 +2,7 @@
 <resources>
 
     <declare-styleable name="ShHeader">
+        <attr name="ShHeader_color" format="color"/>
         <attr name="ShHeader_text_color" format="color"/>
         <attr name="ShHeader_text_title" format="string"/>
     </declare-styleable>
@@ -13,6 +14,24 @@
         </attr>
         <attr name="CardButton_primaryText" format="string"/>
         <attr name="CardButton_secondaryText" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="GameNavigationItem">
+        <attr name="GameNavigationItem_image" format="reference"/>
+        <attr name="GameNavigationItem_title" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="PolicyCard">
+        <attr name="PolicyCard_cornerRadius" format="dimension"/>
+        <attr name="PolicyCard_elevation" format="dimension"/>
+        <attr name="PolicyCard_type" format="enum">
+            <enum name="PolicyCard_Fascist" value="0"/>
+            <enum name="PolicyCard_Liberal" value="1"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ConfirmButton">
+        <attr name="ConfirmButton_TextColor" format="color"/>
     </declare-styleable>
 
 </resources>

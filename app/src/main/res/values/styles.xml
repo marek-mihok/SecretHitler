@@ -26,6 +26,16 @@
         <item name="android:textSize">@dimen/fontSizeMenu</item>
     </style>
 
+    <style name="PolicyCardSmall">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:clipChildren">false</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
 
     <!-- The launcher theme. It sets the main window background to the launch_screen drawable -->
     <style name="AppTheme.NoActionBar.Launcher">
