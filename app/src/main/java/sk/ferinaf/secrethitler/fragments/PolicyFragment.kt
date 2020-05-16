@@ -160,6 +160,7 @@ class PolicyFragment : Fragment() {
                                             interactionEnabled = true
                                             readyToConfirm = true
                                             policy_confirmButton?.interactionEnabled = true
+                                            policy_confirmButton?.textView?.text = R.string.hold_to_confirm.asString()
                                         }
 
                                         override fun onAnimationRepeat(animation: Animator?) {}
