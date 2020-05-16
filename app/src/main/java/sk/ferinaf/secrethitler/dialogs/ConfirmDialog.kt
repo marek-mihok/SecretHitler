@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.widgets.CardButton
@@ -12,30 +13,37 @@ import sk.ferinaf.secrethitler.widgets.CardButton
 
 class ConfirmDialog: DialogFragment() {
 
-    private var callback: ConfirmDialogListener? = null
+    var onConfirm: (value: Boolean) -> Unit = {}
+    var afterCreated: () -> Unit = {}
 
-    interface ConfirmDialogListener {
-        fun confirmDialogResult(back: Boolean)
-    }
+    var yesButton: CardButton? = null
+    var noButton: CardButton? = null
+    var title: TextView? = null
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.dialog_confirm, container)
-        callback = context as ConfirmDialogListener?
 
-        val yesButton = view.findViewById<CardButton>(R.id.dialog_button_yes)
-        val noButton = view.findViewById<CardButton>(R.id.dialog_button_no)
+        yesButton = view.findViewById(R.id.dialog_button_yes)
+        noButton = view.findViewById(R.id.dialog_button_no)
+        title = view.findViewById(R.id.confirmDialog_title_text)
 
-        noButton.setOnClick {
+        noButton?.setOnClick {
             this.dialog?.cancel()
+            onConfirm(false)
         }
 
-        yesButton.setOnClick {
+        yesButton?.setOnClick {
             this.dialog?.cancel()
-            callback?.confirmDialogResult(true)
+            onConfirm(true)
         }
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        afterCreated()
     }
 
 }

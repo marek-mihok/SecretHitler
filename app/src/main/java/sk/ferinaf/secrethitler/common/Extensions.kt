@@ -13,6 +13,7 @@ import org.json.JSONArray
 import org.json.JSONStringer
 import sk.ferinaf.secrethitler.App
 import sk.ferinaf.secrethitler.R
+import java.lang.reflect.Array
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -40,6 +41,8 @@ fun IntRange.random() =
 fun Int.asColor() = ContextCompat.getColor(App.context, this)
 
 fun Int.asString(): String = App.context.resources.getString(this)
+
+fun Int.asStringArray(): kotlin.Array<String> = App.context.resources.getStringArray(this)
 
 fun View.touchInside(event: MotionEvent): Boolean {
     val rawLocation = getRawXY()

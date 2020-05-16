@@ -63,6 +63,7 @@ class ConfirmButton @JvmOverloads constructor(
             }
         }
 
+    private var started = false
 
     /**
      * INITIALISATION
@@ -113,6 +114,8 @@ class ConfirmButton @JvmOverloads constructor(
 
             when(event?.action){
                 MotionEvent.ACTION_DOWN -> {
+                    started = true
+
                     // On start
                     confirmed = false
                     listener?.onActionDown()
@@ -125,6 +128,8 @@ class ConfirmButton @JvmOverloads constructor(
                 }
 
                 MotionEvent.ACTION_UP -> {
+                    if (!started) return@setOnTouchListener true
+
                     timer?.cancel()
                     listener?.onActionUp()
 
@@ -140,6 +145,7 @@ class ConfirmButton @JvmOverloads constructor(
                         // On cancel
                         listener?.onCancel()
                     }
+                    started = false
                 }
 
             }

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
-    android:clipChildren="false">
+    android:clipChildren="false"
+    android:antialias="true">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/widget_policy_cardView"
@@ -29,6 +30,7 @@
                 android:layout_height="0dp"
                 android:scaleType="fitCenter"
                 android:tint="@color/redDark"
+                android:antialias="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/policy_right_guideline"
                 app:layout_constraintStart_toStartOf="@+id/policy_left_guideline"

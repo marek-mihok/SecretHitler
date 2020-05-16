@@ -1,11 +1,19 @@
 <resources>
     <string name="app_name">Secret Hitler</string>
 
+    <!--  General  -->
+    <string name="release_button">RELEASE BUTTON</string>
+
     <!-- Main screen -->
     <string name="start">START</string>
     <string name="settings">SETTINGS</string>
     <string name="rules">RULES</string>
     <string name="about">ABOUT</string>
+
+    <string name="ja">ja!</string>
+    <string name="nein">nein</string>
+    <string name="y_e_s">( Y E S )</string>
+    <string name="n_o">( N O )</string>
 
     <!--  Add players  -->
     <string name="players_screen_title">PLAYERS</string>
@@ -45,4 +53,19 @@
     <string name="navigation_game">GAME</string>
     <string name="navigation_enact_policy">ENACT POLICY</string>
     <string name="navigation_players">PLAYERS</string>
+
+    <!--  ROLES  -->
+    <string name="chancellor">CHANCELLOR</string>
+    <string name="president">PRESIDENT</string>
+
+    <!--  Policy fragment  -->
+    <string name="pass_device_to">PASS DEVICE TO</string>
+    <string name="dont_speak">Don\'t speak now</string>
+    <string name="discard_pile_drag_here">DRAG HERE</string>
+    <string name="discard_pile_release">RELEASE</string>
+    <string name="discard_pile_confirm">↓ CONFIRM ↓</string>
+    <string name="elect_new_government_1">ELECT NEW GOVERNMENT</string>
+    <string name="elect_new_government_2">to enact next policy</string>
+    <string name="select_card_to_discard">SELECT CARD TO DISCARD</string>
+    <string name="hold_to_confirm">HOLD TO CONFIRM</string>
 </resources>

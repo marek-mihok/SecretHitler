@@ -7,7 +7,7 @@ import android.view.View
 import sk.ferinaf.secrethitler.dialogs.ConfirmDialog
 
 @SuppressLint("Registered")
-abstract class FullScreenActivity :  AppCompatActivity(), ConfirmDialog.ConfirmDialogListener {
+abstract class FullScreenActivity :  AppCompatActivity() {
 
     // Help functions to add dialog to really go back
     abstract var askToGetBack: Boolean
@@ -39,17 +39,14 @@ abstract class FullScreenActivity :  AppCompatActivity(), ConfirmDialog.ConfirmD
         }
     }
 
-    override fun confirmDialogResult(back: Boolean) {
-        if(back){
-            super.onBackPressed()
-        }
-    }
-
     override fun onBackPressed() {
         if(askToGetBack) {
             val confirmDialog = ConfirmDialog()
             confirmDialog.isCancelable = false
             confirmDialog.show(supportFragmentManager, "confirm dialog")
+            confirmDialog.onConfirm = {
+                if (it) super.onBackPressed()
+            }
         } else {
             super.onBackPressed()
         }

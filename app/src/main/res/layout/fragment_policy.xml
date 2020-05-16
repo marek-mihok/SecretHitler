@@ -24,11 +24,11 @@
             android:layout_marginTop="0dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
+
             android:background="@color/secretDarkBrown">
 
             <ImageView
+                android:id="@+id/policy_playerRole_image"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -38,12 +38,14 @@
                 tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
 
             <TextView
+                android:id="@+id/policy_playerInfo_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/rokkitt_bold"
+                android:textColor="@color/secretGray"
                 android:layout_margin="8dp"
-                android:text="Don't speak now"
+                android:text="@string/dont_speak"
                 android:textAlignment="viewEnd"
                 android:textSize="16sp" />
 
@@ -88,61 +90,19 @@
         app:layout_constraintTop_toBottomOf="@+id/policy_playerRole_info" />
 
 
-    <androidx.cardview.widget.CardView
+    <include
+        android:id="@+id/policy_discard_pile"
+        layout="@layout/item_discard_pile"
         android:layout_width="0dp"
         android:layout_height="240dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
-        app:cardBackgroundColor="@color/secretWhite"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="0dp"
         app:layout_constraintBottom_toTopOf="@+id/policy_confirmButton"
         app:layout_constraintDimensionRatio="w,192:274"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/policy_selectPolicy_linearLayout"
-        app:layout_constraintVertical_bias="0.65999997">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp"
-                android:tint="@color/secretGreen"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/img_discard_pile_nodots" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp"
-                android:tint="@color/secretWhite"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/img_discard_pile_dots" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/futura_book"
-                android:text="DRAG HERE"
-                android:textColor="@color/secretWhite"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintVertical_bias="0.65999997" />
 
     <sk.ferinaf.secrethitler.widgets.PolicyCard
         android:id="@+id/policy_card_moving"
@@ -182,6 +142,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <include
+        android:id="@+id/elect_overlay"
+        android:visibility="visible"
+        layout="@layout/item_elect_new_government"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

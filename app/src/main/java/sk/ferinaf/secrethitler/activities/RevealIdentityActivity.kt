@@ -66,7 +66,7 @@ class RevealIdentityActivity : FullScreenActivity() {
             override fun onFinish() {
                 revealedFirstStage = true
                 revealPlayerInfoTextView.startAnimation(helpTextFadeInAni)
-                revealButton?.textView?.text = "RELEASE BUTTON" // TODO: Resource
+                revealButton?.textView?.text = R.string.release_button.asString()
                 this@RevealIdentityActivity.vibrate()
             }
 
@@ -76,7 +76,7 @@ class RevealIdentityActivity : FullScreenActivity() {
         confirmTimer = object: CountDownTimer(animationDuration, animationDuration) {
             override fun onFinish() {
                 confirmed = true
-                revealButton?.textView?.text = "RELEASE BUTTON"
+                revealButton?.textView?.text = R.string.release_button.asString()
                 this@RevealIdentityActivity.vibrate()
             }
 

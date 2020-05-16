@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/germania"
                 android:paddingTop="8dp"
-                android:text="ja!"
+                android:text="@string/ja"
                 android:textAlignment="center"
                 android:textColor="@color/secretGray"
                 android:textSize="36sp" />
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/futura_medium_bt"
                 android:paddingBottom="16dp"
-                android:text="( Y E S )"
+                android:text="@string/y_e_s"
                 android:textAlignment="center"
                 android:textColor="@color/secretGray"
                 android:textSize="10sp"

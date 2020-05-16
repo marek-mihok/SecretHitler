@@ -18,21 +18,39 @@ class CardButton @JvmOverloads constructor(
 
     private var button: Button? = null
 
+    private var mPrimaryText: String? = ""
+    var primaryText: String?
+        get() = mPrimaryText
+        set(value) {
+            mPrimaryText = value
+            whiteButton_primaryText?.text = value
+            blackButton_primaryText?.text = value
+        }
+
+    private var mSecondaryText: String? = ""
+    var secondaryText: String?
+        get() = mSecondaryText
+        set(value) {
+            mSecondaryText = value
+            whiteButton_secondaryText?.text = value
+            blackButton_secondaryText?.text = value
+        }
+
     init {
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.CardButton)
         val type = attributes.getInt(R.styleable.CardButton_CardButton_type, 0)
-        val primaryText = attributes.getString(R.styleable.CardButton_CardButton_primaryText)
-        val secondaryText = attributes.getString(R.styleable.CardButton_CardButton_secondaryText)
+        val pText = attributes.getString(R.styleable.CardButton_CardButton_primaryText)
+        val sText = attributes.getString(R.styleable.CardButton_CardButton_secondaryText)
 
         if (type == 0) {
             View.inflate(context, R.layout.widget_white_button, this)
-            whiteButton_primaryText?.text = primaryText
-            whiteButton_secondaryText?.text = secondaryText
+            primaryText = pText
+            secondaryText = sText
             button = widget_whiteButton_button
         } else {
             View.inflate(context, R.layout.widget_black_button, this)
-            blackButton_primaryText?.text = primaryText
-            blackButton_secondaryText?.text = secondaryText
+            primaryText = pText
+            secondaryText = sText
             button = widget_blackButton_button
         }
 

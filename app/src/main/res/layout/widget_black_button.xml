@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/germania"
                 android:paddingTop="8dp"
-                android:text="nein"
+                android:text="@string/nein"
                 android:textAlignment="center"
                 android:textColor="@color/lighterGray"
                 android:textSize="36sp" />
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/futura_medium_bt"
                 android:paddingBottom="16dp"
-                android:text="( N O )"
+                android:text="@string/n_o"
                 android:textAlignment="center"
                 android:textColor="@color/lighterGray"
                 android:textSize="10sp"

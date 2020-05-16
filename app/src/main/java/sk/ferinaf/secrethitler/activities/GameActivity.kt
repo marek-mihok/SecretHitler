@@ -1,6 +1,7 @@
 package sk.ferinaf.secrethitler.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_game.*
 import sk.ferinaf.secrethitler.R
@@ -15,7 +16,7 @@ class GameActivity : FullScreenActivity() {
     override var askToGetBack = true
 
     private val gameFragment = GameFragment()
-    private val policyFragment = PolicyFragment()
+    val policyFragment = PolicyFragment()
     private val playersFragment = PlayersFragment()
 
     private var activeFragment: Fragment = gameFragment
@@ -23,6 +24,14 @@ class GameActivity : FullScreenActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        policyFragment.onCardDiscard = {
+            Log.d("policyDiscard", it.toString())
+        }
+
+        policyFragment.onCardEnact = {
+            Log.d("policyEnact", it.toString())
+        }
 
         game_navigation?.onSelectItem(GameBottomNavigation.NavigationItem.GAME)
 
