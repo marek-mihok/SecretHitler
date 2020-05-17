@@ -19,6 +19,7 @@ class ConfirmDialog: DialogFragment() {
     var yesButton: CardButton? = null
     var noButton: CardButton? = null
     var title: TextView? = null
+    var detailText: TextView? = null
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -27,6 +28,7 @@ class ConfirmDialog: DialogFragment() {
         yesButton = view.findViewById(R.id.dialog_button_yes)
         noButton = view.findViewById(R.id.dialog_button_no)
         title = view.findViewById(R.id.confirmDialog_title_text)
+        detailText = view.findViewById(R.id.confirm_dialog_detail_text)
 
         noButton?.setOnClick {
             this.dialog?.cancel()

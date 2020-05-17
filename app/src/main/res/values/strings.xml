@@ -59,7 +59,7 @@
     <string name="president">PRESIDENT</string>
 
     <!--  Policy fragment  -->
-    <string name="pass_device_to">PASS DEVICE TO</string>
+    <string name="pass_device_to">Pass device to</string>
     <string name="dont_speak">Don\'t speak now</string>
     <string name="discard_pile_drag_here">DRAG HERE</string>
     <string name="discard_pile_release">RELEASE</string>

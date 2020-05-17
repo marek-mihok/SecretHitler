@@ -339,9 +339,11 @@ class PolicyFragment : Fragment() {
         fragmentManager?.let {
             val confirmDialog = ConfirmDialog()
             confirmDialog.afterCreated = {
+                confirmDialog.detailText?.visibility = View.VISIBLE
+                confirmDialog.detailText?.text = chancellor.toUpperCase(Locale.ROOT)
                 confirmDialog.noButton?.primaryText = R.string.ja.asString()
                 confirmDialog.noButton?.secondaryText = "N O  C H O I C E !"
-                val textTitle = R.string.pass_device_to.asString() + " " + R.string.chancellor.asString() + "\n" + chancellor.toUpperCase(Locale.ROOT)
+                val textTitle = R.string.pass_device_to.asString() + " " + R.string.chancellor.asString() // + "\n" + chancellor.toUpperCase(Locale.ROOT)
                 confirmDialog.title?.text = textTitle
                 setName(chancellor)
                 policy_playerRole_image?.setImageResource(R.drawable.img_chancellor)

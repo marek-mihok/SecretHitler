@@ -21,7 +21,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/confirm_dialog_detail_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/rokkitt_bold"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/confirmDialog_title_text" />
+
+    <FrameLayout
+        android:id="@+id/confirm_dialog_guide_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/confirm_dialog_detail_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/confirm_dialog_detail_text"
+        app:layout_constraintVertical_bias="0.77" />
+
     <LinearLayout
+        android:id="@+id/confirm_dialog_buttons_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -32,30 +55,31 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmDialog_title_text">
+        app:layout_constraintTop_toBottomOf="@+id/confirm_dialog_guide_view">
 
         <sk.ferinaf.secrethitler.widgets.CardButton
             android:id="@+id/dialog_button_no"
-            app:CardButton_type="CardButtonBlack"
-            app:CardButton_primaryText="@string/nein"
-            app:CardButton_secondaryText="@string/n_o"
-            tools:ignore="RtlHardcoded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            app:CardButton_primaryText="@string/nein"
+            app:CardButton_secondaryText="@string/n_o"
+            app:CardButton_type="CardButtonBlack"
+            tools:ignore="RtlHardcoded" />
 
         <sk.ferinaf.secrethitler.widgets.CardButton
             android:id="@+id/dialog_button_yes"
-            app:CardButton_type="CardButtonWhite"
-            app:CardButton_primaryText="@string/ja"
-            app:CardButton_secondaryText="@string/y_e_s"
-            tools:ignore="RtlHardcoded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            app:CardButton_primaryText="@string/ja"
+            app:CardButton_secondaryText="@string/y_e_s"
+            app:CardButton_type="CardButtonWhite"
+            tools:ignore="RtlHardcoded" />
 
     </LinearLayout>
 
