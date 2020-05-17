@@ -259,7 +259,12 @@ class PolicyFragment : Fragment() {
                     animatorSetSmall?.start()
 
                     if (readyToConfirm) {
-                        movingCardHideAnim = policy_card_moving?.animate()?.alpha(0F)?.setDuration(1000L)
+                        movingCardHideAnim = policy_card_moving?.animate()?.alpha(0F)?.setDuration(1000L)?.setListener(object : Animator.AnimatorListener {
+                            override fun onAnimationRepeat(animation: Animator?) { }
+                            override fun onAnimationEnd(animation: Animator?) { }
+                            override fun onAnimationCancel(animation: Animator?) { }
+                            override fun onAnimationStart(animation: Animator?) { }
+                        })
                         movingCardHideAnim?.start()
                     }
                 }

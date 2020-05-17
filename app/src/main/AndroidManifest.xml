@@ -12,8 +12,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:isGame="true"
         android:theme="@style/AppTheme.NoActionBar"
-        android:fullBackupContent="true">
+        android:fullBackupContent="true"
+        tools:ignore="UnusedAttribute">
 
         <activity
             android:name="sk.ferinaf.secrethitler.activities.AddPlayersActivity"
