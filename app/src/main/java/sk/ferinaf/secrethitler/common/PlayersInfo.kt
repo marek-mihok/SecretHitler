@@ -1,22 +1,30 @@
 package sk.ferinaf.secrethitler.common
 
+import sk.ferinaf.secrethitler.models.Player
+import sk.ferinaf.secrethitler.models.Roles
 import java.util.*
 import kotlin.collections.ArrayList
 
 object PlayersInfo {
 
-    private var playerNames: ArrayList<String> = arrayListOf()
-    private var playerRoles: ArrayList<Int> = arrayListOf()
+//    private var playerNames: ArrayList<String> = arrayListOf()
+//    private var playerRoles: ArrayList<Int> = arrayListOf()
+    private var players: ArrayList<Player> = arrayListOf()
 
 
     // Set names of players and assign them secret roles
-    fun setNames(players: ArrayList<String>){
-        playerNames = players
-        playerRoles = ArrayList(Collections.nCopies(getPlayersCount(), 0))
+    fun setNames(players: ArrayList<String>) {
+
+        players.forEach { name ->
+            this.players.add(Player(name))
+        }
+
+//        playerNames = players
+//        playerRoles = ArrayList(Collections.nCopies(getPlayersCount(), 0))
 
         // Randomly pick hitler position
         val hitlerPosition = (0 until getPlayersCount()).random()
-        playerRoles[hitlerPosition] = 2
+        this.players[hitlerPosition].role = Roles.HITLER
 
         // Add fascists depending on player count (1st, 2nd, 3rd ... )
         addNthFascist(1)
@@ -40,62 +48,51 @@ object PlayersInfo {
         var index = -1
         while (counter != fascistPos){
             index += 1
-            if (playerRoles[index] == 0) {counter += 1}
+            if (players[index].role == Roles.LIBERAL) {counter += 1}
         }
 
-        playerRoles[index] = 1
+        players[index].role = Roles.FASCIST
     }
 
 
     // Get array of players (hitler and fascists for other fascist)
     // for i-th player to show in role assigning process
-    fun getRevealedFascists(playerIndex: Int): ArrayList<String> {
+    fun getRevealedFascists(playerIndex: Int): ArrayList<Player?> {
 
         val otherFascists = getFascists()
-        otherFascists.remove(getPlayerName(playerIndex))
+        otherFascists.remove(players[playerIndex])
 
         // one hitler, one fascist other are liberals
-        if (getPlayersCount() <= 6 && getPlayerIdentity(playerIndex) == 2) {
-            return arrayListOf("", otherFascists[0], "")
+        if (getPlayersCount() <= 6 && players[playerIndex].role == Roles.HITLER) {
+            return arrayListOf(null, otherFascists[0], null)
         }
 
         // return when player is fascist
-        if (getPlayerIdentity(playerIndex) == 1) {
-            when (playerNames.size) {
-                5 -> return arrayListOf(getHitlerName(), "", "")
-                6 -> return arrayListOf(getHitlerName(), "", "")
-                7 -> return arrayListOf(getHitlerName(), otherFascists[0], "")
-                8 -> return arrayListOf(getHitlerName(), otherFascists[0], "")
-                9 -> return arrayListOf(getHitlerName(), otherFascists[0], otherFascists[1])
-                10 -> return arrayListOf(getHitlerName(), otherFascists[0], otherFascists[1])
+        if (players[playerIndex].role == Roles.FASCIST) {
+            when (players.size) {
+                5 -> return arrayListOf(getHitler(), null, null)
+                6 -> return arrayListOf(getHitler(), null, null)
+                7 -> return arrayListOf(getHitler(), otherFascists[0], null)
+                8 -> return arrayListOf(getHitler(), otherFascists[0], null)
+                9 -> return arrayListOf(getHitler(), otherFascists[0], otherFascists[1])
+                10 -> return arrayListOf(getHitler(), otherFascists[0], otherFascists[1])
             }
         }
 
-        return arrayListOf("", "", "")
+        return arrayListOf(null, null, null)
     }
 
 
     fun getPlayersCount(): Int {
-        return playerNames.size
+        return players.size
     }
 
+    fun getFascists(): ArrayList<Player> {
+        val fascists: ArrayList<Player> = arrayListOf()
 
-    fun getPlayerNames(): ArrayList<String>{
-        return playerNames
-    }
-
-
-    fun getPlayerRoles(): ArrayList<Int>{
-        return playerRoles
-    }
-
-
-    fun getFascists(): ArrayList<String> {
-        val fascists: ArrayList<String> = arrayListOf<String>()
-
-        for (i in 0 until playerNames.size) {
-            if (playerRoles[i] == 1) {
-                fascists.add(playerNames[i])
+        for (i in 0 until players.size) {
+            if (players[i].role == Roles.FASCIST) {
+                fascists.add(players[i])
             }
         }
 
@@ -103,29 +100,20 @@ object PlayersInfo {
     }
 
 
-    fun getHitlerName(): String {
-        var hitler = ""
-        for (i in 0 until playerNames.size) {
-            if (playerRoles[i] == 2) {
-                hitler = playerNames[i]
-            }
+    fun getHitler(): Player {
+        return players.first { player ->
+            player.role == Roles.HITLER
         }
-        return hitler
     }
 
 
-    fun getPlayerName(i: Int): String {
-        return playerNames[i]
-    }
-
-
-    fun getPlayerIdentity(i: Int): Int {
-        return playerRoles[i]
+    fun getPlayer(i: Int): Player {
+        return players[i]
     }
 
 
     fun isPlayerFascist(i: Int): Boolean {
-        return playerRoles[i] > 0
+        return players[i].role != Roles.LIBERAL
     }
 
 }

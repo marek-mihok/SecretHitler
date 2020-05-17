@@ -15,14 +15,4 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
-
-    @Test
-    fun testRandom() {
-        PlayersInfo.setNames(arrayListOf("1",
-                "2", "3", "4",
-                "n"))
-        val roles = PlayersInfo.getPlayerRoles()
-        print(roles)
-
-    }
 }

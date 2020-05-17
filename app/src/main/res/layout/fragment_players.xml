@@ -10,7 +10,7 @@
     <sk.ferinaf.secrethitler.widgets.ShHeader
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:ShHeader_text_title="DISCARD POLICY"
+        app:ShHeader_text_title="PLAYERS"
         app:ShHeader_text_color="@color/backgroundBlended"
         app:ShHeader_color="@color/secretGray"
         app:layout_constraintEnd_toEndOf="parent"

@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.activity_reveal_identity.*
 import kotlinx.android.synthetic.main.activity_reveal_identity.otherFascistsView
 import kotlinx.android.synthetic.main.item_other_fascists.*
 import sk.ferinaf.secrethitler.common.*
+import sk.ferinaf.secrethitler.models.Player
+import sk.ferinaf.secrethitler.models.Roles
 import sk.ferinaf.secrethitler.widgets.ConfirmButton
 import java.util.*
 
@@ -43,8 +45,7 @@ class RevealIdentityActivity : FullScreenActivity() {
 
         // Needed to use same activity to show different players
         playerIndex = intent.getIntExtra("playerIndex", 0)
-        setPlayerName(PlayersInfo.getPlayerName(playerIndex))
-        setPlayerRole(PlayersInfo.getPlayerIdentity(playerIndex))
+        setPlayer(PlayersInfo.getPlayer(playerIndex))
 
         // SETUP VIEWS
         this.setOtherFascistsView(playerIndex)
@@ -185,21 +186,16 @@ class RevealIdentityActivity : FullScreenActivity() {
         view.visibility = View.VISIBLE
     }
 
-
-    // Add s on the end of name
-    private fun setPlayerName(pName: String) {
-        val name = pName.toUpperCase(Locale.ROOT)
+    // Set player to be revealed
+    private fun setPlayer(player: Player) {
+        val name = player.name.toUpperCase(Locale.ROOT)
         smallNameTextView.text = "$name'S"
         revealIdentity_title?.setTitle(name)
-    }
 
-
-    // Set appropriate image for player role
-    private fun setPlayerRole(num: Int){
-        when (num) {
-            0 -> secretRoleImage.setImageResource(R.drawable.img_liberal_role)
-            1 -> secretRoleImage.setImageResource(R.drawable.img_fascist_role)
-            2 -> secretRoleImage.setImageResource(R.drawable.img_hitla_role)
+        when (player.role) {
+            Roles.LIBERAL -> secretRoleImage.setImageResource(R.drawable.img_liberal_role)
+            Roles.FASCIST -> secretRoleImage.setImageResource(R.drawable.img_fascist_role)
+            Roles.HITLER -> secretRoleImage.setImageResource(R.drawable.img_hitla_role)
         }
     }
 
@@ -208,24 +204,24 @@ class RevealIdentityActivity : FullScreenActivity() {
     private fun setOtherFascistsView(playerIndex: Int) {
         val otherFascists = PlayersInfo.getRevealedFascists(playerIndex)
 
-        if (otherFascists[0] == "") {
+        if (otherFascists[0] == null) {
             hitler_row.visibility = View.GONE
         }
 
-        if (otherFascists[1] == "") {
+        if (otherFascists[1] == null) {
             fascist_one_row.visibility = View.GONE
         }
 
-        if (otherFascists[2] == "") {
+        if (otherFascists[2] == null) {
             fascist_two_row.visibility = View.GONE
         }
 
-        hitlerNameTextView.text = otherFascists[0]
-        facsistOneTextView.text = otherFascists[1]
-        facsistTwoTextView.text = otherFascists[2]
+        hitlerNameTextView.text = otherFascists[0]?.name
+        facsistOneTextView.text = otherFascists[1]?.name
+        facsistTwoTextView.text = otherFascists[2]?.name
 
 
-        if (otherFascists[0] == "" && otherFascists[1] == "" && otherFascists[2] == "") {
+        if (otherFascists[0] == null && otherFascists[1] == null && otherFascists[2] == null) {
             otherFascistsView.visibility = View.GONE
         } else {
             otherFascistsView.visibility = View.VISIBLE
