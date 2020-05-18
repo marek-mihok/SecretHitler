@@ -1,5 +1,6 @@
 package sk.ferinaf.secrethitler.common
 
+import sk.ferinaf.secrethitler.models.GovernmentRole
 import sk.ferinaf.secrethitler.models.Player
 import sk.ferinaf.secrethitler.models.Roles
 import java.util.*
@@ -7,8 +8,6 @@ import kotlin.collections.ArrayList
 
 object PlayersInfo {
 
-//    private var playerNames: ArrayList<String> = arrayListOf()
-//    private var playerRoles: ArrayList<Int> = arrayListOf()
     private var players: ArrayList<Player> = arrayListOf()
 
 
@@ -18,9 +17,6 @@ object PlayersInfo {
         players.forEach { name ->
             this.players.add(Player(name))
         }
-
-//        playerNames = players
-//        playerRoles = ArrayList(Collections.nCopies(getPlayersCount(), 0))
 
         // Randomly pick hitler position
         val hitlerPosition = (0 until getPlayersCount()).random()
@@ -114,6 +110,22 @@ object PlayersInfo {
 
     fun isPlayerFascist(i: Int): Boolean {
         return players[i].role != Roles.LIBERAL
+    }
+
+    fun initPresident() {
+        players[0].governmentRole = GovernmentRole.PRESIDENT
+    }
+
+    fun getPresident(): Player? {
+        return players.firstOrNull { player ->
+            player.governmentRole == GovernmentRole.PRESIDENT
+        }
+    }
+
+    fun getChancellor(): Player? {
+        return players.firstOrNull { player ->
+            player.governmentRole == GovernmentRole.CHANCELLOR
+        }
     }
 
 }

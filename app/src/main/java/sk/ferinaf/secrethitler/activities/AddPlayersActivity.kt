@@ -51,6 +51,7 @@ class AddPlayersActivity : AppCompatActivity() {
         start_assignment_button?.setOnClickListener {
             val intent = Intent(this, RevealIdentityActivity::class.java)
             PlayersInfo.setNames(playersAdapter.userList)
+            PlayersInfo.initPresident()
             intent.putExtra("playerIndex", 0)
             startActivity(intent)
             finish()
@@ -90,18 +91,5 @@ class AddPlayersActivity : AppCompatActivity() {
         }
         addPlayerDialog.isCancelable = false
         addPlayerDialog.show(supportFragmentManager, "show_add_player_dialog")
-    }
-
-    fun onStartPressed(v: View) {
-//
-//        if(names.size < 5) {
-//            Toast.makeText(this, "Add at least 5 players", Toast.LENGTH_SHORT).show()
-//        } else {
-//            val intent = Intent(this, RevealIdentityActivity::class.java)
-//            PlayersInfo.setNames(names)
-//            intent.putExtra("playerIndex", 0)
-//            startActivity(intent)
-//            finish()
-//        }
     }
 }

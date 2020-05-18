@@ -28,7 +28,7 @@ class ConfirmButton @JvmOverloads constructor(
     }
 
     var textView: TextView? = null
-    var interactionEnabled = true
+    var interactionEnabled: Boolean? = true
     var shouldFade = true
 
     private val fadeOutAnim by lazy { AnimationUtils.loadAnimation(context, R.anim.fade_out) }
@@ -107,7 +107,7 @@ class ConfirmButton @JvmOverloads constructor(
         }
 
         widget_confirm_button?.setOnTouchListener { v, event ->
-            if (!interactionEnabled) return@setOnTouchListener true
+            if (interactionEnabled == false) return@setOnTouchListener true
 
             v?.performClick()
             if (event.pointerCount > 1) return@setOnTouchListener true

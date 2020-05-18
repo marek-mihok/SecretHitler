@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_game.*
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.activities.GameActivity
+import sk.ferinaf.secrethitler.common.GameState
 import sk.ferinaf.secrethitler.widgets.PolicyCard
 
 class GameFragment : Fragment() {
@@ -21,7 +22,9 @@ class GameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         fakeButton?.setOnClickListener {
-            (activity as? GameActivity)?.policyFragment?.initEnact("Gasparovic", "Merkel", PolicyCard.PolicyType.LIBERAL, PolicyCard.PolicyType.FASCIST, PolicyCard.PolicyType.FASCIST)
+            val policyFragment = (activity as? GameActivity)?.policyFragment
+            GameState.vetoAllowed = true
+            policyFragment?.initEnact("Gasparovic", "Merkel", PolicyCard.PolicyType.LIBERAL, PolicyCard.PolicyType.FASCIST, PolicyCard.PolicyType.FASCIST)
         }
     }
 
