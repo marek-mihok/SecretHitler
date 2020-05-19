@@ -413,7 +413,6 @@ class PolicyFragment : Fragment() {
                 override fun onAnimationStart(animation: Animator?) {}
                 override fun onAnimationEnd(animation: Animator?) {
                     vetoBannerActive = true
-                    veto_overlay?.visibility = View.VISIBLE
 
                     veto_banner_shortText?.text = "NO!"
                     veto_banner_arrow?.setImageResource(R.drawable.ic_arrow_forward_black_18dp)
@@ -423,6 +422,14 @@ class PolicyFragment : Fragment() {
                     policy_confirmButton?.interactionEnabled = true
                     policy_confirmButton?.textView?.text = "VETO THIS AGENDA"
                 }
+            })?.start()
+
+            veto_overlay?.visibility = View.VISIBLE
+            veto_overlay?.animate()?.alpha(0.73f)?.setDuration(200L)?.setListener(object : Animator.AnimatorListener {
+                override fun onAnimationRepeat(animation: Animator?) {}
+                override fun onAnimationCancel(animation: Animator?) {}
+                override fun onAnimationStart(animation: Animator?) {}
+                override fun onAnimationEnd(animation: Animator?) {}
             })?.start()
         }
     }
@@ -435,13 +442,21 @@ class PolicyFragment : Fragment() {
                 override fun onAnimationStart(animation: Animator?) {}
                 override fun onAnimationEnd(animation: Animator?) {
                     vetoBannerActive = false
-                    veto_overlay?.visibility = View.GONE
 
                     veto_banner_shortText?.text = "USE VETO?"
                     veto_banner_arrow?.setImageResource(R.drawable.ic_arrow_back_black_18dp)
 
                     policy_confirmButton?.interactionEnabled = lastInteractionEnabled
                     policy_confirmButton?.textView?.text = lastConfirmButtonText
+                }
+            })?.start()
+
+            veto_overlay?.animate()?.alpha(0f)?.setDuration(200L)?.setListener(object : Animator.AnimatorListener {
+                override fun onAnimationRepeat(animation: Animator?) {}
+                override fun onAnimationCancel(animation: Animator?) {}
+                override fun onAnimationStart(animation: Animator?) {}
+                override fun onAnimationEnd(animation: Animator?) {
+                    veto_overlay?.visibility = View.GONE
                 }
             })?.start()
         }
