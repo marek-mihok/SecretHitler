@@ -102,6 +102,7 @@ class PolicyFragment : Fragment() {
                         resetCard(policy_card_third)
                         policy_card_moving?.visibility = View.INVISIBLE
                         initiated = false
+                        veto_banner?.visibility = View.GONE
                         return@setOnTouchListener true
                     }
 
@@ -115,6 +116,7 @@ class PolicyFragment : Fragment() {
                     showBigCardOn(selectedCard)
 
                     policy_confirmButton?.textView?.text = R.string.select_card_to_discard.asString()
+                    veto_banner?.visibility = View.GONE
 
                     // Calculate correction for movement
                     if (selectedCard != null) {
@@ -168,6 +170,8 @@ class PolicyFragment : Fragment() {
                                             readyToConfirm = true
                                             policy_confirmButton?.interactionEnabled = true
                                             policy_confirmButton?.textView?.text = R.string.hold_to_confirm.asString()
+
+                                            checkVetoButton()
                                         }
 
                                         override fun onAnimationRepeat(animation: Animator?) {}
@@ -184,6 +188,14 @@ class PolicyFragment : Fragment() {
             }
 
             true
+        }
+    }
+
+    private fun checkVetoButton() {
+        if (secondStage && GameState.vetoAllowed) {
+            veto_banner?.visibility = View.VISIBLE
+        } else {
+            veto_banner?.visibility = View.GONE
         }
     }
 
@@ -310,12 +322,6 @@ class PolicyFragment : Fragment() {
                         cardsRevealed = true
                         policy_confirmButton?.interactionEnabled = false
                         policy_confirmButton?.textView?.text = R.string.select_card_to_discard.asString()
-
-                        if (secondStage && GameState.vetoAllowed) {
-                            veto_banner?.visibility = View.VISIBLE
-                        } else {
-                            veto_banner?.visibility = View.GONE
-                        }
                     }
 
                     if (readyToConfirm) {
