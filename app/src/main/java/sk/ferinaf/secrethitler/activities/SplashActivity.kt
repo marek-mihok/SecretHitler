@@ -20,11 +20,10 @@ class SplashActivity : AppCompatActivity() {
                 edit.putBoolean("HAS_CUTOUT", mHasCutout)
                 edit.apply()
             }
-
-            finish()
-            startActivity(Intent(this, MainMenuActivity::class.java))
-            overridePendingTransition(0, 0)
         }
-    }
 
+        finish()
+        startActivity(Intent(this, MainMenuActivity::class.java))
+        overridePendingTransition(0, 0)
+    }
 }
