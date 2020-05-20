@@ -7,7 +7,12 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.MotionEvent
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import org.json.JSONArray
 import org.json.JSONStringer
@@ -113,6 +118,15 @@ fun View.setForceEnable(enabled: Boolean) {
     isEnabled = enabled
     val mOpacity = if (enabled) 1f else 0.38f
     alpha = mOpacity
+}
+
+val hasCutout: Boolean = App.context.getSharedPreferences("Settings", 0).getBoolean("HAS_CUTOUT", false)
+
+@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+fun Window.customSetStatusBarColor(@ColorInt color: Int) {
+        clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        statusBarColor = color
 }
 
 // KOMENTAY KTORE JE NAM LUTO VYMAZAT :D ...

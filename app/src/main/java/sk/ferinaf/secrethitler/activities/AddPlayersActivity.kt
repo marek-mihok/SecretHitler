@@ -1,22 +1,20 @@
 package sk.ferinaf.secrethitler.activities
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import android.view.View
 import kotlinx.android.synthetic.main.activity_add_players.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.adapters.AddPlayersAdapter
 import sk.ferinaf.secrethitler.adapters.AddPlayersTouchHelper
-import sk.ferinaf.secrethitler.common.PlayersInfo
-import sk.ferinaf.secrethitler.common.SavedPlayers
-import sk.ferinaf.secrethitler.common.asString
-import sk.ferinaf.secrethitler.common.setForceEnable
+import sk.ferinaf.secrethitler.common.*
 import sk.ferinaf.secrethitler.dialogs.AddPlayerDialog
 
-class AddPlayersActivity : AppCompatActivity() {
+class AddPlayersActivity : BaseActivity() {
+
+    override var fullScreen = false
 
     private val playersAdapter = AddPlayersAdapter()
     private val startString by lazy { R.string.add_player_start_assignment.asString() }
@@ -24,6 +22,11 @@ class AddPlayersActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_players)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.navigationBarColor = R.color.backgroundOrange.asColor()
+            window.customSetStatusBarColor(R.color.secretRed.asColor())
+        }
 
         player_list_recyclerView?.adapter = playersAdapter
         player_list_recyclerView?.layoutManager = LinearLayoutManager(this)

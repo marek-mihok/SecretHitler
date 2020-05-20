@@ -1,19 +1,30 @@
 package sk.ferinaf.secrethitler.activities
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main_menu.*
 import sk.ferinaf.secrethitler.R
+import sk.ferinaf.secrethitler.common.BaseActivity
+import sk.ferinaf.secrethitler.common.asColor
+import sk.ferinaf.secrethitler.common.customSetStatusBarColor
+import sk.ferinaf.secrethitler.dialogs.ConfirmDialog
 
-class MainMenuActivity : AppCompatActivity() {
+class MainMenuActivity : BaseActivity() {
+
+    override var fullScreen = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme_NoActionBar)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val orangeColor = R.color.backgroundOrange.asColor()
+            window.navigationBarColor = orangeColor
+            window.customSetStatusBarColor(orangeColor)
+        }
     }
 
     override fun onResume() {
@@ -46,6 +57,19 @@ class MainMenuActivity : AppCompatActivity() {
         val editor = getSharedPreferences("Settings", 0).edit()
         editor.putBoolean("vibrations", false)
         editor.apply()
+    }
+
+    override fun onBackPressed() {
+        val confirmDialog = ConfirmDialog()
+        confirmDialog.afterCreated = {
+            confirmDialog.title?.text = "Do you want to quit?"
+        }
+        confirmDialog.onConfirm = { confirmed ->
+            if (confirmed) {
+                finish()
+            }
+        }
+        confirmDialog.show(supportFragmentManager, "exit_dialog")
     }
 
 }

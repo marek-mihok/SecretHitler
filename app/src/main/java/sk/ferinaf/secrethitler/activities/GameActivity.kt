@@ -5,14 +5,15 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_game.*
 import sk.ferinaf.secrethitler.R
-import sk.ferinaf.secrethitler.common.FullScreenActivity
+import sk.ferinaf.secrethitler.common.BaseActivity
 import sk.ferinaf.secrethitler.fragments.GameFragment
 import sk.ferinaf.secrethitler.fragments.PlayersFragment
 import sk.ferinaf.secrethitler.fragments.PolicyFragment
 import sk.ferinaf.secrethitler.widgets.GameBottomNavigation
 
-class GameActivity : FullScreenActivity() {
+class GameActivity : BaseActivity() {
 
+    override var fullScreen = true
     override var askToGetBack = true
 
     private val gameFragment = GameFragment()

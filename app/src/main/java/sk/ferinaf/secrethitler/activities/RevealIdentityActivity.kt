@@ -19,8 +19,9 @@ import sk.ferinaf.secrethitler.widgets.ConfirmButton
 import java.util.*
 
 @SuppressLint("SetTextI18n")
-class RevealIdentityActivity : FullScreenActivity() {
+class RevealIdentityActivity : BaseActivity() {
 
+    override var fullScreen = true
     override var askToGetBack = true
 
     private var playerIndex: Int = 0
@@ -42,6 +43,11 @@ class RevealIdentityActivity : FullScreenActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reveal_identity)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.navigationBarColor = R.color.backgroundBlended.asColor()
+            window.customSetStatusBarColor(R.color.secretRed.asColor())
+        }
 
         // Needed to use same activity to show different players
         playerIndex = intent.getIntExtra("playerIndex", 0)

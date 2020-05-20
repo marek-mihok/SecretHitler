@@ -9,7 +9,17 @@
         <item name="colorPrimary">@color/backgroundOrange</item>
         <item name="colorPrimaryDark">@color/secretGray</item>
         <item name="colorAccent">@color/secretWhite</item>
-<!--        <item name="cardViewStyle">@style/CardView</item>-->
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme.NoActionBarNoFullScreen" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/backgroundOrange</item>
+        <item name="colorPrimaryDark">@color/secretGray</item>
+        <item name="colorAccent">@color/secretWhite</item>
     </style>
 
     <!--  Edit text theme  -->
