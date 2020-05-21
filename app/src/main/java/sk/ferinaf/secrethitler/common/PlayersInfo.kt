@@ -15,7 +15,11 @@ object PlayersInfo {
     fun setNames(players: ArrayList<String>) {
 
         players.forEach { name ->
-            this.players.add(Player(name))
+            val player = Player(name)
+            if (name.last().toUpperCase() == 'A') {
+                player.isMale = false
+            }
+            this.players.add(player)
         }
 
         // Randomly pick hitler position

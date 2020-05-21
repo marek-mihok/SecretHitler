@@ -378,8 +378,6 @@ class PolicyFragment : Fragment() {
                 confirmDialog.title?.text = textTitle
             }
             confirmDialog.onConfirm = {
-                // TODO: Show fragment
-
                 val discardPolicy = selectedCard?.type
                 val enactPolicy = obtainPassCard()
                 if (enactPolicy != null && discardPolicy != null) {
@@ -417,6 +415,9 @@ class PolicyFragment : Fragment() {
     private fun showElectNewGovernment() {
         policy_playerRole_image?.setImageResource(R.drawable.img_president)
         setName("???")
+
+        veto_overlay?.alpha = 0f
+        veto_overlay?.visibility = View.GONE
 
         policy_card_first?.visibility = View.VISIBLE
         policy_card_second?.visibility = View.VISIBLE
@@ -534,6 +535,8 @@ class PolicyFragment : Fragment() {
         this.chancellor = chancellor
 
         setName(president)
+        veto_overlay?.alpha = 0f
+        veto_overlay?.visibility = View.GONE
         elect_overlay?.visibility = View.GONE
         resetState()
         secondStage = false

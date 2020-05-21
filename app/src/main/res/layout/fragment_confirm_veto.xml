@@ -65,13 +65,14 @@
                 android:background="@color/secretGray"/>
 
             <TextView
+                android:id="@+id/veto_dear_president"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rokkitt_bold"
                 android:textColor="@color/secretGray"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="Dear president" />
+                android:text="@string/veto_confirm_1" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -79,7 +80,7 @@
                 android:fontFamily="@font/rokkitt_regular"
                 android:textColor="@color/secretGray"
                 android:layout_marginBottom="8dp"
-                android:text="I wish as a chancellor, to veto last proposed agenda instead of enacting either Policy, thus no Policy might be enacted." />
+                android:text="@string/veto_confirm_2" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -87,20 +88,21 @@
                 android:fontFamily="@font/rokkitt_regular"
                 android:textColor="@color/secretGray"
                 android:layout_marginBottom="8dp"
-                android:text="The veto can be applied only when we BOTH agree."/>
+                android:text="@string/veto_confirm_3"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rokkitt_regular"
                 android:textColor="@color/secretGray"
-                android:text="This act is considered as an act of INACTIVE GOVERNMENT therefore we must face consequences of being inactive government (advance of election tracker by one)."/>
+                android:text="@string/veto_confirm_4"/>
 
             <ImageView
                 android:layout_width="88dp"
                 android:layout_height="24dp"
                 android:layout_gravity="right"
                 android:layout_marginTop="8dp"
+                android:tint="@color/secretGray"
                 app:srcCompat="@drawable/img_chancellor"
                 tools:ignore="RtlHardcoded" />
 
@@ -108,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rokkitt_bold"
-                android:text="DO YOU AGREE TO THE VETO?"
+                android:text="@string/veto_confirm_5"
                 android:textAlignment="center"
                 android:layout_marginTop="24dp"
                 android:textColor="@color/secretGray"

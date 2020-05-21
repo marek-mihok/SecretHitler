@@ -75,4 +75,16 @@
 
     <!--  VETO confirm  -->
     <string name="veto_text1">Dear president %s, chancellor %s wishes to veto the agenda.</string>
+
+    <string name="mr">Mr.</string>
+    <string name="mrs">Mrs.</string>
+
+    <string name="veto_confirm_1">Dear %s President,</string>
+    <string name="veto_confirm_2">As a chancellor, I suggest vetoing the last proposed agenda, thereby enacting neither policy.</string>
+    <string name="veto_confirm_3">Veto can be used only when we BOTH agree with it.</string>
+    <string name="veto_confirm_4">By utilizing this power, we would be treated as INACTIVE GOVERNMENT and must face respective consequences (advance of election tracker by one tile).</string>
+    <string name="veto_confirm_5">DO YOU AGREE WITH VETO?</string>
+    <string name="veto_choose_wisely">CHOOSE WISELY</string>
+    <string name="veto_agree">I AGREE</string>
+    <string name="veto_disagree">I DISAGREE</string>
 </resources>

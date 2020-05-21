@@ -65,6 +65,10 @@ class GameActivity : BaseActivity() {
         activeFragment = mPolicyFragment
     }
 
-
+    fun hideVetoPresident() {
+        supportFragmentManager.beginTransaction().remove(mPolicyFragment).commit()
+        mPolicyFragment = policyFragment
+        selectFragment(mPolicyFragment)
+    }
 
 }
