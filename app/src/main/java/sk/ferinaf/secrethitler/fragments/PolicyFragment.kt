@@ -14,7 +14,6 @@ import sk.ferinaf.secrethitler.activities.GameActivity
 import sk.ferinaf.secrethitler.common.*
 import sk.ferinaf.secrethitler.dialogs.ConfirmDialog
 import sk.ferinaf.secrethitler.widgets.ConfirmButton
-import sk.ferinaf.secrethitler.widgets.GameBottomNavigation
 import sk.ferinaf.secrethitler.widgets.PolicyCard
 import java.util.*
 
@@ -86,15 +85,22 @@ class PolicyFragment : Fragment() {
 
                     // Select card
                     selectedCard = when {
-                        policy_card_first?.touchInside(event) == true -> policy_card_first
-                        policy_card_second?.touchInside(event) == true -> policy_card_second
-                        policy_card_third?.touchInside(event) == true -> policy_card_third
+                        policy_card_first?.touchInside(event) == true -> {
+                            policy_card_first
+                        }
+                        policy_card_second?.touchInside(event) == true -> {
+                            policy_card_second
+                        }
+                        policy_card_third?.touchInside(event) == true -> {
+                            policy_card_third
+                        }
                         else -> null
                     }
 
                     // When touched on big card
                     if (policy_card_moving?.touchInside(event) == true && selectedCard == null) {
                         item_discardPile_text?.text = R.string.discard_pile_drag_here.asString()
+                        policy_confirmButton?.interactionEnabled = false
                         policy_confirmButton?.textView?.text = R.string.select_card_to_discard.asString()
                         resetCard(policy_card_first)
                         resetCard(policy_card_second)
@@ -111,12 +117,13 @@ class PolicyFragment : Fragment() {
                         resetCard(policy_card_second)
                         resetCard(policy_card_third)
 
-                        // Update visuals
-                        policy_confirmButton?.textView?.text = R.string.select_card_to_discard.asString()
-                        veto_banner?.visibility = View.GONE
-
                         // Show big card centered on
                         showBigCardOn(selectedCard)
+
+                        // Update visuals
+                        policy_confirmButton?.interactionEnabled = false
+                        policy_confirmButton?.textView?.text = R.string.select_card_to_discard.asString()
+                        veto_banner?.visibility = View.GONE
 
                         // Calculate correction for movement
                         policy_card_moving?.visibility = View.VISIBLE

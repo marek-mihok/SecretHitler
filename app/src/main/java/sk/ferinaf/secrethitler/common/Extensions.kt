@@ -50,6 +50,7 @@ fun Int.asString(): String = App.context.resources.getString(this)
 fun Int.asStringArray(): kotlin.Array<String> = App.context.resources.getStringArray(this)
 
 fun View.touchInside(event: MotionEvent): Boolean {
+    if(visibility == View.GONE) { return false }
     val rawLocation = getRawXY()
 
     val viewMaxX = rawLocation.x + width - 1
