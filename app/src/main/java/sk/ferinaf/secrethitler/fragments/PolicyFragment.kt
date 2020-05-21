@@ -549,7 +549,7 @@ class PolicyFragment : Fragment() {
         selectedCard = null
 
         veto_banner?.visibility = View.GONE
-        policy_card_moving?.visibility = View.GONE
+        policy_card_moving?.visibility = View.INVISIBLE
 
         policy_card_first?.back = true
         policy_card_second?.back = true
