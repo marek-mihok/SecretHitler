@@ -68,6 +68,9 @@
     <string name="elect_new_government_2">to enact next policy</string>
     <string name="select_card_to_discard">SELECT CARD TO DISCARD</string>
     <string name="hold_to_confirm">HOLD TO CONFIRM</string>
+    <string name="no_choice">N O  C H O I C E</string>
+    <string name="veto_this_agenda">VETO THIS AGENDA</string>
+    <string name="big_no">NO!</string>
 
     <!--  Pick candidate  -->
     <string name="pick_cancellor_candidate">as s presidential candidate should PICK CHANCELLOR CANDIDATE from eligible players in the list below.</string>
@@ -87,4 +90,5 @@
     <string name="veto_choose_wisely">CHOOSE WISELY</string>
     <string name="veto_agree">I AGREE</string>
     <string name="veto_disagree">I DISAGREE</string>
+    <string name="use_veto_q">USE VETO?</string>
 </resources>

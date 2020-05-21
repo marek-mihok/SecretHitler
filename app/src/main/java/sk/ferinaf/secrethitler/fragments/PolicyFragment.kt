@@ -2,7 +2,6 @@ package sk.ferinaf.secrethitler.fragments
 
 import android.animation.*
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_policy.*
@@ -33,6 +32,23 @@ class PolicyFragment : Fragment() {
     private var lastInteractionEnabled: Boolean? = true
     private var vetoBannerActive = false
     private val vetoBannerOffset by lazy { resources.displayMetrics.widthPixels - 64 * resources.displayMetrics.density }
+
+    private val selectCardToDiscard by lazy { R.string.select_card_to_discard.asString() }
+    private val discardPileRelease by lazy { R.string.discard_pile_release.asString() }
+    private val discardPileDragHere by lazy { R.string.discard_pile_drag_here.asString() }
+    private val discardPileConfirm by lazy { R.string.discard_pile_confirm.asString() }
+    private val holdToConfirm by lazy { R.string.hold_to_confirm.asString() }
+    private val holdToReveal by lazy { R.string.hold_to_reveal.asString() }
+    private val releaseButton by lazy { R.string.release_button.asString() }
+    private val dontSpeak by lazy { R.string.dont_speak.asString() }
+    private val noChoice by lazy { R.string.no_choice.asString() }
+    private val passDeviceTo by lazy { R.string.pass_device_to.asString() }
+    private val ja by lazy { R.string.ja.asString() }
+    private val presidentString by lazy { R.string.president.asString() }
+    private val chancellorString by lazy { R.string.chancellor.asString() }
+    private val vetoThisAgenda by lazy { R.string.veto_this_agenda.asString() }
+    private val bigNo by lazy { R.string.big_no.asString() }
+    private val useVetoQ by lazy { R.string.use_veto_q.asString() }
 
     var chancellor: String = "???"
     var president: String = "???"
@@ -99,9 +115,9 @@ class PolicyFragment : Fragment() {
 
                     // When touched on big card
                     if (policy_card_moving?.touchInside(event) == true && selectedCard == null) {
-                        item_discardPile_text?.text = R.string.discard_pile_drag_here.asString()
+                        item_discardPile_text?.text = discardPileDragHere
                         policy_confirmButton?.interactionEnabled = false
-                        policy_confirmButton?.textView?.text = R.string.select_card_to_discard.asString()
+                        policy_confirmButton?.textView?.text = selectCardToDiscard
                         resetCard(policy_card_first)
                         resetCard(policy_card_second)
                         resetCard(policy_card_third)
@@ -122,7 +138,7 @@ class PolicyFragment : Fragment() {
 
                         // Update visuals
                         policy_confirmButton?.interactionEnabled = false
-                        policy_confirmButton?.textView?.text = R.string.select_card_to_discard.asString()
+                        policy_confirmButton?.textView?.text = selectCardToDiscard
                         veto_banner?.visibility = View.GONE
 
                         // Calculate correction for movement
@@ -142,10 +158,10 @@ class PolicyFragment : Fragment() {
 
                         // Style discard pile
                         if (policy_discard_pile.touchInside(event)) {
-                            item_discardPile_text?.text = R.string.discard_pile_release.asString()
+                            item_discardPile_text?.text = discardPileRelease
                             idem_discardPile_overlay?.alpha = 0.2F
                         } else {
-                            item_discardPile_text?.text = R.string.discard_pile_drag_here.asString()
+                            item_discardPile_text?.text = discardPileDragHere
                             idem_discardPile_overlay?.alpha = 0F
                         }
                     }
@@ -158,7 +174,7 @@ class PolicyFragment : Fragment() {
 
                         // On successful drag
                         if (policy_discard_pile.touchInside(event)) {
-                            item_discardPile_text?.text = R.string.discard_pile_confirm.asString()
+                            item_discardPile_text?.text = discardPileConfirm
                             idem_discardPile_overlay?.alpha = 0F
 
                             val scale = 0.88F
@@ -176,7 +192,7 @@ class PolicyFragment : Fragment() {
                                             interactionEnabled = true
                                             readyToConfirm = true
                                             policy_confirmButton?.interactionEnabled = true
-                                            policy_confirmButton?.textView?.text = R.string.hold_to_confirm.asString()
+                                            policy_confirmButton?.textView?.text = holdToConfirm
 
                                             checkVetoButton()
                                         }
@@ -211,8 +227,8 @@ class PolicyFragment : Fragment() {
         interactionEnabled = true
         initiated = false
         readyToConfirm = false
-        item_discardPile_text?.text = R.string.discard_pile_drag_here.asString()
-        policy_confirmButton?.textView?.text = R.string.hold_to_reveal.asString()
+        item_discardPile_text?.text = discardPileDragHere
+        policy_confirmButton?.textView?.text = holdToReveal
     }
 
     private fun resetCard(card: PolicyCard?) {
@@ -315,7 +331,7 @@ class PolicyFragment : Fragment() {
             }
 
             override fun onConfirm() {
-                policy_confirmButton?.textView?.text = R.string.release_button.asString()
+                policy_confirmButton?.textView?.text = releaseButton
             }
 
             override fun onFinish() {
@@ -327,11 +343,11 @@ class PolicyFragment : Fragment() {
                     if (!cardsRevealed) {
                         cardsRevealed = true
                         policy_confirmButton?.interactionEnabled = false
-                        policy_confirmButton?.textView?.text = R.string.select_card_to_discard.asString()
+                        policy_confirmButton?.textView?.text = selectCardToDiscard
                     }
 
                     if (readyToConfirm) {
-                        policy_confirmButton?.textView?.text = R.string.hold_to_confirm.asString()
+                        policy_confirmButton?.textView?.text = holdToConfirm
                         resetState()
                         selectedCard?.type?.let {
                             // Discard(it)
@@ -339,7 +355,7 @@ class PolicyFragment : Fragment() {
 
                             selectedCard?.visibility = View.GONE
                             selectedCard = null
-                            item_discardPile_text?.text = R.string.discard_pile_drag_here.asString()
+                            item_discardPile_text?.text = discardPileDragHere
 
                             if (secondStage) {
                                 showElectNewGovernment()
@@ -362,7 +378,7 @@ class PolicyFragment : Fragment() {
     }
 
     private fun setName(name: String) {
-        val text = name.toUpperCase(Locale.ROOT) + "\n" + R.string.dont_speak.asString()
+        val text = name.toUpperCase(Locale.ROOT) + "\n" + dontSpeak
         policy_playerInfo_textView?.text = text
     }
 
@@ -372,9 +388,9 @@ class PolicyFragment : Fragment() {
             confirmDialog.afterCreated = {
                 confirmDialog.detailText?.visibility = View.VISIBLE
                 confirmDialog.detailText?.text = president.toUpperCase(Locale.ROOT)
-                confirmDialog.noButton?.primaryText = R.string.ja.asString()
-                confirmDialog.noButton?.secondaryText = "N O  C H O I C E !"
-                val textTitle = R.string.pass_device_to.asString() + " " + R.string.president.asString()
+                confirmDialog.noButton?.primaryText = ja
+                confirmDialog.noButton?.secondaryText = noChoice
+                val textTitle = "$passDeviceTo $presidentString"
                 confirmDialog.title?.text = textTitle
             }
             confirmDialog.onConfirm = {
@@ -400,9 +416,9 @@ class PolicyFragment : Fragment() {
             confirmDialog.afterCreated = {
                 confirmDialog.detailText?.visibility = View.VISIBLE
                 confirmDialog.detailText?.text = chancellor.toUpperCase(Locale.ROOT)
-                confirmDialog.noButton?.primaryText = R.string.ja.asString()
-                confirmDialog.noButton?.secondaryText = "N O  C H O I C E !"
-                val textTitle = R.string.pass_device_to.asString() + " " + R.string.chancellor.asString() // + "\n" + chancellor.toUpperCase(Locale.ROOT)
+                confirmDialog.noButton?.primaryText = ja
+                confirmDialog.noButton?.secondaryText = noChoice
+                val textTitle = "$passDeviceTo $chancellorString"
                 confirmDialog.title?.text = textTitle
                 setName(chancellor)
                 policy_playerRole_image?.setImageResource(R.drawable.img_chancellor)
@@ -434,7 +450,7 @@ class PolicyFragment : Fragment() {
         resetCard(policy_card_third)
         elect_overlay?.visibility = View.VISIBLE
 
-        policy_confirmButton?.textView?.text = R.string.hold_to_reveal.asString()
+        policy_confirmButton?.textView?.text = holdToReveal
 
         veto_banner?.x = vetoBannerOffset
         veto_banner?.visibility = View.GONE
@@ -469,13 +485,13 @@ class PolicyFragment : Fragment() {
                 override fun onAnimationEnd(animation: Animator?) {
                     vetoBannerActive = true
 
-                    veto_banner_shortText?.text = "NO!"
+                    veto_banner_shortText?.text = bigNo
                     veto_banner_arrow?.setImageResource(R.drawable.ic_arrow_forward_black_18dp)
 
                     lastConfirmButtonText = policy_confirmButton?.textView?.text?.toString() ?: ""
                     lastInteractionEnabled = policy_confirmButton?.interactionEnabled
                     policy_confirmButton?.interactionEnabled = true
-                    policy_confirmButton?.textView?.text = "VETO THIS AGENDA"
+                    policy_confirmButton?.textView?.text = vetoThisAgenda
                 }
             })?.start()
 
@@ -498,7 +514,7 @@ class PolicyFragment : Fragment() {
                 override fun onAnimationEnd(animation: Animator?) {
                     vetoBannerActive = false
 
-                    veto_banner_shortText?.text = "USE VETO?"
+                    veto_banner_shortText?.text = useVetoQ
                     veto_banner_arrow?.setImageResource(R.drawable.ic_arrow_back_black_18dp)
 
                     policy_confirmButton?.interactionEnabled = lastInteractionEnabled
@@ -523,16 +539,27 @@ class PolicyFragment : Fragment() {
                   card2: PolicyCard.PolicyType,
                   card3: PolicyCard.PolicyType) {
 
-        selectedCard = null
-
-        veto_banner?.visibility = View.GONE
-
         policy_card_first?.type = card1
         policy_card_second?.type = card2
         policy_card_third?.type = card3
 
         this.president = president
         this.chancellor = chancellor
+
+        selectedCard = null
+
+        veto_banner?.visibility = View.GONE
+        policy_card_moving?.visibility = View.GONE
+
+        policy_card_first?.back = true
+        policy_card_second?.back = true
+        policy_card_third?.back = true
+
+        resetCard(policy_card_first)
+        resetCard(policy_card_second)
+        resetCard(policy_card_third)
+
+        policy_confirmButton?.interactionEnabled = true
 
         setName(president)
         veto_overlay?.alpha = 0f
