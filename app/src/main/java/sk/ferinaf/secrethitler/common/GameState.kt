@@ -10,4 +10,8 @@ object GameState {
 
     var enactedFascist = 0
     var enactedLiberal = 0
+
+    fun enactPolicy(type: PolicyCard.PolicyType) {}
+    fun discardPolicy(type: PolicyCard.PolicyType) {}
+    fun vetoApplied() {}
 }

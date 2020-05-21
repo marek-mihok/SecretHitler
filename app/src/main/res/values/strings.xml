@@ -72,4 +72,7 @@
     <!--  Pick candidate  -->
     <string name="pick_cancellor_candidate">as s presidential candidate should PICK CHANCELLOR CANDIDATE from eligible players in the list below.</string>
     <string name="pick_candidate_hint">Feel free to discuss your nomination.</string>
+
+    <!--  VETO confirm  -->
+    <string name="veto_text1">Dear president %s, chancellor %s wishes to veto the agenda.</string>
 </resources>

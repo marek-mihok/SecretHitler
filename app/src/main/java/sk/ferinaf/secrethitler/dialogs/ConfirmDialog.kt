@@ -1,13 +1,17 @@
 package sk.ferinaf.secrethitler.dialogs
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import sk.ferinaf.secrethitler.R
+import sk.ferinaf.secrethitler.common.BaseActivity
 import sk.ferinaf.secrethitler.widgets.CardButton
 
 
@@ -20,6 +24,18 @@ class ConfirmDialog: DialogFragment() {
     var noButton: CardButton? = null
     var title: TextView? = null
     var detailText: TextView? = null
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        val fullScreen = (activity as? BaseActivity)?.fullScreen ?: true
+        if (fullScreen) {
+            dialog.window?.decorView?.apply {
+                systemUiVisibility = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+            }
+        }
+        return dialog
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

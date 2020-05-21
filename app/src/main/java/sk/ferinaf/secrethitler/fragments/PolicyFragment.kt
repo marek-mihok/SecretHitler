@@ -10,16 +10,17 @@ import kotlinx.android.synthetic.main.item_discard_pile.*
 import kotlinx.android.synthetic.main.item_policy_cards_small_linear_layout.*
 import kotlinx.android.synthetic.main.item_use_veto_banner.*
 import sk.ferinaf.secrethitler.R
+import sk.ferinaf.secrethitler.activities.GameActivity
 import sk.ferinaf.secrethitler.common.*
 import sk.ferinaf.secrethitler.dialogs.ConfirmDialog
 import sk.ferinaf.secrethitler.widgets.ConfirmButton
+import sk.ferinaf.secrethitler.widgets.GameBottomNavigation
 import sk.ferinaf.secrethitler.widgets.PolicyCard
 import java.util.*
 
 class PolicyFragment : Fragment() {
 
     private var selectedCard: PolicyCard? = null
-    private var passCard: PolicyCard.PolicyType? = null
     private var animatorSetSmall: AnimatorSet? = null
     private var smallPolicyElevation: Float? = null
 
@@ -33,9 +34,6 @@ class PolicyFragment : Fragment() {
     private var lastInteractionEnabled: Boolean? = true
     private var vetoBannerActive = false
     private val vetoBannerOffset by lazy { resources.displayMetrics.widthPixels - 64 * resources.displayMetrics.density }
-
-    var onCardDiscard: (type: PolicyCard.PolicyType) -> Unit = {}
-    var onCardEnact: (type: PolicyCard.PolicyType) -> Unit = {}
 
     var chancellor: String = "???"
     var president: String = "???"
@@ -94,6 +92,7 @@ class PolicyFragment : Fragment() {
                         else -> null
                     }
 
+                    // When touched on big card
                     if (policy_card_moving?.touchInside(event) == true && selectedCard == null) {
                         item_discardPile_text?.text = R.string.discard_pile_drag_here.asString()
                         policy_confirmButton?.textView?.text = R.string.select_card_to_discard.asString()
@@ -107,23 +106,24 @@ class PolicyFragment : Fragment() {
                     }
 
                     if (selectedCard != null) {
+                        // Reset small cards
                         resetCard(policy_card_first)
                         resetCard(policy_card_second)
                         resetCard(policy_card_third)
-                    }
 
-                    // Show big card centered on
-                    showBigCardOn(selectedCard)
+                        // Update visuals
+                        policy_confirmButton?.textView?.text = R.string.select_card_to_discard.asString()
+                        veto_banner?.visibility = View.GONE
 
-                    policy_confirmButton?.textView?.text = R.string.select_card_to_discard.asString()
-                    veto_banner?.visibility = View.GONE
+                        // Show big card centered on
+                        showBigCardOn(selectedCard)
 
-                    // Calculate correction for movement
-                    if (selectedCard != null) {
+                        // Calculate correction for movement
                         policy_card_moving?.visibility = View.VISIBLE
                         correctionX = policy_card_moving.x - event.rawX
                         correctionY = policy_card_moving.y - event.rawY
                     }
+
                 }
 
 
@@ -253,6 +253,15 @@ class PolicyFragment : Fragment() {
         }
     }
 
+    private fun obtainPassCard(): PolicyCard.PolicyType? {
+        return when {
+            policy_card_first?.visibility == View.VISIBLE && policy_card_first?.alpha == 1f -> policy_card_first?.type
+            policy_card_second?.visibility == View.VISIBLE && policy_card_second?.alpha == 1f -> policy_card_second?.type
+            policy_card_third?.visibility == View.VISIBLE && policy_card_third?.alpha == 1f -> policy_card_third?.type
+            else -> null
+        }
+    }
+
     private fun setConfirmButton() {
         var movingCardHideAnim: ViewPropertyAnimator? = null
 
@@ -261,15 +270,6 @@ class PolicyFragment : Fragment() {
         policy_confirmButton?.listener = object : ConfirmButton.ProgressListener {
             override fun onStart() {
                 if ((!cardsRevealed || readyToConfirm) && !vetoBannerActive) {
-                    if (secondStage) {
-                        passCard = when {
-                            policy_card_first?.visibility == View.VISIBLE && policy_card_first?.alpha == 1f -> policy_card_first?.type
-                            policy_card_second?.visibility == View.VISIBLE && policy_card_second?.alpha == 1f -> policy_card_second?.type
-                            policy_card_third?.visibility == View.VISIBLE && policy_card_third?.alpha == 1f -> policy_card_third?.type
-                            else -> null
-                        }
-                    }
-
                     selectedCard?.animate()?.alpha(0F)?.setDuration(200)?.start()
 
                     policy_card_first?.policyElevation = 0f
@@ -314,8 +314,7 @@ class PolicyFragment : Fragment() {
             override fun onFinish() {
 
                 if (vetoBannerActive) {
-                    // TODO: Handle presidential veto confirmation
-                    Log.d("veto", "PRESIDENT TODO")
+                    passToPresidentVetoDialog()
                 } else {
                     // When cards are revealed
                     if (!cardsRevealed) {
@@ -328,7 +327,8 @@ class PolicyFragment : Fragment() {
                         policy_confirmButton?.textView?.text = R.string.hold_to_confirm.asString()
                         resetState()
                         selectedCard?.type?.let {
-                            onCardDiscard(it)
+                            // Discard(it)
+                            GameState.discardPolicy(it)
 
                             selectedCard?.visibility = View.GONE
                             selectedCard = null
@@ -336,8 +336,8 @@ class PolicyFragment : Fragment() {
 
                             if (secondStage) {
                                 showElectNewGovernment()
-                                passCard?.let { toPass ->
-                                    onCardEnact(toPass)
+                                obtainPassCard()?.let { toPass ->
+                                    GameState.enactPolicy(toPass)
                                 }
                             } else {
                                 showPassDialog()
@@ -357,6 +357,36 @@ class PolicyFragment : Fragment() {
     private fun setName(name: String) {
         val text = name.toUpperCase(Locale.ROOT) + "\n" + R.string.dont_speak.asString()
         policy_playerInfo_textView?.text = text
+    }
+
+    private fun passToPresidentVetoDialog() {
+        fragmentManager?.let {
+            val confirmDialog = ConfirmDialog()
+            confirmDialog.afterCreated = {
+                confirmDialog.detailText?.visibility = View.VISIBLE
+                confirmDialog.detailText?.text = president.toUpperCase(Locale.ROOT)
+                confirmDialog.noButton?.primaryText = R.string.ja.asString()
+                confirmDialog.noButton?.secondaryText = "N O  C H O I C E !"
+                val textTitle = R.string.pass_device_to.asString() + " " + R.string.president.asString()
+                confirmDialog.title?.text = textTitle
+            }
+            confirmDialog.onConfirm = {
+                // TODO: Show fragment
+
+                val discardPolicy = selectedCard?.type
+                val enactPolicy = obtainPassCard()
+                if (enactPolicy != null && discardPolicy != null) {
+                    // val confirmVetoFragment = ConfirmVetoFragment(enactPolicy, discardPolicy)
+                    (activity as? GameActivity)?.let { gameActivity ->
+                        showElectNewGovernment()
+                        gameActivity.showVetoPresident(enactPolicy, discardPolicy)
+                    }
+                }
+
+            }
+            confirmDialog.isCancelable = false
+            confirmDialog.show(it, "pass dialog")
+        }
     }
 
     private fun showPassDialog() {
@@ -385,10 +415,21 @@ class PolicyFragment : Fragment() {
         policy_card_second?.visibility = View.VISIBLE
         policy_card_third?.visibility = View.VISIBLE
 
+        policy_card_first?.back = true
+        policy_card_second?.back = true
+        policy_card_third?.back = true
+
+        policy_card_moving?.visibility = View.GONE
+
         resetCard(policy_card_first)
         resetCard(policy_card_second)
         resetCard(policy_card_third)
         elect_overlay?.visibility = View.VISIBLE
+
+        policy_confirmButton?.textView?.text = R.string.hold_to_reveal.asString()
+
+        veto_banner?.x = vetoBannerOffset
+        veto_banner?.visibility = View.GONE
     }
 
     private fun initVetoBanner() {
@@ -474,7 +515,6 @@ class PolicyFragment : Fragment() {
                   card2: PolicyCard.PolicyType,
                   card3: PolicyCard.PolicyType) {
 
-        passCard = null
         selectedCard = null
 
         veto_banner?.visibility = View.GONE

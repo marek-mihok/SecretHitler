@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundBlended">
+
+    <sk.ferinaf.secrethitler.widgets.ShHeader
+        android:id="@+id/confirm_veto_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:ShHeader_color="@color/secretGray"
+        app:ShHeader_text_color="@color/backgroundBlended"
+        app:ShHeader_text_title="THE VETO"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/confirm_veto_letterCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/secretWhite"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/confirm_veto_header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_dove"
+                    android:tint="@color/secretGray"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/rokkitt_regular"
+                    android:textColor="@color/secretGray"
+                    android:text="Berlin 23. Mar. 1933."
+                    android:textAlignment="textEnd" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/secretGray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rokkitt_bold"
+                android:textColor="@color/secretGray"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Dear president" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rokkitt_regular"
+                android:textColor="@color/secretGray"
+                android:layout_marginBottom="8dp"
+                android:text="I wish as a chancellor, to veto last proposed agenda instead of enacting either Policy, thus no Policy might be enacted." />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rokkitt_regular"
+                android:textColor="@color/secretGray"
+                android:layout_marginBottom="8dp"
+                android:text="The veto can be applied only when we BOTH agree."/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rokkitt_regular"
+                android:textColor="@color/secretGray"
+                android:text="This act is considered as an act of INACTIVE GOVERNMENT therefore we must face consequences of being inactive government (advance of election tracker by one)."/>
+
+            <ImageView
+                android:layout_width="88dp"
+                android:layout_height="24dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="8dp"
+                app:srcCompat="@drawable/img_chancellor"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rokkitt_bold"
+                android:text="DO YOU AGREE TO THE VETO?"
+                android:textAlignment="center"
+                android:layout_marginTop="24dp"
+                android:textColor="@color/secretGray"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/veto_confirm_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/confirm_veto_letterCard">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <sk.ferinaf.secrethitler.widgets.CardButton
+            android:id="@+id/veto_confirm_no_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:CardButton_primaryText="@string/nein"
+            app:CardButton_secondaryText="@string/n_o"
+            app:CardButton_type="CardButtonBlack"
+            android:scaleX="0.8"
+            android:scaleY="0.8"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <sk.ferinaf.secrethitler.widgets.CardButton
+            android:id="@+id/veto_confirm_yes_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:CardButton_primaryText="@string/ja"
+            app:CardButton_secondaryText="@string/y_e_s"
+            app:CardButton_type="CardButtonWhite"
+            android:scaleX="0.8"
+            android:scaleY="0.8"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <sk.ferinaf.secrethitler.widgets.ConfirmButton
+        android:id="@+id/veto_confirm_button"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:ConfirmButton_TextColor="@color/secretGray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

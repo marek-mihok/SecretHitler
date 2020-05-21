@@ -28,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_arrow_forward_black_18dp" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../Desktop/finger.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_dove" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../Desktop/dovePlain.svg" />
                           </map>
                         </option>
                       </PersistentState>
