@@ -23,7 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
@@ -35,10 +35,11 @@
             android:id="@+id/nomination_nominator_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/futura_bold"
+            android:fontFamily="@font/sh_font"
             android:text="MMMMMMMMMM"
             android:textAlignment="center"
-            android:textSize="18sp" />
+            android:textSize="24sp"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="match_parent"
@@ -47,13 +48,6 @@
             android:text="@string/pick_cancellor_candidate"
             android:textAlignment="center" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/rokkitt_regular"
-            android:text="@string/pick_candidate_hint" />
-
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -61,12 +55,24 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/nominations_confirmButton"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/nominations_feelFree_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         tools:listitem="@layout/item_player_cell" />
+
+    <TextView
+        android:id="@+id/nominations_feelFree_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/rokkitt_regular"
+        android:text="@string/pick_candidate_hint"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/nominations_confirmButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <sk.ferinaf.secrethitler.widgets.ConfirmButton
         android:id="@+id/nominations_confirmButton"

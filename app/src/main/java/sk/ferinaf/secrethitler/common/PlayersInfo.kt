@@ -134,4 +134,18 @@ object PlayersInfo {
         }
     }
 
+    private fun nextIndex(index: Int): Int {
+        return if (index >= players.size - 1) 0 else index + 1
+    }
+
+    fun getNextPlayer(player: Player?): Player? {
+        player?.let {
+            val index = players.indexOf(it)
+            var nextI = nextIndex(index)
+            while (!players[nextI].alive) nextI = nextIndex(nextI)
+            return players[nextI]
+        }
+        return null
+    }
+
 }

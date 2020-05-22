@@ -384,6 +384,10 @@ class PolicyFragment : Fragment() {
 
     private fun passToPresidentVetoDialog() {
         fragmentManager?.let {
+            policy_card_first?.back = true
+            policy_card_second?.back = true
+            policy_card_third?.back = true
+
             val confirmDialog = ConfirmDialog()
             confirmDialog.afterCreated = {
                 confirmDialog.detailText?.visibility = View.VISIBLE
@@ -548,6 +552,9 @@ class PolicyFragment : Fragment() {
 
         selectedCard = null
 
+        vetoBannerActive = false
+        veto_banner_shortText?.text = useVetoQ
+        veto_banner_arrow?.setImageResource(R.drawable.ic_arrow_back_black_18dp)
         veto_banner?.visibility = View.GONE
         policy_card_moving?.visibility = View.INVISIBLE
 

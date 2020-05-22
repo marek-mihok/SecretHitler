@@ -94,8 +94,14 @@
     <string name="use_veto_q">USE VETO?</string>
 
     <!--  PLAYERS  -->
+    <string name="cancel_election">Do you want to cancel election?</string>
     <string name="nominate_chancellor">NOMINATE CHANCELLOR</string>
     <string name="notYet">NOT YET</string>
 
     <string name="select_player">SELECT PLAYER</string>
+
+    <string name="election">ELECTION</string>
+    <string name="select_card">SELECT CARD</string>
+    <string name="should_vote">should vote.</string>
+    <string name="do_you_vote">Do you vote for</string>
 </resources>

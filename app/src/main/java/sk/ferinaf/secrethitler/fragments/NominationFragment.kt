@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_nomination.*
 import sk.ferinaf.secrethitler.R
+import sk.ferinaf.secrethitler.activities.VotingActivity
 import sk.ferinaf.secrethitler.adapters.NoMeasureLinearLayoutManager
 import sk.ferinaf.secrethitler.adapters.SelectPlayersAdapter
 import sk.ferinaf.secrethitler.common.PlayersInfo
 import sk.ferinaf.secrethitler.common.asString
+import sk.ferinaf.secrethitler.models.Player
 import sk.ferinaf.secrethitler.widgets.ConfirmButton
 
 class NominationFragment : Fragment() {
@@ -20,19 +22,23 @@ class NominationFragment : Fragment() {
     private val holdToConfirm by lazy { R.string.hold_to_confirm.asString() }
     private val releaseButton by lazy { R.string.release_button.asString() }
 
+    var nominator: Player? = null
+    var nominee: Player? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val mView = inflater.inflate(R.layout.fragment_nomination, container, false)
+        nominator = PlayersInfo.getPresident()
         return mView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        nomination_nominator_textView?.text = PlayersInfo.getPresident()?.name
+        nomination_nominator_textView?.text = nominator?.name
 
         nominations_confirmButton?.interactionEnabled = false
         nominations_confirmButton?.textView?.text = selectPlayer
-        nominations_confirmButton?.duration = 1000L
+        nominations_confirmButton?.duration = 800L
 
         nominations_confirmButton?.listener = object : ConfirmButton.ProgressListener {
             override fun onActionDown() { }
@@ -42,7 +48,9 @@ class NominationFragment : Fragment() {
             override fun onConfirm() {
                 nominations_confirmButton?.textView?.text = releaseButton
             }
-            override fun onFinish() { }
+            override fun onFinish() {
+                (activity as? VotingActivity)?.showVotingFragment(nominator, nominee)
+            }
         }
 
         initRecyclerView()
@@ -60,6 +68,7 @@ class NominationFragment : Fragment() {
 
             nominations_confirmButton?.interactionEnabled = true
             nominations_confirmButton?.textView?.text = holdToConfirm
+            nominee = it
         }
         nominations_recyclerView?.adapter = mAdapter
         val llm = NoMeasureLinearLayoutManager(context)

@@ -7,4 +7,5 @@ data class Player(val name: String) {
     var isMale = true
     var alive = true
     var eligible = true
+    var lastVote: Boolean? = null
 }
