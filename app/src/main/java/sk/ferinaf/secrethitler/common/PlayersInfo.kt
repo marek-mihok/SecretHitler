@@ -8,12 +8,12 @@ import kotlin.collections.ArrayList
 
 object PlayersInfo {
 
-    private var players: ArrayList<Player> = arrayListOf()
+    var players: ArrayList<Player> = arrayListOf()
 
 
     // Set names of players and assign them secret roles
     fun setNames(players: ArrayList<String>) {
-
+        this.players.clear()
         players.forEach { name ->
             val player = Player(name)
             if (name.last().toUpperCase() == 'A') {
@@ -117,7 +117,9 @@ object PlayersInfo {
     }
 
     fun initPresident() {
-        players[0].governmentRole = GovernmentRole.PRESIDENT
+        val randomPlayer = players.random()
+        randomPlayer.governmentRole = GovernmentRole.PRESIDENT
+        randomPlayer.eligible = false
     }
 
     fun getPresident(): Player? {

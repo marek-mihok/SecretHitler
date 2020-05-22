@@ -17,7 +17,7 @@ class PlayersListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as? PlayersListItem)?.bind(PlayersInfo.getPlayer(position))
+        (holder as? PlayersListItem)?.bind(PlayersInfo.getPlayer(position), selected = false)
     }
 
 }

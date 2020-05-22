@@ -32,6 +32,7 @@
         app:layout_constraintTop_toBottomOf="@id/nominate_header">
 
         <TextView
+            android:id="@+id/nomination_nominator_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/futura_bold"
@@ -56,26 +57,27 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/nominations_recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/confirmButton"
+        app:layout_constraintBottom_toTopOf="@+id/nominations_confirmButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:listitem="@layout/item_player_cell" />
 
     <sk.ferinaf.secrethitler.widgets.ConfirmButton
-        android:id="@+id/confirmButton"
-        app:ConfirmButton_TextColor="@color/secretGray"
+        android:id="@+id/nominations_confirmButton"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
+        app:ConfirmButton_TextColor="@color/secretGray"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

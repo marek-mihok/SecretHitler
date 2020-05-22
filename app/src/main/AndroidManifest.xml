@@ -34,6 +34,10 @@
             android:screenOrientation="sensorPortrait"
             tools:ignore="LockedOrientationActivity"/>
 
+        <activity android:name=".activities.VotingActivity"
+            android:screenOrientation="sensorPortrait"
+            tools:ignore="LockedOrientationActivity"/>
+
         <activity android:name=".activities.GameActivity"
             android:screenOrientation="sensorPortrait"
             tools:ignore="LockedOrientationActivity"/>

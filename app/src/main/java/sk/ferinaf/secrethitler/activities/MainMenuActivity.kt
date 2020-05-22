@@ -40,8 +40,8 @@ class MainMenuActivity : BaseActivity() {
 
     fun settingsButtonPressed(sender: View){
         Toast.makeText(this, "To do ...", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, GameActivity::class.java)
-        startActivity(intent)
+//        val intent = Intent(this, GameActivity::class.java)
+//        startActivity(intent)
     }
 
     fun rulesButtonPressed(sender: View){

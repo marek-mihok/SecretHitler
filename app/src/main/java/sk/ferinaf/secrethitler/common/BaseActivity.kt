@@ -13,6 +13,7 @@ abstract class BaseActivity :  AppCompatActivity() {
 
     // Help functions to add dialog to really go back
     open var askToGetBack: Boolean = false
+    open var returnQuestion: String? = null
     abstract var fullScreen: Boolean
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +58,11 @@ abstract class BaseActivity :  AppCompatActivity() {
             val confirmDialog = ConfirmDialog()
             confirmDialog.isCancelable = false
             confirmDialog.show(supportFragmentManager, "confirm dialog")
+            if (returnQuestion != null) {
+                confirmDialog.afterCreated = {
+                    confirmDialog.title?.text = returnQuestion
+                }
+            }
             confirmDialog.onConfirm = {
                 if (it) super.onBackPressed()
             }

@@ -22,11 +22,39 @@
         android:id="@+id/players_list_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/shHeader"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_player_cell" />
+
+<!--    <sk.ferinaf.secrethitler.widgets.ConfirmButton-->
+<!--        android:id="@+id/players_confirmButton"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="64dp"-->
+<!--        android:layout_marginStart="12dp"-->
+<!--        android:layout_marginEnd="12dp"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        app:ConfirmButton_TextColor="@color/secretGray"-->
+<!--        app:cardCornerRadius="16dp"-->
+<!--        app:cardElevation="4dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+    <Button
+        android:id="@+id/players_bottom_button"
+        style="@style/ButtonMainMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/nominate_chancellor"
+        android:textColor="@color/backgroundBlended"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

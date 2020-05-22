@@ -177,6 +177,9 @@ class RevealIdentityActivity : BaseActivity() {
                 finish()
             } else {
                 // TODO: TU TREBA HODIT ODKAZ NA ZACATIE HRY
+                val intent = Intent(this, GameActivity::class.java)
+                startActivity(intent)
+
                 finish()
             }
         }

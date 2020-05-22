@@ -52,10 +52,18 @@ class AddPlayersActivity : BaseActivity() {
         })
 
         start_assignment_button?.setOnClickListener {
-            val intent = Intent(this, RevealIdentityActivity::class.java)
             PlayersInfo.setNames(playersAdapter.userList)
             PlayersInfo.initPresident()
-            intent.putExtra("playerIndex", 0)
+
+            // HACK TO SKIP ROLE DISTRIBUTION
+            val intent: Intent?
+            if (playersAdapter.userList.contains("developer")) {
+                intent = Intent(this, GameActivity::class.java)
+            } else {
+                intent = Intent(this, RevealIdentityActivity::class.java)
+                intent.putExtra("playerIndex", 0)
+            }
+
             startActivity(intent)
             finish()
         }

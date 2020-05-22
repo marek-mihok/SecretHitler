@@ -169,14 +169,14 @@
 
     <sk.ferinaf.secrethitler.widgets.ConfirmButton
         android:id="@+id/veto_confirm_button"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="16dp"
         app:ConfirmButton_TextColor="@color/secretGray"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

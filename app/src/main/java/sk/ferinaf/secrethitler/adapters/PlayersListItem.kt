@@ -2,6 +2,7 @@ package sk.ferinaf.secrethitler.adapters
 
 import android.icu.util.Calendar
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -31,12 +32,19 @@ class PlayersListItem(inflater: LayoutInflater, parent: ViewGroup) :
         cardView = itemView.findViewById(R.id.item_playerCell_cardView)
     }
 
-    fun bind(player: Player, onClick: ()->Unit = {}) {
+    fun bind(player: Player, selected: Boolean, onClick: ()->Unit = {}) {
         title?.text = player.name
 
         itemView.setOnClickListener {
             onClick()
         }
+
+//        itemView.setOnTouchListener { _, event ->
+//            if (event.action == MotionEvent.ACTION_DOWN) {
+//                onClick()
+//            }
+//            false
+//        }
 
         when (player.governmentRole) {
             GovernmentRole.PRESIDENT -> {

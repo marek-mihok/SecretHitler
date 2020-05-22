@@ -3,6 +3,7 @@
 
     <!--  General  -->
     <string name="release_button">RELEASE BUTTON</string>
+    <string name="exit_game">Do you really want to quit current game session?</string>
 
     <!-- Main screen -->
     <string name="start">START</string>
@@ -73,7 +74,7 @@
     <string name="big_no">NO!</string>
 
     <!--  Pick candidate  -->
-    <string name="pick_cancellor_candidate">as s presidential candidate should PICK CHANCELLOR CANDIDATE from eligible players in the list below.</string>
+    <string name="pick_cancellor_candidate">as a presidential candidate, you should PICK A CHANCELLOR CANDIDATE from eligible players in the list below.</string>
     <string name="pick_candidate_hint">Feel free to discuss your nomination.</string>
 
     <!--  VETO confirm  -->
@@ -91,4 +92,10 @@
     <string name="veto_agree">I AGREE</string>
     <string name="veto_disagree">I DISAGREE</string>
     <string name="use_veto_q">USE VETO?</string>
+
+    <!--  PLAYERS  -->
+    <string name="nominate_chancellor">NOMINATE CHANCELLOR</string>
+    <string name="notYet">NOT YET</string>
+
+    <string name="select_player">SELECT PLAYER</string>
 </resources>

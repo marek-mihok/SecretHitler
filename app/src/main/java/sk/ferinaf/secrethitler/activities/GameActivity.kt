@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_game.*
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.common.BaseActivity
+import sk.ferinaf.secrethitler.common.asString
 import sk.ferinaf.secrethitler.fragments.ConfirmVetoFragment
 import sk.ferinaf.secrethitler.fragments.GameFragment
 import sk.ferinaf.secrethitler.fragments.PlayersFragment
@@ -28,9 +29,13 @@ class GameActivity : BaseActivity() {
 
     private var activeFragment: Fragment = gameFragment
 
+    private val ruSure by lazy { R.string.exit_game.asString() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        returnQuestion = ruSure
 
         game_navigation?.onSelectItem(GameBottomNavigation.NavigationItem.GAME)
 
