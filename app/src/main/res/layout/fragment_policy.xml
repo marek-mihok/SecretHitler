@@ -132,6 +132,7 @@
         app:ShHeader_text_title="DISCARD POLICY"
         app:ShHeader_text_color="@color/backgroundBlended"
         app:ShHeader_color="@color/secretGray"
+        app:ShHeader_private="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

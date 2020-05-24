@@ -14,6 +14,7 @@
         app:ShHeader_color="@color/secretGray"
         app:ShHeader_text_color="@color/backgroundBlended"
         app:ShHeader_text_title="NOMINATE"
+        app:ShHeader_private="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

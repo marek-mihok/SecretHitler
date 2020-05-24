@@ -22,8 +22,16 @@ class ShHeader @JvmOverloads constructor(
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.ShHeader)
 
+        val private = attributes.getBoolean(R.styleable.ShHeader_ShHeader_private, true)
+        if (private) {
+            headerWidget_privateIndicator_imageView?.setImageResource(R.drawable.ic_visibility_off_black_24dp)
+        } else {
+            headerWidget_privateIndicator_imageView?.setImageResource(R.drawable.ic_visibility_black_24dp)
+        }
+
         val colorId = attributes.getColor(R.styleable.ShHeader_ShHeader_text_color, 0)
         headerWidget_title_textView?.setTextColor(colorId)
+        headerWidget_privateIndicator_imageView?.setColorFilter(colorId)
 
         headerWidget_title_textView?.text = attributes.getString(R.styleable.ShHeader_ShHeader_text_title)
 

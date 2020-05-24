@@ -18,13 +18,13 @@ class ConfirmButton @JvmOverloads constructor(
 ) : CardView(context, attrs, defStyleAttr) {
 
     interface ProgressListener {
-        fun onStart()
-        fun onCancel()
-        fun onConfirm()
-        fun onFinish()
+        fun onStart() {}
+        fun onCancel() {}
+        fun onConfirm() {}
+        fun onFinish() {}
 
-        fun onActionDown()
-        fun onActionUp()
+        fun onActionDown() {}
+        fun onActionUp() {}
     }
 
     var textView: TextView? = null

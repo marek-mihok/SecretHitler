@@ -148,4 +148,12 @@ object PlayersInfo {
         return null
     }
 
+    fun countOfAlivePlayers(): Int {
+        var count = 0
+        players.forEach { player ->
+            if (player.alive) count += 1
+        }
+        return count
+    }
+
 }

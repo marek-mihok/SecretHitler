@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_vote.*
 import sk.ferinaf.secrethitler.R
+import sk.ferinaf.secrethitler.activities.VotingActivity
 import sk.ferinaf.secrethitler.common.PlayersInfo
 import sk.ferinaf.secrethitler.common.asString
 import sk.ferinaf.secrethitler.models.Player
@@ -82,7 +83,7 @@ class VoteFragment : Fragment() {
                     if (it.lastVote == null) {
                         initFragment(it)
                     } else {
-                        // TODO: show results
+                        (activity as? VotingActivity)?.showResults(nominee)
                     }
                 }
             }

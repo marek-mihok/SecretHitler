@@ -14,6 +14,7 @@
         app:ShHeader_color="@color/secretGray"
         app:ShHeader_text_color="@color/backgroundBlended"
         app:ShHeader_text_title="PLAYERS"
+        app:ShHeader_private="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -47,12 +48,12 @@
         android:id="@+id/players_bottom_button"
         style="@style/ButtonMainMenu"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:text="@string/nominate_chancellor"
         android:textColor="@color/backgroundBlended"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

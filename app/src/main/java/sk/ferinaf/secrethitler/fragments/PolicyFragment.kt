@@ -215,7 +215,7 @@ class PolicyFragment : Fragment() {
     }
 
     private fun checkVetoButton() {
-        if (secondStage && GameState.vetoAllowed) {
+        if (secondStage && GameState.isVetoAllowed()) {
             veto_banner?.visibility = View.VISIBLE
         } else {
             veto_banner?.visibility = View.GONE
@@ -358,9 +358,23 @@ class PolicyFragment : Fragment() {
                             item_discardPile_text?.text = discardPileDragHere
 
                             if (secondStage) {
-                                showElectNewGovernment()
+                                var type = PolicyCard.PolicyType.LIBERAL
                                 obtainPassCard()?.let { toPass ->
                                     GameState.enactPolicy(toPass)
+                                    type = toPass
+                                }
+
+                                showElectNewGovernment()
+
+                                val welcomeDialog = if (type == PolicyCard.PolicyType.LIBERAL) {
+                                    GameFragment.WelcomeDialog.LIBERAL_ENACTED
+                                } else {
+                                    GameFragment.WelcomeDialog.FASCIST_ENACTED
+                                }
+
+                                (activity as? GameActivity)?.let {
+                                    it.switchToBoard(welcomeDialog)
+                                    it.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.NEW_GOVERNMENT
                                 }
                             } else {
                                 showPassDialog()

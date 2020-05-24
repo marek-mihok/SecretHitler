@@ -20,9 +20,9 @@ class GameBottomNavigation @JvmOverloads constructor(
     init {
         View.inflate(context, R.layout.widget_game_navigation, this)
 
-        navigation_gameButton?.cardView?.setOnClickListener { onSelectItem(NavigationItem.GAME) }
-        navigation_policyButton?.cardView?.setOnClickListener { onSelectItem(NavigationItem.POLICY) }
-        navigation_playersButton?.cardView?.setOnClickListener { onSelectItem(NavigationItem.PLAYERS) }
+        navigation_gameButton?.cardView?.setOnClickListener { selectItem(NavigationItem.GAME) }
+        navigation_policyButton?.cardView?.setOnClickListener { selectItem(NavigationItem.POLICY) }
+        navigation_playersButton?.cardView?.setOnClickListener { selectItem(NavigationItem.PLAYERS) }
     }
 
     private fun setDefault() {
@@ -31,7 +31,7 @@ class GameBottomNavigation @JvmOverloads constructor(
         navigation_playersButton?.setItemSelected(false)
     }
 
-    fun onSelectItem(item: NavigationItem) {
+    fun selectItem(item: NavigationItem) {
         setDefault()
         when (item) {
             NavigationItem.GAME -> {

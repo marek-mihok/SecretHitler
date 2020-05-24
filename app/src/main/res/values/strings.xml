@@ -104,4 +104,13 @@
     <string name="select_card">SELECT CARD</string>
     <string name="should_vote">should vote.</string>
     <string name="do_you_vote">Do you vote for</string>
+
+    <string name="show_to_all">Show to all players</string>
+
+    <string name="results">RESULTS</string>
+    <string name="failure">FAILURE</string>
+    <string name="success">SUCCESS</string>
+
+    <string name="ru_sure">Are you sure?</string>
+    <string name="already_registered_results">Back to game? Results are already registered.</string>
 </resources>

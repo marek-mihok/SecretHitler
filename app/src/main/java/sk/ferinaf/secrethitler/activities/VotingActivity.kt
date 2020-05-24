@@ -5,6 +5,7 @@ import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.common.BaseActivity
 import sk.ferinaf.secrethitler.common.asString
 import sk.ferinaf.secrethitler.fragments.NominationFragment
+import sk.ferinaf.secrethitler.fragments.ResultsFragment
 import sk.ferinaf.secrethitler.fragments.VoteFragment
 import sk.ferinaf.secrethitler.models.Player
 
@@ -15,6 +16,9 @@ class VotingActivity : BaseActivity() {
 
     private val voteFragment =  VoteFragment()
     private val nominationFragment = NominationFragment()
+    private val resultsFragment = ResultsFragment()
+
+    var isSpecial = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,11 +29,18 @@ class VotingActivity : BaseActivity() {
         supportFragmentManager.beginTransaction().add(R.id.voting_activity_container, nominationFragment).commit()
     }
 
-    fun showVotingFragment(votingPlayer: Player?, nomineeName: Player?) {
-        if (nomineeName != null && votingPlayer != null) {
+    fun showVotingFragment(votingPlayer: Player?, nominee: Player?) {
+        if (nominee != null && votingPlayer != null) {
             voteFragment.votingPlayer = votingPlayer
-            voteFragment.nominee = nomineeName
+            voteFragment.nominee = nominee
         }
         supportFragmentManager.beginTransaction().add(R.id.voting_activity_container, voteFragment).remove(nominationFragment).commit()
+    }
+
+    fun showResults(nominee: Player?) {
+        nominee?.let {
+            resultsFragment.nominee = it
+        }
+        supportFragmentManager.beginTransaction().add(R.id.voting_activity_container, resultsFragment).remove(voteFragment).commit()
     }
 }

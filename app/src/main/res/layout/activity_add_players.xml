@@ -16,6 +16,7 @@
         app:ShHeader_color="@color/secretRed"
         app:ShHeader_text_color="@color/addPlayers_background"
         app:ShHeader_text_title="@string/players_screen_title"
+        app:ShHeader_private="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

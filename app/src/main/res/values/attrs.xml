@@ -2,6 +2,7 @@
 <resources>
 
     <declare-styleable name="ShHeader">
+        <attr name="ShHeader_private" format="boolean"/>
         <attr name="ShHeader_color" format="color"/>
         <attr name="ShHeader_text_color" format="color"/>
         <attr name="ShHeader_text_title" format="string"/>

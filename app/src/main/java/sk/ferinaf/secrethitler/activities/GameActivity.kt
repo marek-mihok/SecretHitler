@@ -1,7 +1,6 @@
 package sk.ferinaf.secrethitler.activities
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_game.*
 import sk.ferinaf.secrethitler.R
@@ -21,7 +20,7 @@ class GameActivity : BaseActivity() {
 
     private val gameFragment = GameFragment()
     val policyFragment = PolicyFragment()
-    private val playersFragment = PlayersFragment()
+    val playersFragment = PlayersFragment()
 
     private var mGameFragment: Fragment = gameFragment
     private var mPolicyFragment: Fragment = policyFragment
@@ -37,7 +36,7 @@ class GameActivity : BaseActivity() {
 
         returnQuestion = ruSure
 
-        game_navigation?.onSelectItem(GameBottomNavigation.NavigationItem.GAME)
+        game_navigation?.selectItem(GameBottomNavigation.NavigationItem.GAME)
 
         game_navigation.onSelect = { item ->
             when (item) {
@@ -74,6 +73,19 @@ class GameActivity : BaseActivity() {
         supportFragmentManager.beginTransaction().remove(mPolicyFragment).commit()
         mPolicyFragment = policyFragment
         selectFragment(mPolicyFragment)
+    }
+
+    fun switchToBoard(welcomeDialog: GameFragment.WelcomeDialog) {
+        selectFragment(mGameFragment)
+        game_navigation?.selectItem(GameBottomNavigation.NavigationItem.GAME)
+        (mGameFragment as? GameFragment)?.let {
+            it.presentWelcomeDialog(welcomeDialog)
+        }
+    }
+
+    fun switchToEnact() {
+        selectFragment(mPolicyFragment)
+        game_navigation?.selectItem(GameBottomNavigation.NavigationItem.POLICY)
     }
 
 }
