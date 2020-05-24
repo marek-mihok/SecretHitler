@@ -1,5 +1,6 @@
 package sk.ferinaf.secrethitler.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -91,6 +92,7 @@ class ResultsFragment : Fragment() {
             }
 
             override fun onFinish() {
+                activity?.setResult(1818)
                 activity?.finish()
             }
         }

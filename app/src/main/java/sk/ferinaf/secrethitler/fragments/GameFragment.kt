@@ -1,6 +1,7 @@
 package sk.ferinaf.secrethitler.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,18 +28,53 @@ class GameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         current_state_debug_button?.setOnClickListener {
-            val f = GameState.enactedFascist
-            val l = GameState.enactedLiberal
-            current_state_debug_test?.text = "F: $f, L: $l"
+            updateData()
+        }
+
+        GameState.onLiberalEnacted = {
+            updateData()
+            Log.d("state", "fascist applied")
+        }
+
+        GameState.onFascistEnacted = {
+            // Powers is not ignored
+            updateData()
+            Log.d("state", "fascist applied")
+        }
+
+        GameState.onVetoApplied = {
+            updateData()
+            Log.d("state", "veto applied")
+        }
+
+        GameState.onElectionTrackerAdvance = {
+            updateData()
+            Log.d("state", "tracer advance")
+        }
+
+        GameState.onElectionTrackerRestart = {
+            updateData()
+            Log.d("state", "tracer restart")
+        }
+
+        GameState.onElectionTrackerFail = {
+            // Any powers granted by policy is ignored now
+            updateData()
+            Log.d("state", "enacted: $it")
         }
     }
 
-    fun presentWelcomeDialog(welcomeDialog: WelcomeDialog) {
-        Toast.makeText(context, welcomeDialog.toString(), Toast.LENGTH_SHORT).show()
-
+    fun updateData() {
         val f = GameState.enactedFascist
         val l = GameState.enactedLiberal
-        current_state_debug_test?.text = "F: $f, L: $l"
+        val v = GameState.electionTracker
+        current_state_debug_test?.text = "F: $f, L: $l, tracker: $v"
+    }
+
+    fun presentWelcomeDialog(welcomeDialog: WelcomeDialog) {
+        updateData()
+
+        Log.d("state_welcome", welcomeDialog.toString())
     }
 
 }

@@ -11,6 +11,7 @@ class SelectPlayersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var onPlayerSelected: (Player) -> Unit = {}
 
     var players: ArrayList<Player> = arrayListOf()
+    var selectionAllowed = true
     private var selected = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -27,9 +28,11 @@ class SelectPlayersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val item = (holder as? PlayersListItem)
         item?.select(selected == position)
         item?.bind(player, selected == position) {
-            onPlayerSelected(player)
-            selected = position
-            notifyDataSetChanged()
+            if (selectionAllowed) {
+                onPlayerSelected(player)
+                selected = position
+                notifyDataSetChanged()
+            }
         }
     }
 

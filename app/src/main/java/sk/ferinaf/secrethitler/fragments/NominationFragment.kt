@@ -25,6 +25,8 @@ class NominationFragment : Fragment() {
     var nominator: Player? = null
     var nominee: Player? = null
 
+    val mAdapter = SelectPlayersAdapter()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val mView = inflater.inflate(R.layout.fragment_nomination, container, false)
         nominator = PlayersInfo.getPresident()
@@ -41,10 +43,14 @@ class NominationFragment : Fragment() {
         nominations_confirmButton?.duration = 800L
 
         nominations_confirmButton?.listener = object : ConfirmButton.ProgressListener {
-            override fun onActionDown() { }
-            override fun onActionUp() { }
-            override fun onStart() { }
-            override fun onCancel() { }
+            override fun onActionDown() {
+                mAdapter.selectionAllowed = false
+            }
+
+            override fun onActionUp() {
+                mAdapter.selectionAllowed = true
+            }
+
             override fun onConfirm() {
                 nominations_confirmButton?.textView?.text = releaseButton
             }
@@ -58,7 +64,6 @@ class NominationFragment : Fragment() {
 
     // Init recycler view
     private fun initRecyclerView() {
-        val mAdapter = SelectPlayersAdapter()
         val players = PlayersInfo.players.filter { player ->
             player.eligible
         }

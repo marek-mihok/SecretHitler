@@ -372,9 +372,9 @@ class PolicyFragment : Fragment() {
                                     GameFragment.WelcomeDialog.FASCIST_ENACTED
                                 }
 
-                                (activity as? GameActivity)?.let {
-                                    it.switchToBoard(welcomeDialog)
-                                    it.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.NEW_GOVERNMENT
+                                (activity as? GameActivity)?.let { gameActivity ->
+                                    gameActivity.switchToBoard(welcomeDialog)
+                                    gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.NEW_GOVERNMENT
                                 }
                             } else {
                                 showPassDialog()

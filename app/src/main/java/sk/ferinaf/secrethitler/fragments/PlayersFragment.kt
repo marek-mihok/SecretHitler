@@ -86,12 +86,7 @@ class PlayersFragment : Fragment() {
 
     // After election state
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == this.requestCode) {
-            Log.d("onResult", "resulted")
-
-            // Refresh players table
-            playersListAdapter.notifyDataSetChanged()
-
+        if (requestCode == this.requestCode && resultCode == 1818) {
             val presidentName = PlayersInfo.getPresident()?.name
             val chancellorName = PlayersInfo.getChancellor()?.name
             if (presidentName != null && chancellorName != null) {
@@ -99,7 +94,21 @@ class PlayersFragment : Fragment() {
                 (activity as? GameActivity)?.policyFragment?.initEnact(presidentName, chancellorName, cards[0], cards[1], cards[2])
                 players_bottom_button?.text = enactPolicy
                 buttonBehavior = ButtonBehavior.ENACT_POLICY
+                GameState.restartElectionTracker()
+            } else {
+                // Vote not success
+                val oldPresident = PlayersInfo.getPresident()
+                val nextPresident = PlayersInfo.getNextPlayer(oldPresident)
+                oldPresident?.governmentRole = null
+                oldPresident?.eligible = true
+                nextPresident?.governmentRole = GovernmentRole.PRESIDENT
+                nextPresident?.eligible = false
+                GameState.advanceElectionTracker()
+                (activity as? GameActivity)?.switchToBoard(GameFragment.WelcomeDialog.ELECTION_TRACKER)
             }
+
+            // Refresh players table
+            playersListAdapter.notifyDataSetChanged()
         }
     }
 

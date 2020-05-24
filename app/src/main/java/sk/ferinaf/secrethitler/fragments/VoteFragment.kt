@@ -23,6 +23,8 @@ class VoteFragment : Fragment() {
     var votingPlayer: Player? = null
     var nominee: Player? = null
 
+    private var voteAllowed = true
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val mView = inflater.inflate(R.layout.fragment_vote, container, false)
         return mView
@@ -42,36 +44,43 @@ class VoteFragment : Fragment() {
         }
 
         vote_yes_button?.setOnClick {
-            agree = true
+            if (voteAllowed) {
+                agree = true
 
-            vote_no_button?.scaleX = 0.8f
-            vote_no_button?.scaleY = 0.8f
+                vote_no_button?.scaleX = 0.8f
+                vote_no_button?.scaleY = 0.8f
 
-            vote_yes_button?.scaleX = 1f
-            vote_yes_button?.scaleY = 1f
+                vote_yes_button?.scaleX = 1f
+                vote_yes_button?.scaleY = 1f
 
-            vote_confirmButton?.textView?.text = holdToConfirm
-            vote_confirmButton?.interactionEnabled = true
+                vote_confirmButton?.textView?.text = holdToConfirm
+                vote_confirmButton?.interactionEnabled = true
+            }
         }
 
         vote_no_button?.setOnClick {
-            agree = false
+            if (voteAllowed) {
+                agree = false
 
-            vote_no_button?.scaleX = 1f
-            vote_no_button?.scaleY = 1f
+                vote_no_button?.scaleX = 1f
+                vote_no_button?.scaleY = 1f
 
-            vote_yes_button?.scaleX = 0.8f
-            vote_yes_button?.scaleY = 0.8f
+                vote_yes_button?.scaleX = 0.8f
+                vote_yes_button?.scaleY = 0.8f
 
-            vote_confirmButton?.textView?.text = holdToConfirm
-            vote_confirmButton?.interactionEnabled = true
+                vote_confirmButton?.textView?.text = holdToConfirm
+                vote_confirmButton?.interactionEnabled = true
+            }
         }
 
         vote_confirmButton?.listener = object : ConfirmButton.ProgressListener {
-            override fun onStart() { }
-            override fun onCancel() { }
-            override fun onActionDown() { }
-            override fun onActionUp() { }
+            override fun onActionDown() {
+                voteAllowed = false
+            }
+
+            override fun onActionUp() {
+                voteAllowed = true
+            }
 
             override fun onConfirm() {
                 vote_confirmButton?.textView?.text = releaseButton
