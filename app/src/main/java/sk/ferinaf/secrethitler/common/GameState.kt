@@ -10,6 +10,17 @@ object GameState {
     var enactedLiberal = 0
     var electionTracker = 0
 
+    private var pileInitiated = false
+
+    fun resetDefault() {
+        drawPile.clear()
+        discardPile.clear()
+        pileInitiated = false
+        enactedFascist = 0
+        enactedLiberal = 0
+        electionTracker = 0
+    }
+
     var onVetoApplied: ()->Unit = {}
     var onElectionTrackerAdvance: ()->Unit = {}
     var onElectionTrackerFail: (type: PolicyCard.PolicyType)->Unit = {}
@@ -18,9 +29,6 @@ object GameState {
     var onFascistEnacted: ()->Unit = {}
 
     fun isVetoAllowed(): Boolean = enactedFascist == 5
-
-    private var pileInitiated = false
-
 
     fun enactPolicy(type: PolicyCard.PolicyType) {
         when (type) {
@@ -107,12 +115,13 @@ object GameState {
 
 
     fun advanceElectionTracker() {
-        onElectionTrackerAdvance()
         electionTracker += 1
         if (electionTracker == 3) {
             val type = enactFirst()
             onElectionTrackerFail(type)
             electionTracker = 0
+        } else {
+            onElectionTrackerAdvance()
         }
     }
 }

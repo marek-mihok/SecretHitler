@@ -1,4 +1,4 @@
-package sk.ferinaf.secrethitler.fragments
+package sk.ferinaf.secrethitler.fragments.voting
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,15 +13,15 @@ import sk.ferinaf.secrethitler.common.asString
 import sk.ferinaf.secrethitler.models.Player
 import sk.ferinaf.secrethitler.widgets.ConfirmButton
 
-class VoteFragment : Fragment() {
+class VoteFragment : AbstractVoteFragment() {
 
     private val selectCard by lazy { R.string.select_card.asString() }
     private val releaseButton by lazy { R.string.release_button.asString() }
     private val holdToConfirm by lazy { R.string.hold_to_confirm.asString() }
 
     private var agree: Boolean? = null
-    var votingPlayer: Player? = null
-    var nominee: Player? = null
+    override var votingPlayer: Player? = null
+    override var nominee: Player? = null
 
     private var voteAllowed = true
 

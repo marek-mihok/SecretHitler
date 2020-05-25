@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundBlended"
+    android:orientation="vertical">
+
+    <sk.ferinaf.secrethitler.widgets.ShHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ShHeader_color="@color/secretGray"
+        app:ShHeader_private="false"
+        app:ShHeader_text_color="@color/backgroundBlended"
+        app:ShHeader_text_title="@string/fast_election" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/futura_bold"
+        android:text="@string/do_you_vote"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        tools:ignore="UseCompoundDrawables">
+        <TextView
+            android:id="@+id/fastVote_votedPlayer_textView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sh_font"
+            android:layout_marginLeft="40dp"
+            android:text="MMMMMMMMMM"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            tools:ignore="RtlHardcoded"
+            android:textColor="@color/secretGray"/>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="16dp"
+            android:tint="@color/secretGray"
+            app:srcCompat="@drawable/ic_thumbs_up_down_black_24dp"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rokkitt_regular"
+        android:padding="12dp"
+        android:textColor="@color/secretGray"
+        android:text="@string/fast_election_description"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/secretWhite"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/futura_bold"
+                android:text="@string/did_succseed"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center">
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <sk.ferinaf.secrethitler.widgets.CardButton
+                    android:id="@+id/fastVote_noButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    app:CardButton_primaryText="@string/nein"
+                    app:CardButton_secondaryText="@string/n_o"
+                    app:CardButton_type="CardButtonBlack" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <sk.ferinaf.secrethitler.widgets.CardButton
+                    android:id="@+id/fastVote_yesButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    app:CardButton_primaryText="@string/ja"
+                    app:CardButton_secondaryText="@string/y_e_s"
+                    app:CardButton_type="CardButtonWhite" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rokkitt_bold"
+        android:padding="12dp"
+        android:text="@string/tie_description"
+        android:textColor="@color/secretGray"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:gravity="center">
+
+        <include layout="@layout/item_vote_image" />
+
+    </LinearLayout>
+
+    <sk.ferinaf.secrethitler.widgets.ConfirmButton
+        android:id="@+id/fastVote_confirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        app:ConfirmButton_TextColor="@color/secretGray"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp" />
+
+</LinearLayout>

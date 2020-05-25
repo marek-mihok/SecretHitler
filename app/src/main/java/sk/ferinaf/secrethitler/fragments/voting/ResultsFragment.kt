@@ -1,6 +1,5 @@
-package sk.ferinaf.secrethitler.fragments
+package sk.ferinaf.secrethitler.fragments.voting
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,15 +10,12 @@ import kotlinx.android.synthetic.main.fragment_vote_results.*
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.activities.VotingActivity
 import sk.ferinaf.secrethitler.adapters.ResultsAdapter
-import sk.ferinaf.secrethitler.common.GameState
 import sk.ferinaf.secrethitler.common.PlayersInfo
 import sk.ferinaf.secrethitler.common.asString
-import sk.ferinaf.secrethitler.models.GovernmentRole
 import sk.ferinaf.secrethitler.models.Player
-import sk.ferinaf.secrethitler.models.Roles
 import sk.ferinaf.secrethitler.widgets.ConfirmButton
 
-class ResultsFragment : Fragment() {
+class ResultsFragment : Fragment(), EvaluationInterface {
 
     var nominee: Player? = null
 
@@ -65,20 +61,25 @@ class ResultsFragment : Fragment() {
 
 
         // Set role for nominee
-        val isSpecial = (activity as? VotingActivity)?.isSpecial == true
-        if (succeed) {
-            if (isSpecial) {
-                PlayersInfo.getPresident()?.governmentRole = null
-                nominee?.governmentRole = GovernmentRole.PRESIDENT
-            } else {
-                PlayersInfo.getChancellor()?.governmentRole = null
-                nominee?.governmentRole = GovernmentRole.CHANCELLOR
-
-                if (nominee?.role == Roles.HITLER && GameState.enactedFascist >= 3) {
-                    // TODO: FASCISTS WIN
-                }
-            }
-        }
+        evaluate(this, nominee, succeed)
+//        val isSpecial = (activity as? VotingActivity)?.isSpecial == true
+//        if (succeed) {
+//            activity?.setResult(1818)
+//            if (isSpecial) {
+//                PlayersInfo.getPresident()?.governmentRole = null
+//                nominee?.governmentRole = GovernmentRole.PRESIDENT
+//            } else {
+//                PlayersInfo.getChancellor()?.governmentRole = null
+//                nominee?.governmentRole = GovernmentRole.CHANCELLOR
+//
+//                if (GameState.enactedFascist >= 3 && nominee?.role == Roles.HITLER) {
+//                    // TODO: FASCISTS WIN
+//                    activity?.setResult(1488)
+//                } else if (GameState.enactedFascist >= 3 ) {
+//                    nominee?.notHitlerReveal = true
+//                }
+//            }
+//        }
 
 
         // Clean votes
@@ -97,7 +98,6 @@ class ResultsFragment : Fragment() {
             }
 
             override fun onFinish() {
-                activity?.setResult(1818)
                 activity?.finish()
             }
         }

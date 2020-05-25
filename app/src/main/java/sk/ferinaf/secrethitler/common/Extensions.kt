@@ -26,7 +26,7 @@ import kotlin.collections.ArrayList
 fun Context.vibrate() {
     val vb = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
     val sp = getSharedPreferences("Settings", 0)
-    val shouldVibrate = sp.getBoolean("vibrations", true)
+    val shouldVibrate = getSettingsFor(SettingsCategory.VIBRATIONS)
     val vibrationDuration = resources.getInteger(R.integer.vibration_duration).toLong()
 
     if (shouldVibrate) {
@@ -36,6 +36,17 @@ fun Context.vibrate() {
             @Suppress("DEPRECATION")
             vb.vibrate(vibrationDuration)
         }
+    }
+}
+
+fun Context.getSettingsFor(category: SettingsCategory): Boolean {
+    // Defines default values
+    val sp = getSharedPreferences("Settings", 0)
+    return when (category) {
+        SettingsCategory.VIBRATIONS -> sp.getBoolean("vibrations", true)
+        SettingsCategory.NOT_HITLER -> sp.getBoolean("not_hitler", true)
+        SettingsCategory.FAST_VOTING -> sp.getBoolean("fast_vote", false)
+        SettingsCategory.PILE_SIZE -> sp.getBoolean("pile_size", false)
     }
 }
 

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_game.*
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.common.BaseActivity
+import sk.ferinaf.secrethitler.common.GameState
 import sk.ferinaf.secrethitler.common.asString
 import sk.ferinaf.secrethitler.fragments.ConfirmVetoFragment
 import sk.ferinaf.secrethitler.fragments.GameFragment

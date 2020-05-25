@@ -4,6 +4,14 @@
     <!--  General  -->
     <string name="release_button">RELEASE BUTTON</string>
     <string name="exit_game">Do you really want to quit current game session?</string>
+    <string name="confirm_return">Do you really want to return?</string>
+    <string name="ru_sure">Are you sure?</string>
+
+    <string name="ja">ja!</string>
+    <string name="nein">nein</string>
+    <string name="y_e_s">( Y E S )</string>
+    <string name="n_o">( N O )</string>
+
 
     <!-- Main screen -->
     <string name="start">START</string>
@@ -11,10 +19,6 @@
     <string name="rules">RULES</string>
     <string name="about">ABOUT</string>
 
-    <string name="ja">ja!</string>
-    <string name="nein">nein</string>
-    <string name="y_e_s">( Y E S )</string>
-    <string name="n_o">( N O )</string>
 
     <!--  Add players  -->
     <string name="players_screen_title">PLAYERS</string>
@@ -32,8 +36,6 @@
 
     <string name="add_player_start_assignment">START (%d/10)</string>
 
-    <!--  Confirm dialog  -->
-    <string name="confirm_return">Do you really want to return?</string>
 
     <!-- Role distribution screen -->
     <string name="player">PLAYER</string>
@@ -50,14 +52,17 @@
     <string name="skull_image">Skull image</string>
     <string name="hold_to_reveal">HOLD TO REVEAL</string>
 
+
     <!--  Navigation  -->
     <string name="navigation_game">GAME</string>
     <string name="navigation_enact_policy">ENACT POLICY</string>
     <string name="navigation_players">PLAYERS</string>
 
+
     <!--  ROLES  -->
     <string name="chancellor">CHANCELLOR</string>
     <string name="president">PRESIDENT</string>
+
 
     <!--  Policy fragment  -->
     <string name="pass_device_to">Pass device to</string>
@@ -73,9 +78,6 @@
     <string name="veto_this_agenda">VETO THIS AGENDA</string>
     <string name="big_no">NO!</string>
 
-    <!--  Pick candidate  -->
-    <string name="pick_cancellor_candidate">as a presidential candidate, you should PICK A CHANCELLOR CANDIDATE from eligible players in the list below.</string>
-    <string name="pick_candidate_hint">Feel free to discuss your nomination.</string>
 
     <!--  VETO confirm  -->
     <string name="veto_text1">Dear president %s, chancellor %s wishes to veto the agenda.</string>
@@ -93,26 +95,38 @@
     <string name="veto_disagree">I DISAGREE</string>
     <string name="use_veto_q">USE VETO?</string>
 
+
     <!--  PLAYERS  -->
     <string name="cancel_election">Do you want to cancel election?</string>
     <string name="nominate_chancellor">NOMINATE CHANCELLOR</string>
     <string name="notYet">NOT YET</string>
 
-    <string name="select_player">SELECT PLAYER</string>
 
+    <!--  ELECTION  -->
+    <string name="pick_cancellor_candidate">as a president, you should PICK A CHANCELLOR CANDIDATE from eligible players in the list below.</string>
+    <string name="pick_candidate_hint">Feel free to discuss your nomination.</string>
+
+    <string name="select_player">SELECT PLAYER</string>
     <string name="election">ELECTION</string>
     <string name="select_card">SELECT CARD</string>
     <string name="should_vote">should vote.</string>
     <string name="do_you_vote">Do you vote for</string>
-
     <string name="show_to_all">Show to all players</string>
 
     <string name="results">RESULTS</string>
     <string name="failure">FAILURE</string>
     <string name="success">SUCCESS</string>
 
-    <string name="ru_sure">Are you sure?</string>
     <string name="already_registered_results">Back to game? Results are already registered.</string>
+
+    <string name="fast_election">FAST ELECTION</string>
+    <string name="fast_election_description">
+        All (alive) players should put their hand in a middle of the group. Current president should start count down.
+        Than all (alive) players simultaneously show THUMB UP or THUMB DOWN (meaning YES or NO).
+    </string>
+    <string name="tie_description">TIE IS CONSIDERED FAILURE</string>
+    <string name="did_succseed">DID ELECTION SUCCSEED?</string>
+    <string name="set_result">SET RESULT</string>
 
 
     <!--  SETTINGS  -->

@@ -1,4 +1,4 @@
-package sk.ferinaf.secrethitler.fragments
+package sk.ferinaf.secrethitler.fragments.voting
 
 import android.os.Bundle
 import android.util.Log

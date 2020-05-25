@@ -61,6 +61,7 @@ class AddPlayersActivity : BaseActivity() {
                 intent.putExtra("playerIndex", 0)
             }
 
+            GameState.resetDefault()
             startActivity(intent)
             finish()
         }

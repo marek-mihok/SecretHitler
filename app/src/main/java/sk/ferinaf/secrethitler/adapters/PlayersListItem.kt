@@ -9,8 +9,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import sk.ferinaf.secrethitler.App
 import sk.ferinaf.secrethitler.R
+import sk.ferinaf.secrethitler.common.SettingsCategory
 import sk.ferinaf.secrethitler.common.asColor
+import sk.ferinaf.secrethitler.common.getSettingsFor
 import sk.ferinaf.secrethitler.models.GovernmentRole
 import sk.ferinaf.secrethitler.models.Player
 
@@ -19,6 +22,7 @@ class PlayersListItem(inflater: LayoutInflater, parent: ViewGroup) :
 
     private val darkColor by lazy { R.color.addPlayer_item.asColor() }
     private val orange by lazy { R.color.backgroundYellow.asColor() }
+    private val notHitlerAllowed by lazy { App.context.getSettingsFor(SettingsCategory.NOT_HITLER) }
 
     var roleImage: ImageView? = null
     var title: TextView? = null
@@ -39,13 +43,6 @@ class PlayersListItem(inflater: LayoutInflater, parent: ViewGroup) :
             onClick()
         }
 
-//        itemView.setOnTouchListener { _, event ->
-//            if (event.action == MotionEvent.ACTION_DOWN) {
-//                onClick()
-//            }
-//            false
-//        }
-
         when (player.governmentRole) {
             GovernmentRole.PRESIDENT -> {
                 roleImage?.visibility = View.VISIBLE
@@ -58,7 +55,7 @@ class PlayersListItem(inflater: LayoutInflater, parent: ViewGroup) :
             null -> roleImage?.visibility = View.GONE
         }
 
-        notHitlerImage?.visibility = if (player.notHitlerReveal) View.VISIBLE else View.GONE
+        notHitlerImage?.visibility = if (player.notHitlerReveal && notHitlerAllowed) View.VISIBLE else View.GONE
     }
 
     fun select(selected: Boolean) {

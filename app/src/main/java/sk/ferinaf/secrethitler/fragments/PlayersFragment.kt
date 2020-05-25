@@ -86,15 +86,21 @@ class PlayersFragment : Fragment() {
 
     // After election state
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == this.requestCode && resultCode == 1818) {
-            val presidentName = PlayersInfo.getPresident()?.name
-            val chancellorName = PlayersInfo.getChancellor()?.name
-            if (presidentName != null && chancellorName != null) {
-                val cards = GameState.drawCards()
-                (activity as? GameActivity)?.policyFragment?.initEnact(presidentName, chancellorName, cards[0], cards[1], cards[2])
-                players_bottom_button?.text = enactPolicy
-                buttonBehavior = ButtonBehavior.ENACT_POLICY
-                GameState.restartElectionTracker()
+        if (requestCode == this.requestCode) {
+            if (resultCode == 1818) {
+                // ON SUCCESS
+                val presidentName = PlayersInfo.getPresident()?.name
+                val chancellorName = PlayersInfo.getChancellor()?.name
+                if (presidentName != null && chancellorName != null) {
+                    val cards = GameState.drawCards()
+                    (activity as? GameActivity)?.policyFragment?.initEnact(presidentName, chancellorName, cards[0], cards[1], cards[2])
+                    players_bottom_button?.text = enactPolicy
+                    buttonBehavior = ButtonBehavior.ENACT_POLICY
+                    GameState.restartElectionTracker()
+                }
+            } else if (resultCode == 1488) {
+                // FASCISTS WON BY VOTING HITLER AS CHANCELLOR
+                (activity as? GameActivity)?.switchToBoard(GameFragment.WelcomeDialog.FASCISTS_WIN)
             } else {
                 // Vote not success
                 val oldPresident = PlayersInfo.getPresident()
