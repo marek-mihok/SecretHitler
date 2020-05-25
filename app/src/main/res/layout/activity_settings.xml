@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundYellow"
+    android:orientation="vertical"
+    android:divider="@drawable/divider_16"
+    android:showDividers="middle">
+
+    <sk.ferinaf.secrethitler.widgets.ShHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ShHeader_color="@color/secretGray"
+        app:ShHeader_hide_eye="true"
+        app:ShHeader_text_color="@color/backgroundYellow"
+        app:ShHeader_text_title="@string/settings" />
+
+    <sk.ferinaf.secrethitler.widgets.SettingsItem
+        android:id="@+id/settings_vibration_settingsItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:SettingsItem_primaryText="@string/vibrations" />
+
+    <sk.ferinaf.secrethitler.widgets.SettingsItem
+        android:id="@+id/settings_notHitler_settingsItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:SettingsItem_primaryText="@string/not_h_confirmed"
+        app:SettingsItem_secondaryText="@string/not_h_confirmed_description"/>
+
+    <sk.ferinaf.secrethitler.widgets.SettingsItem
+        android:id="@+id/settings_fastVote_settingsItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:SettingsItem_primaryText="@string/settings_fast_vote"
+        app:SettingsItem_secondaryText="@string/settings_fast_vote_description" />
+
+    <sk.ferinaf.secrethitler.widgets.SettingsItem
+        android:id="@+id/settings_pileSize_settingsItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:SettingsItem_primaryText="@string/show_pile_sizes"
+        app:SettingsItem_secondaryText="@string/show_pile_sizes_description" />
+
+</LinearLayout>

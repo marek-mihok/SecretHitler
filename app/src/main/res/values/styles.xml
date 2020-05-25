@@ -47,6 +47,10 @@
         <item name="android:clipToPadding">false</item>
     </style>
 
+    <style name="SettingsSwitch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/secretGray</item>
+    </style>
+
     <!-- The launcher theme. It sets the main window background to the launch_screen drawable -->
     <style name="AppTheme.NoActionBar.Launcher">
         <item name="android:windowBackground">@drawable/launch_screen</item>

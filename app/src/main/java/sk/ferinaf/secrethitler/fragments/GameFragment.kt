@@ -1,5 +1,6 @@
 package sk.ferinaf.secrethitler.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_game.*
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.activities.GameActivity
+import sk.ferinaf.secrethitler.activities.VotingActivity
 import sk.ferinaf.secrethitler.common.GameState
 import sk.ferinaf.secrethitler.widgets.PolicyCard
 
@@ -29,6 +31,12 @@ class GameFragment : Fragment() {
 
         current_state_debug_button?.setOnClickListener {
             updateData()
+        }
+
+        button?.setOnClickListener {
+            val vote = Intent(context, VotingActivity::class.java)
+            vote.putExtra("special", true)
+            startActivity(vote)
         }
 
         GameState.onLiberalEnacted = {

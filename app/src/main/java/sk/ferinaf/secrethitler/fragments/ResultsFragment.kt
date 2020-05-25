@@ -33,6 +33,11 @@ class ResultsFragment : Fragment() {
         results_president_textView?.text = PlayersInfo.getPresident()?.name
         results_chancellor_textView?.text = nominee?.name
 
+        if ((activity as? VotingActivity)?.isSpecial == true) {
+            results_chancellor_image?.visibility = View.GONE
+            results_exPresident_textView?.visibility = View.VISIBLE
+        }
+
 
         // Set recycler views
         val jaAdapter = ResultsAdapter()

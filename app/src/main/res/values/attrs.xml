@@ -6,6 +6,7 @@
         <attr name="ShHeader_color" format="color"/>
         <attr name="ShHeader_text_color" format="color"/>
         <attr name="ShHeader_text_title" format="string"/>
+        <attr name="ShHeader_hide_eye" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="CardButton">
@@ -33,6 +34,11 @@
 
     <declare-styleable name="ConfirmButton">
         <attr name="ConfirmButton_TextColor" format="color"/>
+    </declare-styleable>
+    
+    <declare-styleable name="SettingsItem">
+        <attr name="SettingsItem_primaryText" format="string"/>
+        <attr name="SettingsItem_secondaryText" format="string"/>
     </declare-styleable>
 
 </resources>

@@ -113,4 +113,16 @@
 
     <string name="ru_sure">Are you sure?</string>
     <string name="already_registered_results">Back to game? Results are already registered.</string>
+
+
+    <!--  SETTINGS  -->
+    <string name="settings_fast_vote">Fast voting 👍👎</string>
+    <string name="settings_fast_vote_description">
+        Instead of classical voting players put hands in the center and show 👍(YES) or 👎(NO) simultaneously.
+    </string>
+    <string name="vibrations">Vibrations</string>
+    <string name="not_h_confirmed">Not Hitler (confirmed) 👈</string>
+    <string name="not_h_confirmed_description">Mark players based on their chancellorship during time with 3 and more fascist policies. </string>
+    <string name="show_pile_sizes">Show pile sizes</string>
+    <string name="show_pile_sizes_description">Show number of remaining cards in draw and discard pile.</string>
 </resources>

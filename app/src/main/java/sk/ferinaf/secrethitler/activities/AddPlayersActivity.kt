@@ -15,6 +15,8 @@ import sk.ferinaf.secrethitler.dialogs.AddPlayerDialog
 class AddPlayersActivity : BaseActivity() {
 
     override var fullScreen = false
+    override var navigationColor: Int? = R.color.backgroundOrange
+    override var statusBarColor: Int? = R.color.secretRed
 
     private val playersAdapter = AddPlayersAdapter()
     private val startString by lazy { R.string.add_player_start_assignment.asString() }
@@ -22,11 +24,6 @@ class AddPlayersActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_players)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.navigationBarColor = R.color.backgroundOrange.asColor()
-            window.customSetStatusBarColor(R.color.secretRed.asColor())
-        }
 
         player_list_recyclerView?.adapter = playersAdapter
         player_list_recyclerView?.layoutManager = LinearLayoutManager(this)

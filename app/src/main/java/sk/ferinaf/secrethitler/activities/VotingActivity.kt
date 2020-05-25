@@ -24,6 +24,7 @@ class VotingActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_voting)
 
+        isSpecial = intent.getBooleanExtra("special", false)
         returnQuestion = R.string.cancel_election.asString()
 
         supportFragmentManager.beginTransaction().add(R.id.voting_activity_container, nominationFragment).commit()

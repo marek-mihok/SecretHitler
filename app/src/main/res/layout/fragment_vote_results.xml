@@ -30,19 +30,36 @@
         android:layout_width="match_parent"
         android:layout_height="32dp"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/results_exPresident_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/sh_font"
+            android:text="Ex-President"
+            android:textAlignment="center"
+            android:textColor="@color/secretGray"
+            android:textSize="16sp"
+            android:visibility="gone"/>
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:tint="@color/secretGray"
             app:srcCompat="@drawable/img_president" />
 
         <ImageView
+            android:id="@+id/results_chancellor_image"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/img_chancellor" />
+            android:tint="@color/secretGray"
+            app:srcCompat="@drawable/img_chancellor"
+            android:visibility="visible"/>
 
     </LinearLayout>
 
@@ -61,6 +78,7 @@
             android:fontFamily="@font/rokkitt_bold"
             android:text="MMMMMMMMMM"
             android:textAlignment="center"
+            android:textColor="@color/secretGray"
             tools:ignore="HardcodedText" />
 
         <TextView
@@ -71,6 +89,7 @@
             android:fontFamily="@font/rokkitt_bold"
             android:text="MMMMMMMMMM"
             android:textAlignment="center"
+            android:textColor="@color/secretGray"
             tools:ignore="HardcodedText" />
 
     </LinearLayout>

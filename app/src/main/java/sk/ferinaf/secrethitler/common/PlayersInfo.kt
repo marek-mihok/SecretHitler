@@ -9,7 +9,7 @@ import kotlin.collections.ArrayList
 object PlayersInfo {
 
     var players: ArrayList<Player> = arrayListOf()
-
+    var lastRegularPresident: Player? = null
 
     // Set names of players and assign them secret roles
     fun setNames(players: ArrayList<String>) {

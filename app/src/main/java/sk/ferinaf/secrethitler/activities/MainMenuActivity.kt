@@ -15,15 +15,15 @@ import sk.ferinaf.secrethitler.dialogs.ConfirmDialog
 class MainMenuActivity : BaseActivity() {
 
     override var fullScreen = false
+    override var navigationColor: Int? = R.color.backgroundOrange
+    override var statusBarColor: Int? = R.color.backgroundOrange
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val orangeColor = R.color.backgroundOrange.asColor()
-            window.navigationBarColor = orangeColor
-            window.customSetStatusBarColor(orangeColor)
+        settingsButton?.setOnClickListener {
+            settingsButtonPressed()
         }
     }
 
@@ -38,25 +38,17 @@ class MainMenuActivity : BaseActivity() {
         startActivity(intent)
     }
 
-    fun settingsButtonPressed(sender: View){
-        Toast.makeText(this, "To do ...", Toast.LENGTH_SHORT).show()
-//        val intent = Intent(this, GameActivity::class.java)
-//        startActivity(intent)
+    private fun settingsButtonPressed() {
+        val intent = Intent(this, SettingsActivity::class.java)
+        startActivity(intent)
     }
 
-    fun rulesButtonPressed(sender: View){
-        Toast.makeText(this, "To do ... vibrations enabled", Toast.LENGTH_SHORT).show()
-        val editor = getSharedPreferences("Settings", 0).edit()
-        editor.putBoolean("vibrations", true)
-        editor.apply()
+    fun rulesButtonPressed() {
 
     }
 
-    fun aboutButtonPressed(sender: View){
-        Toast.makeText(this, "To do ... vibrations disabled", Toast.LENGTH_SHORT).show()
-        val editor = getSharedPreferences("Settings", 0).edit()
-        editor.putBoolean("vibrations", false)
-        editor.apply()
+    fun aboutButtonPressed() {
+
     }
 
     override fun onBackPressed() {

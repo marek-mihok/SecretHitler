@@ -18,13 +18,14 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="184dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:contentDescription="title_logo"
-            android:paddingBottom="20dp"
+            android:layout_marginBottom="8dp"
             android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.04000002"
             app:srcCompat="@drawable/ic_basic_title" />
@@ -49,7 +50,6 @@
         <Button
             android:id="@+id/rulesButton"
             style="@style/ButtonMainMenu"
-            android:onClick="rulesButtonPressed"
             android:text="@string/rules"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -67,7 +67,6 @@
         <Button
             android:id="@+id/settingsButton"
             style="@style/ButtonMainMenu"
-            android:onClick="settingsButtonPressed"
             android:text="@string/settings"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -84,7 +83,6 @@
         <Button
             android:id="@+id/aboutButton"
             style="@style/ButtonMainMenu"
-            android:onClick="aboutButtonPressed"
             android:text="@string/about"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

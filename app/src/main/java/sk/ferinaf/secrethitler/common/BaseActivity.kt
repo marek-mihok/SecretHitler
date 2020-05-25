@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.os.*
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.fragment.app.DialogFragment
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.dialogs.ConfirmDialog
@@ -14,6 +16,10 @@ abstract class BaseActivity :  AppCompatActivity() {
     // Help functions to add dialog to really go back
     open var askToGetBack: Boolean = false
     open var returnQuestion: String? = null
+
+    open var navigationColor: Int? = null
+    open var statusBarColor: Int? = null
+
     abstract var fullScreen: Boolean
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +32,16 @@ abstract class BaseActivity :  AppCompatActivity() {
         }
 
         super.onCreate(savedInstanceState)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            navigationColor?.asColor()?.let {
+                window.navigationBarColor = it
+            }
+            statusBarColor?.asColor()?.let {
+                window.customSetStatusBarColor(it)
+            }
+        }
+
         hideNav()
     }
 
