@@ -43,7 +43,7 @@ class SettingsActivity : BaseActivity() {
             editor.apply()
         }
 
-        val pileSize = getSettingsFor(SettingsCategory.FAST_VOTING)
+        val pileSize = getSettingsFor(SettingsCategory.PILE_SIZE)
         settings_pileSize_settingsItem?.switch?.isChecked = pileSize
         settings_pileSize_settingsItem?.switch?.setOnCheckedChangeListener { _, isChecked ->
             val editor = sp.edit()
