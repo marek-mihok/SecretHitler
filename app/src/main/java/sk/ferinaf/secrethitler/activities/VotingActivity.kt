@@ -2,10 +2,7 @@ package sk.ferinaf.secrethitler.activities
 
 import android.os.Bundle
 import sk.ferinaf.secrethitler.R
-import sk.ferinaf.secrethitler.common.BaseActivity
-import sk.ferinaf.secrethitler.common.SettingsCategory
-import sk.ferinaf.secrethitler.common.asString
-import sk.ferinaf.secrethitler.common.getSettingsFor
+import sk.ferinaf.secrethitler.common.*
 import sk.ferinaf.secrethitler.fragments.voting.*
 import sk.ferinaf.secrethitler.models.Player
 
@@ -24,10 +21,10 @@ class VotingActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_voting)
 
-        if (getSettingsFor(SettingsCategory.FAST_VOTING)) {
-            voteFragment = FastVoteFragment()
+        voteFragment = if (getSettingsFor(SettingsCategory.FAST_VOTING)) {
+            FastVoteFragment()
         } else {
-            voteFragment = VoteFragment()
+            VoteFragment()
         }
 
         isSpecial = intent.getBooleanExtra("special", false)
@@ -49,5 +46,11 @@ class VotingActivity : BaseActivity() {
             resultsFragment.nominee = it
         }
         voteFragment?.let { supportFragmentManager.beginTransaction().add(R.id.voting_activity_container, resultsFragment).remove(it).commit() }
+    }
+
+    fun beforePlannedFinish() {
+        if (isSpecial) {
+            GameState.beforeSpecialElection = false
+        }
     }
 }

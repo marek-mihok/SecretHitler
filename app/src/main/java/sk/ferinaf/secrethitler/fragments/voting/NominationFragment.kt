@@ -13,6 +13,7 @@ import sk.ferinaf.secrethitler.adapters.NoMeasureLinearLayoutManager
 import sk.ferinaf.secrethitler.adapters.SelectPlayersAdapter
 import sk.ferinaf.secrethitler.common.PlayersInfo
 import sk.ferinaf.secrethitler.common.asString
+import sk.ferinaf.secrethitler.models.GovernmentRole
 import sk.ferinaf.secrethitler.models.Player
 import sk.ferinaf.secrethitler.widgets.ConfirmButton
 
@@ -21,6 +22,7 @@ class NominationFragment : Fragment() {
     private val selectPlayer by lazy { R.string.select_player.asString() }
     private val holdToConfirm by lazy { R.string.hold_to_confirm.asString() }
     private val releaseButton by lazy { R.string.release_button.asString() }
+    private val pickPresidentCandidate by lazy { R.string.pick_president_candidate.asString() }
 
     var nominator: Player? = null
     var nominee: Player? = null
@@ -37,6 +39,11 @@ class NominationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         nomination_nominator_textView?.text = nominator?.name
+
+        if ((activity as? VotingActivity)?.isSpecial == true) {
+            nomination_description_TextView?.text = pickPresidentCandidate
+            PlayersInfo.lastRegularPresident = nominator
+        }
 
         nominations_confirmButton?.interactionEnabled = false
         nominations_confirmButton?.textView?.text = selectPlayer
@@ -65,7 +72,11 @@ class NominationFragment : Fragment() {
     // Init recycler view
     private fun initRecyclerView() {
         val players = PlayersInfo.players.filter { player ->
-            player.eligible
+            if ((activity as? VotingActivity)?.isSpecial == true) {
+                player.governmentRole != GovernmentRole.PRESIDENT
+            } else {
+                player.eligible
+            }
         }
         mAdapter.players = ArrayList(players)
         mAdapter.onPlayerSelected = {

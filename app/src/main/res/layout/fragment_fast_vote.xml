@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/futura_bold"
+        android:textColor="@color/secretGray"
         android:text="@string/do_you_vote"
         android:textAlignment="center" />
 

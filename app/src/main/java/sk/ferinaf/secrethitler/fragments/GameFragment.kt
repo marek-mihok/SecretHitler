@@ -38,38 +38,6 @@ class GameFragment : Fragment() {
             vote.putExtra("special", true)
             startActivity(vote)
         }
-
-        GameState.onLiberalEnacted = {
-            updateData()
-            Log.d("state", "fascist applied")
-        }
-
-        GameState.onFascistEnacted = {
-            // Powers is not ignored
-            updateData()
-            Log.d("state", "fascist applied")
-        }
-
-        GameState.onVetoApplied = {
-            updateData()
-            Log.d("state", "veto applied")
-        }
-
-        GameState.onElectionTrackerAdvance = {
-            updateData()
-            Log.d("state", "tracer advance")
-        }
-
-        GameState.onElectionTrackerRestart = {
-            updateData()
-            Log.d("state", "tracer restart")
-        }
-
-        GameState.onElectionTrackerFail = {
-            // Any powers granted by policy is ignored now
-            updateData()
-            Log.d("state", "enacted: $it")
-        }
     }
 
     fun updateData() {

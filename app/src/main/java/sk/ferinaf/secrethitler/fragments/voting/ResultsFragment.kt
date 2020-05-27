@@ -62,24 +62,6 @@ class ResultsFragment : Fragment(), EvaluationInterface {
 
         // Set role for nominee
         evaluate(this, nominee, succeed)
-//        val isSpecial = (activity as? VotingActivity)?.isSpecial == true
-//        if (succeed) {
-//            activity?.setResult(1818)
-//            if (isSpecial) {
-//                PlayersInfo.getPresident()?.governmentRole = null
-//                nominee?.governmentRole = GovernmentRole.PRESIDENT
-//            } else {
-//                PlayersInfo.getChancellor()?.governmentRole = null
-//                nominee?.governmentRole = GovernmentRole.CHANCELLOR
-//
-//                if (GameState.enactedFascist >= 3 && nominee?.role == Roles.HITLER) {
-//                    // TODO: FASCISTS WIN
-//                    activity?.setResult(1488)
-//                } else if (GameState.enactedFascist >= 3 ) {
-//                    nominee?.notHitlerReveal = true
-//                }
-//            }
-//        }
 
 
         // Clean votes
@@ -98,6 +80,7 @@ class ResultsFragment : Fragment(), EvaluationInterface {
             }
 
             override fun onFinish() {
+                (activity as? VotingActivity)?.beforePlannedFinish()
                 activity?.finish()
             }
         }

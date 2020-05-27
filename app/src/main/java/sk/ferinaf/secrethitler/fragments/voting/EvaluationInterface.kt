@@ -29,6 +29,8 @@ interface EvaluationInterface {
                         nominee?.notHitlerReveal = true
                     }
                 }
+            } else {
+                activity?.setResult(2458)
             }
         }
     }

@@ -11,6 +11,7 @@ object GameState {
     var electionTracker = 0
 
     private var pileInitiated = false
+    var beforeSpecialElection = true
 
     fun resetDefault() {
         drawPile.clear()
@@ -19,6 +20,7 @@ object GameState {
         enactedFascist = 0
         enactedLiberal = 0
         electionTracker = 0
+        beforeSpecialElection = true
     }
 
     var onVetoApplied: ()->Unit = {}
@@ -92,8 +94,10 @@ object GameState {
 
 
     fun restartElectionTracker() {
-        electionTracker = 0
-        onElectionTrackerRestart()
+        if (electionTracker != 0) {
+            onElectionTrackerRestart()
+            electionTracker = 0
+        }
     }
 
 

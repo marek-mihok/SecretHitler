@@ -43,6 +43,7 @@
             tools:ignore="HardcodedText" />
 
         <TextView
+            android:id="@+id/nomination_description_TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rokkitt_bold"

@@ -13,6 +13,7 @@ object PlayersInfo {
 
     // Set names of players and assign them secret roles
     fun setNames(players: ArrayList<String>) {
+        lastRegularPresident = null
         this.players.clear()
         players.forEach { name ->
             val player = Player(name)
@@ -154,6 +155,43 @@ object PlayersInfo {
             if (player.alive) count += 1
         }
         return count
+    }
+
+    fun getNextPresident(): Player? {
+        val oldPresident = getPresident()
+        val nextPresident = if (lastRegularPresident != null) {
+            getNextPlayer(lastRegularPresident)
+        } else {
+            getNextPlayer(oldPresident)
+        }
+        lastRegularPresident = null
+
+        return nextPresident
+    }
+
+    fun finishGovernment(special: Boolean = false) {
+        // Make all eligible
+        players.forEach { player ->
+            player.eligible = player.alive
+        }
+
+        // Last government not eligible
+        val lastChancellor = getChancellor()
+        lastChancellor?.eligible = false
+        lastChancellor?.governmentRole = null
+
+        // President
+        val lastPresident = getPresident()
+        if (!special) {
+            lastPresident?.governmentRole = null
+            if (countOfAlivePlayers() > 5) {
+                lastPresident?.eligible = false
+            }
+        } else {
+            lastRegularPresident?.eligible = false
+            lastPresident?.eligible = false
+        }
+
     }
 
 }

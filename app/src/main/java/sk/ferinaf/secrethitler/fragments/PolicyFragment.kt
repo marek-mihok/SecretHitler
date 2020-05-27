@@ -374,7 +374,13 @@ class PolicyFragment : Fragment() {
 
                                 (activity as? GameActivity)?.let { gameActivity ->
                                     gameActivity.switchToBoard(welcomeDialog)
-                                    gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.NEW_GOVERNMENT
+                                    // TODO: HANDLE SPECIAL EVENTS
+                                    // HANDLE SPECIAL ELECTION
+                                    if (PlayersInfo.players.size > 6 && GameState.enactedFascist == 3 && GameState.beforeSpecialElection) {
+                                        gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.SPECIAL_ELECTION
+                                    } else {
+                                        gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.NEW_GOVERNMENT
+                                    }
                                 }
                             } else {
                                 showPassDialog()

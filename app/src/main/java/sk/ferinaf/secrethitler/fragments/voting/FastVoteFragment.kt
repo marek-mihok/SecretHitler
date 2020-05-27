@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_fast_vote.*
 import sk.ferinaf.secrethitler.R
+import sk.ferinaf.secrethitler.activities.VotingActivity
 import sk.ferinaf.secrethitler.common.asString
 import sk.ferinaf.secrethitler.models.Player
 import sk.ferinaf.secrethitler.widgets.ConfirmButton
@@ -80,6 +81,7 @@ class FastVoteFragment : AbstractVoteFragment(), EvaluationInterface {
 
             override fun onFinish() {
                 evaluate(this@FastVoteFragment, nominee, success)
+                (activity as? VotingActivity)?.beforePlannedFinish()
                 activity?.finish()
             }
         }

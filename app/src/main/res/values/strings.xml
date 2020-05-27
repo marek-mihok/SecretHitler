@@ -99,12 +99,15 @@
     <!--  PLAYERS  -->
     <string name="cancel_election">Do you want to cancel election?</string>
     <string name="nominate_chancellor">NOMINATE CHANCELLOR</string>
+    <string name="nominate_president">NOMINATE NEXT PRESIDENT</string>
     <string name="notYet">NOT YET</string>
 
 
     <!--  ELECTION  -->
     <string name="pick_cancellor_candidate">as a president, you should PICK A CHANCELLOR CANDIDATE from eligible players in the list below.</string>
     <string name="pick_candidate_hint">Feel free to discuss your nomination.</string>
+
+    <string name="pick_president_candidate">pick next PRESIDENT CANDIDATE</string>
 
     <string name="select_player">SELECT PLAYER</string>
     <string name="election">ELECTION</string>
@@ -121,11 +124,11 @@
 
     <string name="fast_election">FAST ELECTION</string>
     <string name="fast_election_description">
-        All (alive) players should put their hand in a middle of the group. Current president should start count down.
-        Than all (alive) players simultaneously show THUMB UP or THUMB DOWN (meaning YES or NO).
+        Each player still actively participating in the game extends their right hand into the middle of a group, making a fist.
+        Current president then counts down "3…2…1…0!", at "0!" all players simultaneously use thumbs-up or thumbs-down gesture to show their stance (YES or NO).
     </string>
-    <string name="tie_description">TIE IS CONSIDERED FAILURE</string>
-    <string name="did_succseed">DID ELECTION SUCCSEED?</string>
+    <string name="tie_description">A TIE IS CONSIDERED A FAILURE</string>
+    <string name="did_succseed">WAS THE ELECTION SUCCESSFUL?</string>
     <string name="set_result">SET RESULT</string>
 
 
