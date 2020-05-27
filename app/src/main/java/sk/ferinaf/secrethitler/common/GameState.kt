@@ -67,6 +67,7 @@ object GameState {
         }
 
         drawPile.shuffle()
+        pileInitiated = true
     }
 
 
@@ -90,6 +91,12 @@ object GameState {
         drawPile = ArrayList(drawPile.drop(3))
 
         return drawn
+    }
+
+
+    fun peekCards(): List<PolicyCard.PolicyType> {
+        checkDrawPile()
+        return drawPile.take(3)
     }
 
 

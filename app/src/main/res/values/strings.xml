@@ -142,4 +142,8 @@
     <string name="not_h_confirmed_description">Mark players based on their chancellorship during time with 3 and more fascist policies. </string>
     <string name="show_pile_sizes">Show pile sizes</string>
     <string name="show_pile_sizes_description">Show number of remaining cards in draw and discard pile.</string>
+
+    <!--  PEEK POLICY  -->
+    <string name="peek_policy_title">PEEK POLICY</string>
+    <string name="peek_policy_description">Secretly look at the top three tiles in the Policy deck.</string>
 </resources>
