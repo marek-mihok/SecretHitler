@@ -47,6 +47,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/sh_font"
+                android:textColor="@color/secretGray"
                 android:text="MMMMMMMMMM"
                 android:textSize="18sp"
                 tools:ignore="HardcodedText,RtlHardcoded" />

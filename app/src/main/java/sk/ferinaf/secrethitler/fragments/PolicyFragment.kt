@@ -374,13 +374,40 @@ class PolicyFragment : Fragment() {
 
                                 (activity as? GameActivity)?.let { gameActivity ->
                                     gameActivity.switchToBoard(welcomeDialog)
+
                                     // TODO: HANDLE SPECIAL EVENTS
-                                    // HANDLE SPECIAL ELECTION
-                                    if (PlayersInfo.players.size > 6 && GameState.enactedFascist == 3 && GameState.beforeSpecialElection) {
-                                        gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.SPECIAL_ELECTION
+                                    if (GameState.enactedFascist == 1 && GameState.beforeSpecialEvent1) {
+                                        if (PlayersInfo.players.size > 8) {
+                                            // TODO: Investigate
+                                        } else {
+                                            gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.NEW_GOVERNMENT
+                                        }
+                                    } else if (GameState.enactedFascist == 2 && GameState.beforeSpecialEvent2) {
+                                        if (PlayersInfo.players.size > 6) {
+                                            // TODO: Investigate
+                                        } else {
+                                            gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.NEW_GOVERNMENT
+                                        }
+                                    } else if (GameState.enactedFascist == 3 && GameState.beforeSpecialEvent3) {
+                                        if (PlayersInfo.players.size > 6) {
+                                            gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.SPECIAL_ELECTION
+                                        } else {
+                                            gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.PEEK_POLICY
+                                        }
+                                    } else if (GameState.enactedFascist == 4 && GameState.beforeSpecialEvent4) {
+                                        // TODO: Kill
+                                    } else if (GameState.enactedFascist == 5 && GameState.beforeSpecialEvent5) {
+                                        // TODO: Kill
                                     } else {
                                         gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.NEW_GOVERNMENT
                                     }
+
+//                                    // HANDLE SPECIAL ELECTION
+//                                    if (PlayersInfo.players.size > 6 && GameState.enactedFascist == 3 && GameState.beforeSpecialEvent3) {
+//                                        gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.SPECIAL_ELECTION
+//                                    } else {
+//                                        gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.NEW_GOVERNMENT
+//                                    }
                                 }
                             } else {
                                 showPassDialog()

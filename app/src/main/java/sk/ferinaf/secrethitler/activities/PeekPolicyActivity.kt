@@ -78,7 +78,8 @@ class PeekPolicyActivity : BaseActivity() {
 
             override fun onConfirm() {
                 peek_policy_confirm_button?.textView?.text = releaseButton
-                // TODO: setResult uspesne odhalene
+                setResult(749)  // set result code on success finish
+                GameState.beforeSpecialEvent3 = false
             }
 
             override fun onFinish() {

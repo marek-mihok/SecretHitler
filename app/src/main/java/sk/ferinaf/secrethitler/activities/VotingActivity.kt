@@ -50,7 +50,7 @@ class VotingActivity : BaseActivity() {
 
     fun beforePlannedFinish() {
         if (isSpecial) {
-            GameState.beforeSpecialElection = false
+            GameState.beforeSpecialEvent3 = false
         }
     }
 }

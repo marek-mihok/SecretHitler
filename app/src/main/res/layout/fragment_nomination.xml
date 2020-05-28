@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         app:ShHeader_color="@color/secretGray"
         app:ShHeader_text_color="@color/backgroundBlended"
-        app:ShHeader_text_title="NOMINATE"
+        app:ShHeader_text_title="@string/nominate"
         app:ShHeader_private="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

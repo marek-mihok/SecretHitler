@@ -12,6 +12,9 @@
     <string name="y_e_s">( Y E S )</string>
     <string name="n_o">( N O )</string>
 
+    <string name="fascist">FASCIST</string>
+    <string name="liberal">LIBERAL</string>
+
 
     <!-- Main screen -->
     <string name="start">START</string>
@@ -109,6 +112,7 @@
 
     <string name="pick_president_candidate">pick next PRESIDENT CANDIDATE</string>
 
+    <string name="nominate">NOMINATE</string>
     <string name="select_player">SELECT PLAYER</string>
     <string name="election">ELECTION</string>
     <string name="select_card">SELECT CARD</string>
@@ -146,4 +150,10 @@
     <!--  PEEK POLICY  -->
     <string name="peek_policy_title">PEEK POLICY</string>
     <string name="peek_policy_description">Secretly look at the top three tiles in the Policy deck.</string>
+
+    <!--  INVESTIGATION  -->
+    <string name="investigation">INVESTIGATION</string>
+    <string name="investigate_pick_player">PUBLICLY pick player to investigate:</string>
+    <string name="investigate_reveal_player">PRIVATELY investigate Party Membership</string>
+    <string name="investigation_restriction">NOTE: No player may be investigated twice in the same game.</string>
 </resources>

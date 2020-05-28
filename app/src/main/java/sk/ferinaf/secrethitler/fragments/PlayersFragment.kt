@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_players.*
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.activities.GameActivity
+import sk.ferinaf.secrethitler.activities.PeekPolicyActivity
 import sk.ferinaf.secrethitler.activities.VotingActivity
 import sk.ferinaf.secrethitler.adapters.PlayersListAdapter
 import sk.ferinaf.secrethitler.common.GameState
@@ -22,7 +23,7 @@ import java.util.*
 class PlayersFragment : Fragment() {
 
     enum class ButtonBehavior {
-        ENACT_POLICY, NEW_GOVERNMENT, CHANCELLOR_NOMINATION, SPECIAL_ELECTION
+        ENACT_POLICY, NEW_GOVERNMENT, CHANCELLOR_NOMINATION, SPECIAL_ELECTION, PEEK_POLICY
     }
 
     private val nominatePresident by lazy { R.string.nominate_president.asString() }
@@ -33,6 +34,7 @@ class PlayersFragment : Fragment() {
     private val enactPolicy by lazy { R.string.navigation_enact_policy.asString() }
     private val ruSure by lazy { R.string.ru_sure.asString() }
     private val electNewGovernment by lazy { R.string.elect_new_government_1.asString() }
+    private val peekPolicy by lazy { R.string.peek_policy_title.asString() }
 
     private var mButtonBehavior = ButtonBehavior.CHANCELLOR_NOMINATION
     var buttonBehavior
@@ -44,10 +46,12 @@ class PlayersFragment : Fragment() {
                 ButtonBehavior.NEW_GOVERNMENT -> players_bottom_button?.text = electNewGovernment
                 ButtonBehavior.CHANCELLOR_NOMINATION -> players_bottom_button?.text = nominateChancellor
                 ButtonBehavior.SPECIAL_ELECTION -> players_bottom_button?.text = nominatePresident
+                ButtonBehavior.PEEK_POLICY -> players_bottom_button?.text = peekPolicy
             }
         }
 
     private val requestCode = 1842
+    private val peekPolicyRequestCode = 354
 
     private val playersListAdapter = PlayersListAdapter()
 
@@ -76,6 +80,9 @@ class PlayersFragment : Fragment() {
                 }
                 ButtonBehavior.SPECIAL_ELECTION -> {
                     showSpecialElectionDialog()
+                }
+                ButtonBehavior.PEEK_POLICY -> {
+                    showPeekPolicyDialog()
                 }
             }
         }
@@ -120,6 +127,10 @@ class PlayersFragment : Fragment() {
 
             // Refresh players table
             playersListAdapter.notifyDataSetChanged()
+        } else if (requestCode == peekPolicyRequestCode) {
+            if (resultCode == 749) {
+                buttonBehavior = ButtonBehavior.NEW_GOVERNMENT
+            }
         }
     }
 
@@ -194,6 +205,31 @@ class PlayersFragment : Fragment() {
                 val voteActivityIntent = Intent(context, VotingActivity::class.java)
                 voteActivityIntent.putExtra("special", true)
                 startActivityForResult(voteActivityIntent, requestCode)
+            }
+        }
+
+        fragmentManager?.let {
+            passToPresident.show(it, "pass_to_president")
+        }
+    }
+
+
+    // SHOW DIALOG BEFORE PEEK POLICY
+    private fun showPeekPolicyDialog() {
+        val passToPresident = ConfirmDialog()
+
+        passToPresident.afterCreated = { passToPresident.apply {
+            val mTitle = "$passDeviceTo $presidentString"
+            title?.text = mTitle
+            detailText?.visibility = View.VISIBLE
+            detailText?.text = PlayersInfo.getPresident()?.name?.toUpperCase(Locale.ROOT)
+            noButton?.secondaryText = notYet
+        }}
+
+        passToPresident.onConfirm = { confirmed ->
+            if (confirmed) {
+                val voteActivityIntent = Intent(context, PeekPolicyActivity::class.java)
+                startActivityForResult(voteActivityIntent, peekPolicyRequestCode)
             }
         }
 
