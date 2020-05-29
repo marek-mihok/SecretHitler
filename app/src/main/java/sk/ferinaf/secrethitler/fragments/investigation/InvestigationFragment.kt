@@ -102,6 +102,7 @@ class InvestigationFragment(val player: Player?) : Fragment() {
                     confirmButton?.textView?.text = confirm
                     secondStage = true
                     player?.investigated = true
+                    confirmButton?.duration = 1000L
                 } else {
                     activity?.finish()
                 }
