@@ -28,7 +28,7 @@ class MembershipCard @JvmOverloads constructor(
             mParty = value
             when (value) {
                 PolicyCard.PolicyType.FASCIST -> {
-                    imageView?.setImageResource(R.drawable.img_role_rascist)
+                    imageView?.setImageResource(R.drawable.img_role_fascist)
                     textView?.text = fascist
                 }
                 PolicyCard.PolicyType.LIBERAL -> {

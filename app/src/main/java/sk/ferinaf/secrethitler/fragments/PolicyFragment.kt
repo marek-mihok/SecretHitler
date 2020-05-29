@@ -378,13 +378,13 @@ class PolicyFragment : Fragment() {
                                     // TODO: HANDLE SPECIAL EVENTS
                                     if (GameState.enactedFascist == 1 && GameState.beforeSpecialEvent1) {
                                         if (PlayersInfo.players.size > 8) {
-                                            // TODO: Investigate
+                                            gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.INVESTIGATE
                                         } else {
                                             gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.NEW_GOVERNMENT
                                         }
                                     } else if (GameState.enactedFascist == 2 && GameState.beforeSpecialEvent2) {
                                         if (PlayersInfo.players.size > 6) {
-                                            // TODO: Investigate
+                                            gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.INVESTIGATE
                                         } else {
                                             gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.NEW_GOVERNMENT
                                         }
@@ -417,10 +417,6 @@ class PolicyFragment : Fragment() {
                     }
                 }
             }
-
-            override fun onActionDown() {}
-            override fun onActionUp() {}
-
         }
     }
 

@@ -40,6 +40,11 @@
                 app:srcCompat="@drawable/img_president"
                 tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
 
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
             <TextView
                 android:id="@+id/peek_policy_president_name"
                 android:layout_width="wrap_content"
@@ -47,8 +52,9 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/sh_font"
-                android:textColor="@color/secretGray"
                 android:text="MMMMMMMMMM"
+                android:textAlignment="textEnd"
+                android:textColor="@color/secretGray"
                 android:textSize="18sp"
                 tools:ignore="HardcodedText,RtlHardcoded" />
         </LinearLayout>

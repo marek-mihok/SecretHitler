@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_players.*
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.activities.GameActivity
+import sk.ferinaf.secrethitler.activities.InvestigateActivity
 import sk.ferinaf.secrethitler.activities.PeekPolicyActivity
 import sk.ferinaf.secrethitler.activities.VotingActivity
 import sk.ferinaf.secrethitler.adapters.PlayersListAdapter
@@ -23,7 +24,7 @@ import java.util.*
 class PlayersFragment : Fragment() {
 
     enum class ButtonBehavior {
-        ENACT_POLICY, NEW_GOVERNMENT, CHANCELLOR_NOMINATION, SPECIAL_ELECTION, PEEK_POLICY
+        ENACT_POLICY, NEW_GOVERNMENT, CHANCELLOR_NOMINATION, SPECIAL_ELECTION, PEEK_POLICY, INVESTIGATE
     }
 
     private val nominatePresident by lazy { R.string.nominate_president.asString() }
@@ -35,6 +36,7 @@ class PlayersFragment : Fragment() {
     private val ruSure by lazy { R.string.ru_sure.asString() }
     private val electNewGovernment by lazy { R.string.elect_new_government_1.asString() }
     private val peekPolicy by lazy { R.string.peek_policy_title.asString() }
+    private val investigateTitle by lazy { R.string.investigate.asString() }
 
     private var mButtonBehavior = ButtonBehavior.CHANCELLOR_NOMINATION
     var buttonBehavior
@@ -47,11 +49,13 @@ class PlayersFragment : Fragment() {
                 ButtonBehavior.CHANCELLOR_NOMINATION -> players_bottom_button?.text = nominateChancellor
                 ButtonBehavior.SPECIAL_ELECTION -> players_bottom_button?.text = nominatePresident
                 ButtonBehavior.PEEK_POLICY -> players_bottom_button?.text = peekPolicy
+                ButtonBehavior.INVESTIGATE -> players_bottom_button?.text = investigateTitle
             }
         }
 
     private val requestCode = 1842
     private val peekPolicyRequestCode = 354
+    private val investigateRequestCode = 300
 
     private val playersListAdapter = PlayersListAdapter()
 
@@ -83,6 +87,9 @@ class PlayersFragment : Fragment() {
                 }
                 ButtonBehavior.PEEK_POLICY -> {
                     showPeekPolicyDialog()
+                }
+                ButtonBehavior.INVESTIGATE -> {
+                    showInvestigateDialog()
                 }
             }
         }
@@ -131,9 +138,34 @@ class PlayersFragment : Fragment() {
             if (resultCode == 749) {
                 buttonBehavior = ButtonBehavior.NEW_GOVERNMENT
             }
+        } else if (requestCode == investigateRequestCode) {
+            buttonBehavior = ButtonBehavior.NEW_GOVERNMENT
         }
     }
 
+
+    // SHOW DIALOG
+    private fun basicShowDialog(onConfirm: ()->Unit = {}) {
+        val passToPresident = ConfirmDialog()
+
+        passToPresident.afterCreated = { passToPresident.apply {
+            val mTitle = "$passDeviceTo $presidentString"
+            title?.text = mTitle
+            detailText?.visibility = View.VISIBLE
+            detailText?.text = PlayersInfo.getPresident()?.name?.toUpperCase(Locale.ROOT)
+            noButton?.secondaryText = notYet
+        }}
+
+        passToPresident.onConfirm = { confirmed ->
+            if (confirmed) {
+                onConfirm()
+            }
+        }
+
+        fragmentManager?.let {
+            passToPresident.show(it, "pass_to_president")
+        }
+    }
 
     // SHOW DIALOG TO CONFIRM NEW GOVERNMENT
     private fun showNewGovernmentDialog() {
@@ -163,78 +195,39 @@ class PlayersFragment : Fragment() {
 
     // Show dialog to PASS TO PRESIDENT TO ELECT CHANCELLOR
     private fun showPresidentNominationDialog() {
-        val passToPresident = ConfirmDialog()
-
-        passToPresident.afterCreated = { passToPresident.apply {
-            val mTitle = "$passDeviceTo $presidentString"
-            title?.text = mTitle
-            detailText?.visibility = View.VISIBLE
-            detailText?.text = PlayersInfo.getPresident()?.name?.toUpperCase(Locale.ROOT)
-            noButton?.secondaryText = notYet
-        }}
-
-        passToPresident.onConfirm = { confirmed ->
-            if (confirmed) {
-                PlayersInfo.getPresident()?.eligible = false
-                val voteActivityIntent = Intent(context, VotingActivity::class.java)
-                startActivityForResult(voteActivityIntent, requestCode)
-            }
-        }
-
-        fragmentManager?.let {
-            passToPresident.show(it, "pass_to_president")
+        basicShowDialog {
+            PlayersInfo.getPresident()?.eligible = false
+            val voteActivityIntent = Intent(context, VotingActivity::class.java)
+            startActivityForResult(voteActivityIntent, requestCode)
         }
     }
 
 
     // SHOW DIALOG TO PASS TO PRESIDENT TO NOMINATE NEW PRESIDENT
     private fun showSpecialElectionDialog() {
-        val passToPresident = ConfirmDialog()
-
-        passToPresident.afterCreated = { passToPresident.apply {
-            val mTitle = "$passDeviceTo $presidentString"
-            title?.text = mTitle
-            detailText?.visibility = View.VISIBLE
-            detailText?.text = PlayersInfo.getPresident()?.name?.toUpperCase(Locale.ROOT)
-            noButton?.secondaryText = notYet
-        }}
-
-        passToPresident.onConfirm = { confirmed ->
-            if (confirmed) {
-                PlayersInfo.finishGovernment(special = true)
-                val voteActivityIntent = Intent(context, VotingActivity::class.java)
-                voteActivityIntent.putExtra("special", true)
-                startActivityForResult(voteActivityIntent, requestCode)
-            }
-        }
-
-        fragmentManager?.let {
-            passToPresident.show(it, "pass_to_president")
+        basicShowDialog {
+            PlayersInfo.finishGovernment(special = true)
+            val voteActivityIntent = Intent(context, VotingActivity::class.java)
+            voteActivityIntent.putExtra("special", true)
+            startActivityForResult(voteActivityIntent, requestCode)
         }
     }
 
 
     // SHOW DIALOG BEFORE PEEK POLICY
     private fun showPeekPolicyDialog() {
-        val passToPresident = ConfirmDialog()
-
-        passToPresident.afterCreated = { passToPresident.apply {
-            val mTitle = "$passDeviceTo $presidentString"
-            title?.text = mTitle
-            detailText?.visibility = View.VISIBLE
-            detailText?.text = PlayersInfo.getPresident()?.name?.toUpperCase(Locale.ROOT)
-            noButton?.secondaryText = notYet
-        }}
-
-        passToPresident.onConfirm = { confirmed ->
-            if (confirmed) {
-                val voteActivityIntent = Intent(context, PeekPolicyActivity::class.java)
-                startActivityForResult(voteActivityIntent, peekPolicyRequestCode)
-            }
+        basicShowDialog {
+            val voteActivityIntent = Intent(context, PeekPolicyActivity::class.java)
+            startActivityForResult(voteActivityIntent, peekPolicyRequestCode)
         }
+    }
 
-        fragmentManager?.let {
-            passToPresident.show(it, "pass_to_president")
+
+    // SHOW DIALOG BEFORE INVESTIGATION
+    private fun showInvestigateDialog() {
+        basicShowDialog {
+            val voteActivityIntent = Intent(context, InvestigateActivity::class.java)
+            startActivityForResult(voteActivityIntent, investigateRequestCode)
         }
     }
 }

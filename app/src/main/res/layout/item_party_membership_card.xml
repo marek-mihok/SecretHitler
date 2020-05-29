@@ -110,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="4dp"
-                    app:srcCompat="@drawable/img_role_liberal" />
+                    app:srcCompat="@drawable/img_role_fascist" />
 
             </LinearLayout>
 
@@ -118,7 +118,7 @@
                 android:id="@+id/membership_party_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/sh_font"
                 android:text="LIBERAL"
                 android:textAlignment="center"

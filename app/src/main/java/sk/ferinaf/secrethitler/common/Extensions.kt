@@ -25,7 +25,6 @@ import kotlin.collections.ArrayList
 
 fun Context.vibrate() {
     val vb = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-    val sp = getSharedPreferences("Settings", 0)
     val shouldVibrate = getSettingsFor(SettingsCategory.VIBRATIONS)
     val vibrationDuration = resources.getInteger(R.integer.vibration_duration).toLong()
 

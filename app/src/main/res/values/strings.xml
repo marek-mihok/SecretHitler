@@ -15,6 +15,10 @@
     <string name="fascist">FASCIST</string>
     <string name="liberal">LIBERAL</string>
 
+    <string name="back_dialog_title">🤜 No nO No 🤛</string>
+    <string name="back_no_way">🤖 There is no way back! 🤖\n🕵️ Complete your task ‍👀</string>
+    <string name="ok">OK</string>
+
 
     <!-- Main screen -->
     <string name="start">START</string>
@@ -153,7 +157,9 @@
 
     <!--  INVESTIGATION  -->
     <string name="investigation">INVESTIGATION</string>
+    <string name="investigate">INVESTIGATE</string>
     <string name="investigate_pick_player">PUBLICLY pick player to investigate:</string>
-    <string name="investigate_reveal_player">PRIVATELY investigate Party Membership</string>
+    <string name="investigate_reveal_player">PRIVATELY investigate\nParty Membership of</string>
     <string name="investigation_restriction">NOTE: No player may be investigated twice in the same game.</string>
+    <string name="party_membership_of">PARTY MEMBERSHIP OF</string>
 </resources>

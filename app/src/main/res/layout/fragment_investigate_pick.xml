@@ -18,6 +18,7 @@
 
 
     <TextView
+        android:id="@+id/investigate_pick_investigatingPlayer_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -25,6 +26,7 @@
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/sh_font"
         android:text="MMMMMMMMMM"
+        android:textColor="@color/secretGray"
         android:textAlignment="center"
         android:textSize="24sp"
         tools:ignore="HardcodedText" />
@@ -35,6 +37,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/rokkitt_bold"
+        android:textColor="@color/secretGray"
         android:text="@string/investigate_pick_player"
         android:textAlignment="center"
         android:textSize="18sp" />
@@ -57,9 +60,11 @@
         android:fontFamily="@font/rokkitt_regular"
         android:text="@string/investigation_restriction"
         android:textAlignment="center"
+        android:textColor="@color/secretGray"
         android:textSize="18sp" />
 
     <sk.ferinaf.secrethitler.widgets.ConfirmButton
+        android:id="@+id/investigate_pick_confirmButton"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_marginStart="12dp"

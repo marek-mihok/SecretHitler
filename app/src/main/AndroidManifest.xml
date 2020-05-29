@@ -43,6 +43,10 @@
             tools:ignore="LockedOrientationActivity"/>
 
         <activity android:name=".activities.PeekPolicyActivity"
+        android:screenOrientation="sensorPortrait"
+        tools:ignore="LockedOrientationActivity"/>
+
+        <activity android:name=".activities.InvestigateActivity"
             android:screenOrientation="sensorPortrait"
             tools:ignore="LockedOrientationActivity"/>
 

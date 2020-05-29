@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_game.*
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.activities.GameActivity
+import sk.ferinaf.secrethitler.activities.InvestigateActivity
 import sk.ferinaf.secrethitler.activities.PeekPolicyActivity
 import sk.ferinaf.secrethitler.activities.VotingActivity
 import sk.ferinaf.secrethitler.common.GameState
@@ -35,7 +36,7 @@ class GameFragment : Fragment() {
         }
 
         button?.setOnClickListener {
-            val test = Intent(context, PeekPolicyActivity::class.java)
+            val test = Intent(context, InvestigateActivity::class.java)
             startActivity(test)
         }
     }
