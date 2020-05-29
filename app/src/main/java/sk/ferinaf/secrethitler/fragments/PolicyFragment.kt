@@ -395,19 +395,12 @@ class PolicyFragment : Fragment() {
                                             gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.PEEK_POLICY
                                         }
                                     } else if (GameState.enactedFascist == 4 && GameState.beforeSpecialEvent4) {
-                                        // TODO: Kill
+                                        gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.EXECUTION
                                     } else if (GameState.enactedFascist == 5 && GameState.beforeSpecialEvent5) {
-                                        // TODO: Kill
+                                        gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.EXECUTION
                                     } else {
                                         gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.NEW_GOVERNMENT
                                     }
-
-//                                    // HANDLE SPECIAL ELECTION
-//                                    if (PlayersInfo.players.size > 6 && GameState.enactedFascist == 3 && GameState.beforeSpecialEvent3) {
-//                                        gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.SPECIAL_ELECTION
-//                                    } else {
-//                                        gameActivity.playersFragment.buttonBehavior = PlayersFragment.ButtonBehavior.NEW_GOVERNMENT
-//                                    }
                                 }
                             } else {
                                 showPassDialog()

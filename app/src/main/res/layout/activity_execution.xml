@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundBlended"
+    android:orientation="vertical">
+
+    <sk.ferinaf.secrethitler.widgets.ShHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ShHeader_color="@color/secretGray"
+        app:ShHeader_private="false"
+        app:ShHeader_text_color="@color/backgroundBlended"
+        app:ShHeader_text_title="@string/execution" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_execute_40dp"
+            android:tint="@color/secretGray"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp">
+
+            <TextView
+                android:id="@+id/execution_president_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/sh_font"
+                android:text="MMMMMMMMMM"
+                android:textAlignment="center"
+                android:textColor="@color/secretGray"
+                android:textSize="24sp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/execution_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rokkitt_bold"
+                android:text="@string/i_formally_execute"
+                android:textAlignment="center"
+                android:textColor="@color/secretGray"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_execute_40dp"
+            android:tint="@color/secretGray"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/execution_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        tools:listitem="@layout/item_player_cell" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/rokkitt_regular"
+        android:text="@string/execution_note"
+        android:textAlignment="center"
+        android:textColor="@color/secretGray"
+        android:textSize="18sp" />
+
+    <sk.ferinaf.secrethitler.widgets.ConfirmButton
+        android:id="@+id/execution_confirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="16dp"
+        app:ConfirmButton_TextColor="@color/secretGray"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp" />
+
+</LinearLayout>

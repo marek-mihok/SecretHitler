@@ -34,8 +34,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_investigate" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../Desktop/investigate.svg" />
+                            <entry key="outputName" value="ic_execute_40dp" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../Desktop/execute.svg" />
                           </map>
                         </option>
                       </PersistentState>

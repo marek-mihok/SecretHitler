@@ -9,10 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_players.*
 import sk.ferinaf.secrethitler.R
-import sk.ferinaf.secrethitler.activities.GameActivity
-import sk.ferinaf.secrethitler.activities.InvestigateActivity
-import sk.ferinaf.secrethitler.activities.PeekPolicyActivity
-import sk.ferinaf.secrethitler.activities.VotingActivity
+import sk.ferinaf.secrethitler.activities.*
 import sk.ferinaf.secrethitler.adapters.PlayersListAdapter
 import sk.ferinaf.secrethitler.common.GameState
 import sk.ferinaf.secrethitler.common.PlayersInfo
@@ -24,7 +21,7 @@ import java.util.*
 class PlayersFragment : Fragment() {
 
     enum class ButtonBehavior {
-        ENACT_POLICY, NEW_GOVERNMENT, CHANCELLOR_NOMINATION, SPECIAL_ELECTION, PEEK_POLICY, INVESTIGATE
+        ENACT_POLICY, NEW_GOVERNMENT, CHANCELLOR_NOMINATION, SPECIAL_ELECTION, PEEK_POLICY, INVESTIGATE, EXECUTION
     }
 
     private val nominatePresident by lazy { R.string.nominate_president.asString() }
@@ -37,6 +34,7 @@ class PlayersFragment : Fragment() {
     private val electNewGovernment by lazy { R.string.elect_new_government_1.asString() }
     private val peekPolicy by lazy { R.string.peek_policy_title.asString() }
     private val investigateTitle by lazy { R.string.investigate.asString() }
+    private val executePlayer by lazy { R.string.execute_player.asString() }
 
     private var mButtonBehavior = ButtonBehavior.CHANCELLOR_NOMINATION
     var buttonBehavior
@@ -50,12 +48,14 @@ class PlayersFragment : Fragment() {
                 ButtonBehavior.SPECIAL_ELECTION -> players_bottom_button?.text = nominatePresident
                 ButtonBehavior.PEEK_POLICY -> players_bottom_button?.text = peekPolicy
                 ButtonBehavior.INVESTIGATE -> players_bottom_button?.text = investigateTitle
+                ButtonBehavior.EXECUTION -> players_bottom_button?.text = executePlayer
             }
         }
 
     private val requestCode = 1842
     private val peekPolicyRequestCode = 354
     private val investigateRequestCode = 300
+    private val executionRequestCode = 333
 
     private val playersListAdapter = PlayersListAdapter()
 
@@ -90,6 +90,9 @@ class PlayersFragment : Fragment() {
                 }
                 ButtonBehavior.INVESTIGATE -> {
                     showInvestigateDialog()
+                }
+                ButtonBehavior.EXECUTION -> {
+                    showExecutionDialog()
                 }
             }
         }
@@ -140,6 +143,17 @@ class PlayersFragment : Fragment() {
             }
         } else if (requestCode == investigateRequestCode) {
             buttonBehavior = ButtonBehavior.NEW_GOVERNMENT
+        } else if (requestCode == executionRequestCode) {
+            if (resultCode == 443) {
+                // LIBERALS WIN
+                (activity as? GameActivity)?.switchToBoard(GameFragment.WelcomeDialog.LIBERALS_WIN)
+            } else {
+                // CONTINUE
+                buttonBehavior = ButtonBehavior.NEW_GOVERNMENT
+            }
+
+            // Refresh players table
+            playersListAdapter.notifyDataSetChanged()
         }
     }
 
@@ -230,5 +244,14 @@ class PlayersFragment : Fragment() {
             startActivityForResult(voteActivityIntent, investigateRequestCode)
         }
     }
-}
+
+
+    private fun showExecutionDialog() {
+        basicShowDialog {
+            val voteActivityIntent = Intent(context, ExecutionActivity::class.java)
+            startActivityForResult(voteActivityIntent, executionRequestCode)
+        }
+    }
+
+ }
 

@@ -17,20 +17,28 @@
         android:fullBackupContent="true"
         tools:ignore="UnusedAttribute">
 
+        <activity android:name=".activities.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar.Launcher">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
-            android:name="sk.ferinaf.secrethitler.activities.AddPlayersActivity"
+            android:name=".activities.AddPlayersActivity"
             android:screenOrientation="sensorPortrait"
             tools:ignore="LockedOrientationActivity"/>
 
         <activity
-            android:name="sk.ferinaf.secrethitler.activities.MainMenuActivity"
+            android:name=".activities.MainMenuActivity"
             android:screenOrientation="sensorPortrait"
             android:theme="@style/AppTheme.NoActionBar.Launcher"
-            tools:ignore="LockedOrientationActivity">
-        </activity>
+            tools:ignore="LockedOrientationActivity"/>
 
         <activity
-            android:name="sk.ferinaf.secrethitler.activities.RevealIdentityActivity"
+            android:name=".activities.RevealIdentityActivity"
             android:screenOrientation="sensorPortrait"
             tools:ignore="LockedOrientationActivity"/>
 
@@ -50,20 +58,13 @@
             android:screenOrientation="sensorPortrait"
             tools:ignore="LockedOrientationActivity"/>
 
-        <activity android:name=".activities.SettingsActivity"
+        <activity android:name=".activities.ExecutionActivity"
             android:screenOrientation="sensorPortrait"
             tools:ignore="LockedOrientationActivity"/>
 
-
-        <activity android:name=".activities.SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar.Launcher">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+        <activity android:name=".activities.SettingsActivity"
+            android:screenOrientation="sensorPortrait"
+            tools:ignore="LockedOrientationActivity"/>
 
     </application>
 

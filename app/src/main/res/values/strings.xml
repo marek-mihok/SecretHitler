@@ -162,4 +162,10 @@
     <string name="investigate_reveal_player">PRIVATELY investigate\nParty Membership of</string>
     <string name="investigation_restriction">NOTE: No player may be investigated twice in the same game.</string>
     <string name="party_membership_of">PARTY MEMBERSHIP OF</string>
+
+    <!--  EXECUTION  -->
+    <string name="execution">EXECUTION</string>
+    <string name="execute_player">EXECUTE PLAYER</string>
+    <string name="i_formally_execute">I formally execute %s</string>
+    <string name="execution_note">NOTE: If you kill Hitler liberals win.</string>
 </resources>

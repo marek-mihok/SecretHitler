@@ -15,6 +15,7 @@ import sk.ferinaf.secrethitler.activities.InvestigateActivity
 import sk.ferinaf.secrethitler.activities.PeekPolicyActivity
 import sk.ferinaf.secrethitler.activities.VotingActivity
 import sk.ferinaf.secrethitler.common.GameState
+import sk.ferinaf.secrethitler.common.PlayersInfo
 import sk.ferinaf.secrethitler.widgets.PolicyCard
 
 class GameFragment : Fragment() {
@@ -35,9 +36,20 @@ class GameFragment : Fragment() {
             updateData()
         }
 
+        var developing = false
+        PlayersInfo.players.forEach {
+            if (it.name == "developer") {
+                developing = true
+            }
+        }
+
+        button?.visibility = if (developing) View.VISIBLE else View.GONE
         button?.setOnClickListener {
-            val test = Intent(context, InvestigateActivity::class.java)
-            startActivity(test)
+            var toShow = ""
+            PlayersInfo.players.forEach {
+                toShow += it.name + ": " + it.role.toString() + "\n"
+            }
+            Toast.makeText(context, toShow, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -52,6 +64,7 @@ class GameFragment : Fragment() {
         updateData()
 
         Log.d("state_welcome", welcomeDialog.toString())
+        Toast.makeText(context, welcomeDialog.toString(), Toast.LENGTH_LONG).show()
     }
 
 }
