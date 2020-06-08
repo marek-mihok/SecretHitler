@@ -1,11 +1,13 @@
 package sk.ferinaf.secrethitler.fragments
 
 import android.animation.*
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_policy.*
 import kotlinx.android.synthetic.main.item_discard_pile.*
+import kotlinx.android.synthetic.main.item_elect_new_government.*
 import kotlinx.android.synthetic.main.item_policy_cards_small_linear_layout.*
 import kotlinx.android.synthetic.main.item_use_veto_banner.*
 import sk.ferinaf.secrethitler.R
@@ -57,6 +59,7 @@ class PolicyFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_policy, container, false)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -88,6 +91,11 @@ class PolicyFragment : Fragment() {
         // Help variables to moving
         var correctionX = 0f
         var correctionY = 0f
+
+        // Set go to players
+        policyOverlay_goToPlayers_button?.setOnClickListener {
+            (activity as? GameActivity)?.switchToPlayers()
+        }
 
         view.setOnTouchListener { _, event ->
             if (!cardsRevealed || !interactionEnabled || vetoBannerActive) return@setOnTouchListener true

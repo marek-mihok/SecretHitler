@@ -41,4 +41,10 @@
         <attr name="SettingsItem_secondaryText" format="string"/>
     </declare-styleable>
 
+    <declare-styleable name="GameTile">
+        <attr name="GameTile_isFirst" format="boolean"/>
+        <attr name="GameTile_isLast" format="boolean"/>
+        <attr name="GameTile_isFascist" format="boolean"/>
+    </declare-styleable>
+
 </resources>

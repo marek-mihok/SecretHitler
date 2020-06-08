@@ -28,6 +28,7 @@
         android:fontFamily="@font/sh_font"
         android:text="MMMMMMMMMM"
         android:textAlignment="center"
+        android:textColor="@color/secretGray"
         android:textSize="30sp"
         tools:ignore="HardcodedText" />
 
@@ -36,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/rokkitt_bold"
+        android:textColor="@color/secretGray"
         android:text="@string/should_vote"
         android:textAlignment="center"
         android:textSize="18sp" />
@@ -63,6 +65,7 @@
             android:paddingBottom="16dp">
 
             <TextView
+                android:textColor="@color/secretGray"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rokkitt_regular"
@@ -72,6 +75,7 @@
 
             <TextView
                 android:id="@+id/vote_nominee"
+                android:textColor="@color/secretGray"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/futura_bold"

@@ -19,6 +19,8 @@
     <string name="back_no_way">🤖 There is no way back! 🤖\n🕵️ Complete your task ‍👀</string>
     <string name="ok">OK</string>
 
+    <string name="go_to_players">GO TO PLAYERS</string>
+
 
     <!-- Main screen -->
     <string name="start">START</string>
@@ -151,9 +153,11 @@
     <string name="show_pile_sizes">Show pile sizes</string>
     <string name="show_pile_sizes_description">Show number of remaining cards in draw and discard pile.</string>
 
+
     <!--  PEEK POLICY  -->
     <string name="peek_policy_title">PEEK POLICY</string>
     <string name="peek_policy_description">Secretly look at the top three tiles in the Policy deck.</string>
+
 
     <!--  INVESTIGATION  -->
     <string name="investigation">INVESTIGATION</string>
@@ -163,9 +167,31 @@
     <string name="investigation_restriction">NOTE: No player may be investigated twice in the same game.</string>
     <string name="party_membership_of">PARTY MEMBERSHIP OF</string>
 
+
     <!--  EXECUTION  -->
     <string name="execution">EXECUTION</string>
     <string name="execute_player">EXECUTE PLAYER</string>
     <string name="i_formally_execute">I formally execute %s</string>
     <string name="execution_note">NOTE: If you kill Hitler liberals win.</string>
+
+
+    <!--  GAME BOARD  -->
+    <string name="game_board">GAME BOARD</string>
+
+    <string name="peek_policy_event">THE PRESIDENT EXAMINES THE TOP THREE CARDS.</string>
+    <string name="investigate_event">THE PRESIDENT INVESTIGATES A PLAYER\'S IDENTITY CARD.</string>
+    <string name="special_election_event">THE PRESIDENT PICKS THE NEXT PRESIDENTIAL CANDIDATE.</string>
+    <string name="execution_event">THE PRESIDENT MUST KILL A PLAYER.</string>
+    <string name="execution_veto_event">THE PRESIDENT MUST KILL A PLAYER.\nVETO POWER IS UNLOCKED.</string>
+
+    <string name="players_5_6">PLAYERS: 1 FASCIST AND HITLER,\nHITLER KNOWS WHO IS THE FASCIST.</string>
+    <string name="players_7_8">PLAYERS: 2 FASCISTS AND HITLER,\nHITLER DOESN\'T KNOW WHO THE FASCISTS ARE.</string>
+    <string name="players_9_10">PLAYERS: 3 FASCISTS AND HITLER,\nHITLER DOESN\'T KNOW WHO THE FASCISTS ARE.</string>
+
+    <string name="election_tracker">ELECTION\nTRACKER</string>
+    <string name="reveal_and_pass">REVEAL &amp; PASS\nTOP POLICY</string>
+
+    <string name="draw_pile_info">DRAW PILE: %s</string>
+    <string name="discard_pile_info">DISCARD PILE: %s</string>
+
 </resources>

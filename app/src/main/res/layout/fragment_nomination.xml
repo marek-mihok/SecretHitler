@@ -37,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sh_font"
+            android:textColor="@color/secretGray"
             android:text="MMMMMMMMMM"
             android:textAlignment="center"
             android:textSize="24sp"
@@ -47,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rokkitt_bold"
+            android:textColor="@color/secretGray"
             android:text="@string/pick_cancellor_candidate"
             android:textAlignment="center" />
 
@@ -72,6 +74,7 @@
         android:fontFamily="@font/rokkitt_regular"
         android:text="@string/pick_candidate_hint"
         android:textSize="18sp"
+        android:textColor="@color/secretGray"
         app:layout_constraintBottom_toTopOf="@id/nominations_confirmButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

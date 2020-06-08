@@ -6,6 +6,7 @@ import kotlinx.android.synthetic.main.activity_execution.*
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.adapters.SelectPlayersAdapter
 import sk.ferinaf.secrethitler.common.BaseActivity
+import sk.ferinaf.secrethitler.common.GameState
 import sk.ferinaf.secrethitler.common.PlayersInfo
 import sk.ferinaf.secrethitler.common.asString
 import sk.ferinaf.secrethitler.models.GovernmentRole
@@ -73,6 +74,11 @@ class ExecutionActivity : BaseActivity() {
                     finish()
                 } else {
                     // TODO: Continue
+                    if (GameState.beforeSpecialEvent4) {
+                        GameState.beforeSpecialEvent4 = false
+                    } else if (!GameState.beforeSpecialEvent4 && GameState.beforeSpecialEvent5) {
+                        GameState.beforeSpecialEvent5 = false
+                    }
                     finish()
                 }
             }

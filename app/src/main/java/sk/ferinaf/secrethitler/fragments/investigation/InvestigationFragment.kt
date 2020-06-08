@@ -25,6 +25,7 @@ import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_investigate_reveal.*
 import sk.ferinaf.secrethitler.R
+import sk.ferinaf.secrethitler.common.GameState
 import sk.ferinaf.secrethitler.common.PlayersInfo
 import sk.ferinaf.secrethitler.common.asColor
 import sk.ferinaf.secrethitler.common.asString
@@ -104,6 +105,11 @@ class InvestigationFragment(val player: Player?) : Fragment() {
                     player?.investigated = true
                     confirmButton?.duration = 1000L
                 } else {
+                    if (GameState.beforeSpecialEvent1) {
+                        GameState.beforeSpecialEvent1 = false
+                    } else if (!GameState.beforeSpecialEvent1 && GameState.beforeSpecialEvent2) {
+                        GameState.beforeSpecialEvent2 = false
+                    }
                     activity?.finish()
                 }
             }

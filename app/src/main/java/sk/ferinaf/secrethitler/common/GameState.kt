@@ -11,6 +11,7 @@ object GameState {
     var electionTracker = 0
 
     private var pileInitiated = false
+
     var beforeSpecialEvent1 = true
     var beforeSpecialEvent2 = true
     var beforeSpecialEvent3 = true
@@ -24,7 +25,11 @@ object GameState {
         enactedFascist = 0
         enactedLiberal = 0
         electionTracker = 0
+        beforeSpecialEvent1 = true
+        beforeSpecialEvent2 = true
         beforeSpecialEvent3 = true
+        beforeSpecialEvent4 = true
+        beforeSpecialEvent5 = true
     }
 
     var onVetoApplied: ()->Unit = {}
@@ -61,7 +66,7 @@ object GameState {
     }
 
 
-    private fun initDrawPile() {
+    fun initDrawPile() {
         for (i in 1..6) {
             drawPile.add(PolicyCard.PolicyType.LIBERAL)
         }

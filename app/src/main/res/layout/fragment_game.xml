@@ -1,47 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundBlended"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
+
+    <!--  HEADER  -->
+    <sk.ferinaf.secrethitler.widgets.ShHeader
+        android:id="@+id/gameFragment_header_shHeader"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="GAME"
+        app:ShHeader_color="@color/secretGray"
+        app:ShHeader_private="false"
+        app:ShHeader_text_color="@color/backgroundBlended"
+        app:ShHeader_text_title="@string/game_board" />
+
+
+    <!--  PLAYERS INFO  -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="4dp"
+        app:cardBackgroundColor="@color/secretWhite">
+
+        <TextView
+            android:id="@+id/gameFragment_playersDescription_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium_bt"
+            android:padding="8dp"
+            android:text="@string/players_9_10"
+            android:textAlignment="center"
+            android:textColor="@color/secretGray"
+            android:textSize="14sp" />
+    </androidx.cardview.widget.CardView>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!--  GAME BOARD  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/gameFragment_header_shHeader">
 
-    <Button
-        android:id="@+id/current_state_debug_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UPDATE"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
-    <TextView
-        android:id="@+id/current_state_debug_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="GAME STATE"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/current_state_debug_button" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+            <sk.ferinaf.secrethitler.widgets.GameTile
+                android:id="@+id/liberalTile5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:GameTile_isLast="true" />
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:background="@color/secretGray" />
+
+            <sk.ferinaf.secrethitler.widgets.GameTile
+                android:id="@+id/liberalTile4"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <sk.ferinaf.secrethitler.widgets.GameTile
+                android:id="@+id/liberalTile3"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <sk.ferinaf.secrethitler.widgets.GameTile
+                android:id="@+id/liberalTile2"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:background="@color/secretGray" />
+
+            <sk.ferinaf.secrethitler.widgets.GameTile
+                android:id="@+id/liberalTile1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:GameTile_isFirst="true" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <sk.ferinaf.secrethitler.widgets.GameTile
+                android:id="@+id/fascistTile6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:GameTile_isFascist="true"
+                app:GameTile_isLast="true" />
+
+            <sk.ferinaf.secrethitler.widgets.GameTile
+                android:id="@+id/fascistTile5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:GameTile_isFascist="true" />
+
+            <sk.ferinaf.secrethitler.widgets.GameTile
+                android:id="@+id/fascistTile4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:GameTile_isFascist="true" />
+
+            <sk.ferinaf.secrethitler.widgets.GameTile
+                android:id="@+id/fascistTile3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:GameTile_isFascist="true" />
+
+            <sk.ferinaf.secrethitler.widgets.GameTile
+                android:id="@+id/fascistTile2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:GameTile_isFascist="true" />
+
+            <sk.ferinaf.secrethitler.widgets.GameTile
+                android:id="@+id/fascistTile1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:GameTile_isFascist="true"
+                app:GameTile_isFirst="true" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="Inspect players"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/gameBoard_drawPile_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sh_font"
+            android:textColor="@color/secretGray"
+            android:text="@string/draw_pile_info" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/gameBoard_discardPile_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sh_font"
+            android:textColor="@color/secretGray"
+            android:text="@string/discard_pile_info" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/item_election_tracker"/>
+    </LinearLayout>
+
+</LinearLayout>

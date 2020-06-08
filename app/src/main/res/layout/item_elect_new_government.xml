@@ -43,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sh_font"
                 android:text="@string/elect_new_government_1"
+                android:textColor="@color/secretGray"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -51,9 +52,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/germania"
+                android:textColor="@color/secretGray"
                 android:text="@string/elect_new_government_2"
                 android:textAlignment="center"
                 android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/policyOverlay_goToPlayers_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/go_to_players"
+                android:layout_marginTop="32dp"
+                android:textColor="@android:color/white"
+                style="@style/ButtonMainMenu"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

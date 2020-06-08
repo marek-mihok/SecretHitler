@@ -121,4 +121,9 @@ class GameActivity : BaseActivity() {
         game_navigation?.selectItem(GameBottomNavigation.NavigationItem.POLICY)
     }
 
+    fun switchToPlayers() {
+        selectFragment(mPlayersFragment)
+        game_navigation?.selectItem(GameBottomNavigation.NavigationItem.PLAYERS)
+    }
+
 }
