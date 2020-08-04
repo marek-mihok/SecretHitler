@@ -73,25 +73,11 @@ class GameFragment : Fragment() {
 
         updateData()
 
-//        current_state_debug_button?.setOnClickListener {
-//            updateData()
-//        }
-//
-//        var developing = false
-//        PlayersInfo.players.forEach {
-//            if (it.name == "developer") {
-//                developing = true
-//            }
-//        }
-//
-//        button?.visibility = if (developing) View.VISIBLE else View.GONE
-//        button?.setOnClickListener {
-//            var toShow = ""
-//            PlayersInfo.players.forEach {
-//                toShow += it.name + ": " + it.role.toString() + "\n"
-//            }
-//            Toast.makeText(context, toShow, Toast.LENGTH_LONG).show()
-//        }
+        currentActionButton?.visibility = View.GONE
+        currentActionButton?.setOnClickListener {
+            (activity as? GameActivity)?.switchToPlayers()
+        }
+
     }
 
     fun updateData() {
@@ -106,6 +92,28 @@ class GameFragment : Fragment() {
         updatePiles()
 
         superInfo()
+
+        when (GameState.getCurrentAction()) {
+            GameState.PresidentActions.INVESTIGATE -> {
+                currentActionButton?.visibility = View.VISIBLE
+                currentActionButton?.setText(R.string.investigate)
+            }
+            GameState.PresidentActions.SPECIAL_ELECTION -> {
+                currentActionButton?.visibility = View.VISIBLE
+                currentActionButton?.setText(R.string.special_election)
+            }
+            GameState.PresidentActions.PEEK_POLICY -> {
+                currentActionButton?.visibility = View.VISIBLE
+                currentActionButton?.setText(R.string.peek_policy_title)
+            }
+            GameState.PresidentActions.EXECUTION -> {
+                currentActionButton?.visibility = View.VISIBLE
+                currentActionButton?.setText(R.string.execute_player)
+            }
+            null -> {
+                currentActionButton?.visibility = View.GONE
+            }
+        }
     }
 
     private fun highlightFascist(count: Int) {

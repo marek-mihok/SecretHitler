@@ -1,5 +1,6 @@
 package sk.ferinaf.secrethitler.common
 
+import sk.ferinaf.secrethitler.fragments.PlayersFragment
 import sk.ferinaf.secrethitler.widgets.PolicyCard
 
 object GameState {
@@ -142,6 +143,34 @@ object GameState {
             electionTracker = 0
         } else {
             onElectionTrackerAdvance()
+        }
+    }
+
+    enum class PresidentActions {
+        INVESTIGATE, SPECIAL_ELECTION, PEEK_POLICY, EXECUTION
+    }
+
+    fun getCurrentAction(): PresidentActions? {
+        return if (enactedFascist == 1 && beforeSpecialEvent1) {
+            if (PlayersInfo.players.size > 8) {
+                PresidentActions.INVESTIGATE
+            } else { null }
+        } else if (enactedFascist == 2 && beforeSpecialEvent2) {
+            if (PlayersInfo.players.size > 6) {
+                PresidentActions.INVESTIGATE
+            } else { null }
+        } else if (enactedFascist == 3 && beforeSpecialEvent3) {
+            if (PlayersInfo.players.size > 6) {
+                PresidentActions.SPECIAL_ELECTION
+            } else {
+                PresidentActions.PEEK_POLICY
+            }
+        } else if (enactedFascist == 4 && beforeSpecialEvent4) {
+            PresidentActions.EXECUTION
+        } else if (enactedFascist == 5 && beforeSpecialEvent5) {
+            PresidentActions.EXECUTION
+        } else {
+            null
         }
     }
 }

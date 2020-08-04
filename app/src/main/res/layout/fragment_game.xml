@@ -140,18 +140,45 @@
                 android:layout_height="wrap_content"
                 app:GameTile_isFascist="true" />
 
-            <sk.ferinaf.secrethitler.widgets.GameTile
-                android:id="@+id/fascistTile2"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:GameTile_isFascist="true" />
+                android:layout_height="wrap_content">
 
-            <sk.ferinaf.secrethitler.widgets.GameTile
-                android:id="@+id/fascistTile1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:GameTile_isFascist="true"
-                app:GameTile_isFirst="true" />
+                <sk.ferinaf.secrethitler.widgets.GameTile
+                    android:id="@+id/fascistTile2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:GameTile_isFascist="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <sk.ferinaf.secrethitler.widgets.GameTile
+                    android:id="@+id/fascistTile1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:GameTile_isFascist="true"
+                    app:GameTile_isFirst="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fascistTile2"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <Button
+                    android:id="@+id/currentActionButton"
+                    style="@style/ButtonMainMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="@string/peek_policy_title"
+                    android:textColor="@color/backgroundBlended"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/fascistTile1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </LinearLayout>
     </LinearLayout>

@@ -5,15 +5,15 @@ import android.graphics.Point
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.view.MotionEvent
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
+import android.view.*
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.transition.Slide
 import org.json.JSONArray
 import org.json.JSONStringer
 import sk.ferinaf.secrethitler.App
@@ -138,6 +138,10 @@ fun Window.customSetStatusBarColor(@ColorInt color: Int) {
         clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         statusBarColor = color
+}
+
+fun Toast.setGravity(gravity: Int) {
+    view.findViewById<TextView>(android.R.id.message).gravity = gravity
 }
 
 // KOMENTAY KTORE JE NAM LUTO VYMAZAT :D ...

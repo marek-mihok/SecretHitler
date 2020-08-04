@@ -2,11 +2,12 @@ package sk.ferinaf.secrethitler.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_players.*
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.activities.*
@@ -14,6 +15,7 @@ import sk.ferinaf.secrethitler.adapters.PlayersListAdapter
 import sk.ferinaf.secrethitler.common.GameState
 import sk.ferinaf.secrethitler.common.PlayersInfo
 import sk.ferinaf.secrethitler.common.asString
+import sk.ferinaf.secrethitler.common.setGravity
 import sk.ferinaf.secrethitler.dialogs.ConfirmDialog
 import sk.ferinaf.secrethitler.models.GovernmentRole
 import java.util.*
@@ -35,6 +37,7 @@ class PlayersFragment : Fragment() {
     private val peekPolicy by lazy { R.string.peek_policy_title.asString() }
     private val investigateTitle by lazy { R.string.investigate.asString() }
     private val executePlayer by lazy { R.string.execute_player.asString() }
+    private val noInteractive by lazy { R.string.noInteractiveTable.asString() }
 
     private var mButtonBehavior = ButtonBehavior.CHANCELLOR_NOMINATION
     var buttonBehavior
@@ -66,6 +69,24 @@ class PlayersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        var toast = Toast.makeText(context, noInteractive, Toast.LENGTH_SHORT)
+
+        players_list_recycler_view?.addOnItemTouchListener(object: RecyclerView.OnItemTouchListener {
+            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
+                if (e.action == MotionEvent.ACTION_DOWN) {
+                    toast.cancel()
+                    toast = Toast.makeText(context, noInteractive, Toast.LENGTH_LONG)
+                    toast.setGravity(Gravity.CENTER)
+                    toast.show()
+                }
+            }
+
+            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                return true
+            }
+            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) { }
+        })
 
         players_list_recycler_view?.adapter = playersListAdapter
         players_list_recycler_view?.layoutManager = LinearLayoutManager(context)

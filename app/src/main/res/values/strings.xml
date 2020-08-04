@@ -110,6 +110,7 @@
     <string name="nominate_chancellor">NOMINATE CHANCELLOR</string>
     <string name="nominate_president">NOMINATE NEXT PRESIDENT</string>
     <string name="notYet">NOT YET</string>
+    <string name="noInteractiveTable">This table is purely informative.\n\nPress big button to continue, don\'t be afraid. ;)</string>
 
 
     <!--  ELECTION  -->
@@ -183,6 +184,7 @@
     <string name="special_election_event">THE PRESIDENT PICKS THE NEXT PRESIDENTIAL CANDIDATE.</string>
     <string name="execution_event">THE PRESIDENT MUST KILL A PLAYER.</string>
     <string name="execution_veto_event">THE PRESIDENT MUST KILL A PLAYER.\nVETO POWER IS UNLOCKED.</string>
+    <string name="special_election">SPECIAL ELECTION</string>
 
     <string name="players_5_6">PLAYERS: 1 FASCIST AND HITLER,\nHITLER KNOWS WHO IS THE FASCIST.</string>
     <string name="players_7_8">PLAYERS: 2 FASCISTS AND HITLER,\nHITLER DOESN\'T KNOW WHO THE FASCISTS ARE.</string>
