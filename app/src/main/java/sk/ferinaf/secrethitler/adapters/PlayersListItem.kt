@@ -55,7 +55,14 @@ class PlayersListItem(inflater: LayoutInflater, parent: ViewGroup) :
             null -> roleImage?.visibility = View.GONE
         }
 
-        notHitlerImage?.visibility = if (player.notHitlerReveal && notHitlerAllowed) View.VISIBLE else View.GONE
+        notHitlerImage?.visibility = if (player.notHitlerReveal && notHitlerAllowed) {
+            notHitlerImage?.setImageResource(R.drawable.ic_finger)
+            View.VISIBLE
+        } else if (!player.alive) {
+            notHitlerImage?.setImageResource(R.drawable.ic_skull)
+            View.VISIBLE
+        } else View.GONE
+        
     }
 
     fun select(selected: Boolean) {

@@ -31,6 +31,8 @@ class ExecutionActivity : BaseActivity() {
         execution_confirmButton?.interactionEnabled = false
         execution_confirmButton?.textView?.text = selectPlayer
 
+        setName("???")
+
         execution_president_textView?.text = PlayersInfo.getPresident()?.name
 
         var selectedPlayer: Player? = null
