@@ -11,11 +11,9 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.android.synthetic.main.item_election_tracker.*
 import sk.ferinaf.secrethitler.R
-import sk.ferinaf.secrethitler.activities.GameActivity
-import sk.ferinaf.secrethitler.activities.InvestigateActivity
-import sk.ferinaf.secrethitler.activities.PeekPolicyActivity
-import sk.ferinaf.secrethitler.activities.VotingActivity
+import sk.ferinaf.secrethitler.activities.*
 import sk.ferinaf.secrethitler.common.*
+import sk.ferinaf.secrethitler.dialogs.WinnerDialog
 import sk.ferinaf.secrethitler.widgets.GameTile
 import sk.ferinaf.secrethitler.widgets.PolicyCard
 
@@ -172,8 +170,33 @@ class GameFragment : Fragment() {
     fun presentWelcomeDialog(welcomeDialog: WelcomeDialog) {
         updateData()
 
-        // Log.d("state_welcome", welcomeDialog.toString())
-        // Toast.makeText(context, welcomeDialog.toString(), Toast.LENGTH_LONG).show()
+        Log.d("state_welcome", welcomeDialog.toString())
+
+        val f = GameState.enactedFascist
+        val l = GameState.enactedLiberal
+
+        val goToResults: (Boolean)->Unit = { liberalsWin ->
+            val intent = Intent(context, GameResultsActivity::class.java)
+            intent.putExtra("liberalsWin", liberalsWin)
+            startActivity(intent)
+            activity?.finish()
+        }
+
+        val liberalsWin = if (welcomeDialog == WelcomeDialog.LIBERALS_WIN || l == 5) {
+            true
+        } else if (welcomeDialog == WelcomeDialog.FASCISTS_WIN || f == 6) {
+            false
+        } else {
+            null
+        }
+
+        liberalsWin?.let {
+            val dialog = WinnerDialog(it) { goToResults(it) }
+            dialog.isCancelable = false
+            fragmentManager?.let { fm ->
+                dialog.show(fm, "winnerDialog")
+            }
+        }
     }
 
     private fun superInfo() {

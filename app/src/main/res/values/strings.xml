@@ -196,4 +196,13 @@
     <string name="draw_pile_info">DRAW PILE: %s</string>
     <string name="discard_pile_info">DISCARD PILE: %s</string>
 
+    <string name="liberals_win">LIBERALS WIN!</string>
+    <string name="fascists_win">FASCISTS WIN!</string>
+
+    <string name="game_results">GAME RESULTS</string>
+    <string name="fascists">FASCISTS</string>
+    <string name="liberals">LIBERALS</string>
+
+    <string name="hold_to_finish">HOLD TO FINISH GAME</string>
+
 </resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/backgroundBlended"
+    android:orientation="vertical">
+
+    <sk.ferinaf.secrethitler.widgets.ShHeader
+        android:id="@+id/gameResults_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ShHeader_color="@color/secretGray"
+        app:ShHeader_private="false"
+        app:ShHeader_text_color="@color/backgroundBlended"
+        app:ShHeader_text_title="@string/game_results" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/gameResults_winningTeam_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        app:cardBackgroundColor="@color/redDark"
+        app:cardCornerRadius="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/gameResults_winningTeam_textView"
+                android:layout_marginStart="32dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sh_font"
+                android:textColor="@color/secretWhite"
+                android:text="@string/fascists_win"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/gameResults_winningTeam_imageView"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:tint="@color/secretWhite"
+                tools:srcCompat="@drawable/ic_skull" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <sk.ferinaf.secrethitler.widgets.PlayersTable
+        android:id="@+id/gameResults_firstTeam_playersTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp" />
+
+    <sk.ferinaf.secrethitler.widgets.PlayersTable
+        android:id="@+id/gameResults_secondTeam_playersTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <sk.ferinaf.secrethitler.widgets.ConfirmButton
+        android:id="@+id/confirmGameEnd_confirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="16dp"
+        app:ConfirmButton_TextColor="@color/secretGray"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp" />
+
+</LinearLayout>

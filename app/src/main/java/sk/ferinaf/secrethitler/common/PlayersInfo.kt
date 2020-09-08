@@ -101,12 +101,23 @@ object PlayersInfo {
     }
 
 
-    fun getHitler(): Player {
-        return players.first { player ->
+    fun getHitler(): Player? {
+        return players.firstOrNull { player ->
             player.role == Roles.HITLER
         }
     }
 
+    fun getLiberals(): ArrayList<Player> {
+        val liberals: ArrayList<Player> = arrayListOf()
+
+        for (i in 0 until players.size) {
+            if (players[i].role == Roles.LIBERAL) {
+                liberals.add(players[i])
+            }
+        }
+
+        return liberals
+    }
 
     fun getPlayer(i: Int): Player {
         return players[i]

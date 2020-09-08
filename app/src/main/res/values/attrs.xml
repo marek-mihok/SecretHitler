@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <attr name="playerListTextStyle" format="reference"/>
+
     <declare-styleable name="ShHeader">
         <attr name="ShHeader_private" format="boolean"/>
         <attr name="ShHeader_color" format="color"/>

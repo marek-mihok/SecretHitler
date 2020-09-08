@@ -22,8 +22,20 @@ class MainMenuActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
 
+        mainMenu_startButton?.setOnClickListener {
+            startButtonPressed()
+        }
+
+        rulesButton?.setOnClickListener {
+            rulesButtonPressed()
+        }
+
         settingsButton?.setOnClickListener {
             settingsButtonPressed()
+        }
+
+        aboutButton?.setOnClickListener {
+            aboutButtonPressed()
         }
     }
 
@@ -32,10 +44,14 @@ class MainMenuActivity : BaseActivity() {
         mainMenu_startButton.isEnabled = true
     }
 
-    fun startButtonPressed(sender: View) {
+    fun startButtonPressed() {
         mainMenu_startButton.isEnabled = false
         val intent = Intent(this, AddPlayersActivity::class.java)
         startActivity(intent)
+    }
+
+    fun rulesButtonPressed() {
+        Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show()
     }
 
     private fun settingsButtonPressed() {
@@ -43,12 +59,8 @@ class MainMenuActivity : BaseActivity() {
         startActivity(intent)
     }
 
-    fun rulesButtonPressed() {
-
-    }
-
     fun aboutButtonPressed() {
-
+        Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show()
     }
 
     override fun onBackPressed() {

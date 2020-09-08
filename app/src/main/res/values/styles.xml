@@ -9,6 +9,7 @@
         <item name="colorPrimary">@color/backgroundOrange</item>
         <item name="colorPrimaryDark">@color/secretGray</item>
         <item name="colorAccent">@color/secretWhite</item>
+        <item name="playerListTextStyle">@style/PlayerResultStyle</item>
     </style>
 
     <!-- Base application theme. -->
@@ -20,6 +21,7 @@
         <item name="colorPrimary">@color/backgroundOrange</item>
         <item name="colorPrimaryDark">@color/secretGray</item>
         <item name="colorAccent">@color/secretWhite</item>
+        <item name="playerListTextStyle">@style/PlayerResultStyle</item>
     </style>
 
     <!--  Edit text theme  -->
@@ -54,6 +56,15 @@
     <!-- The launcher theme. It sets the main window background to the launch_screen drawable -->
     <style name="AppTheme.NoActionBar.Launcher">
         <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
+
+    <style name="PlayerResultStyle">
+        <item name="android:textColor">@color/secretGray</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/rokkitt_bold</item>
     </style>
 
 </resources>

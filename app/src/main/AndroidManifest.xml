@@ -66,6 +66,10 @@
             android:screenOrientation="sensorPortrait"
             tools:ignore="LockedOrientationActivity"/>
 
+        <activity android:name=".activities.GameResultsActivity"
+            android:screenOrientation="sensorPortrait"
+            tools:ignore="LockedOrientationActivity"/>
+
     </application>
 
 </manifest>

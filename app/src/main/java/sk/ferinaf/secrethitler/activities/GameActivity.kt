@@ -37,7 +37,7 @@ class GameActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        Log.d("state_hitler", PlayersInfo.getHitler().name)
+        Log.d("state_hitler", PlayersInfo.getHitler()?.name.toString())
 
         returnQuestion = ruSure
 

@@ -33,7 +33,6 @@
         <Button
             android:id="@+id/mainMenu_startButton"
             style="@style/ButtonMainMenu"
-            android:onClick="startButtonPressed"
             android:text="@string/start"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
