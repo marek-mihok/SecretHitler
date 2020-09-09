@@ -130,7 +130,7 @@ class SettingsActivity : BaseActivity() {
 
     private fun startDownloading(version: String) {
         val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as? DownloadManager
-        val uri = Uri.parse("https://github.com/michalgeci/SecretHitler/releases/download/v$version/SetcretHitler$version.apk")
+        val uri = Uri.parse("https://github.com/michalgeci/SecretHitler/releases/download/v$version/SecretHitler$version.apk")
         val request = DownloadManager.Request(uri)
         request.setTitle("Secret Hitler")
         request.setDescription("Downloading new version")
