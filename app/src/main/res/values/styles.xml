@@ -24,6 +24,10 @@
         <item name="playerListTextStyle">@style/PlayerResultStyle</item>
     </style>
 
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+    </style>
+
     <!--  Edit text theme  -->
     <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorControlNormal">@color/lightGray</item>

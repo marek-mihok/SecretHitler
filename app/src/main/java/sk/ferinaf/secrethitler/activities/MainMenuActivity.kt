@@ -1,15 +1,11 @@
 package sk.ferinaf.secrethitler.activities
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main_menu.*
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.common.BaseActivity
-import sk.ferinaf.secrethitler.common.asColor
-import sk.ferinaf.secrethitler.common.customSetStatusBarColor
 import sk.ferinaf.secrethitler.dialogs.ConfirmDialog
 
 class MainMenuActivity : BaseActivity() {
@@ -44,13 +40,13 @@ class MainMenuActivity : BaseActivity() {
         mainMenu_startButton.isEnabled = true
     }
 
-    fun startButtonPressed() {
+    private fun startButtonPressed() {
         mainMenu_startButton.isEnabled = false
         val intent = Intent(this, AddPlayersActivity::class.java)
         startActivity(intent)
     }
 
-    fun rulesButtonPressed() {
+    private fun rulesButtonPressed() {
         Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show()
     }
 
@@ -59,7 +55,7 @@ class MainMenuActivity : BaseActivity() {
         startActivity(intent)
     }
 
-    fun aboutButtonPressed() {
+    private fun aboutButtonPressed() {
         Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show()
     }
 

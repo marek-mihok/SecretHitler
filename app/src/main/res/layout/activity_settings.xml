@@ -5,9 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundYellow"
-    android:orientation="vertical"
-    android:divider="@drawable/divider_16"
-    android:showDividers="middle">
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:divider="@drawable/divider_16"
+        android:showDividers="middle">
+
+
 
     <sk.ferinaf.secrethitler.widgets.ShHeader
         android:layout_width="match_parent"
@@ -43,5 +50,32 @@
         android:layout_height="wrap_content"
         app:SettingsItem_primaryText="@string/show_pile_sizes"
         app:SettingsItem_secondaryText="@string/show_pile_sizes_description" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:alpha="0.4"
+        android:background="@color/secretGray" />
+    <Button
+        android:id="@+id/checkUpdates_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:fontFamily="@font/sh_font"
+        android:textColor="@color/secretGray"
+        android:textSize="18sp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="Check updates"
+        android:textAlignment="textStart" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.4"
+        android:background="@color/secretGray"/>
 
 </LinearLayout>
