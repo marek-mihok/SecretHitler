@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/backgroundYellow"
+    android:orientation="vertical">
+
+    <sk.ferinaf.secrethitler.widgets.ShHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ShHeader_color="@color/secretGray"
+        app:ShHeader_hide_eye="true"
+        app:ShHeader_text_color="@color/backgroundYellow"
+        app:ShHeader_text_title="@string/rules" />
+
+    <WebView
+        android:id="@+id/rules_webView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/backgroundYellow"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/loader_rules"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <ProgressBar
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
+
+
+</LinearLayout>

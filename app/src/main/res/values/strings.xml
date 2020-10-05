@@ -205,4 +205,8 @@
 
     <string name="hold_to_finish">HOLD TO FINISH GAME</string>
 
+    <string name="license_blah">This game is attributed as per the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license.</a></string>
+    <string name="about_app">This app is FREE and will always be. Feel free to check out <a href="https://github.com/michalgeci/SecretHitler">source code on GitHub</a>.</string>
+    <string name="about_developer">If you like this app you can also check my other projects on my page:\n<a href="https://michalgeci.github.io/">https://michalgeci.github.io/</a></string>
+
 </resources>

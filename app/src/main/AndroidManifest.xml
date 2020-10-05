@@ -73,6 +73,14 @@
             android:screenOrientation="sensorPortrait"
             tools:ignore="LockedOrientationActivity"/>
 
+        <activity android:name=".activities.RulesActivity"
+            android:screenOrientation="sensorPortrait"
+            tools:ignore="LockedOrientationActivity"/>
+
+        <activity android:name=".activities.AboutActivity"
+            android:screenOrientation="sensorPortrait"
+            tools:ignore="LockedOrientationActivity"/>
+
     </application>
 
 </manifest>

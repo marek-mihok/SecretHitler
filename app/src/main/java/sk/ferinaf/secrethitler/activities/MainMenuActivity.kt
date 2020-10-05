@@ -1,6 +1,7 @@
 package sk.ferinaf.secrethitler.activities
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main_menu.*
@@ -47,7 +48,8 @@ class MainMenuActivity : BaseActivity() {
     }
 
     private fun rulesButtonPressed() {
-        Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, RulesActivity::class.java)
+        startActivity(intent)
     }
 
     private fun settingsButtonPressed() {
@@ -56,7 +58,8 @@ class MainMenuActivity : BaseActivity() {
     }
 
     private fun aboutButtonPressed() {
-        Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, AboutActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onBackPressed() {
