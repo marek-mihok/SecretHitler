@@ -27,6 +27,8 @@ class NominationFragment : Fragment() {
     var nominator: Player? = null
     var nominee: Player? = null
 
+    private var confirmButton: ConfirmButton? = null
+
     val mAdapter = SelectPlayersAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -45,11 +47,13 @@ class NominationFragment : Fragment() {
             PlayersInfo.lastRegularPresident = nominator
         }
 
-        nominations_confirmButton?.interactionEnabled = false
-        nominations_confirmButton?.textView?.text = selectPlayer
-        nominations_confirmButton?.duration = 800L
+        confirmButton = view.findViewById(R.id.nominations_confirmButton)
 
-        nominations_confirmButton?.listener = object : ConfirmButton.ProgressListener {
+        confirmButton?.interactionEnabled = false
+        confirmButton?.textView?.text = selectPlayer
+        confirmButton?.duration = 800L
+
+        confirmButton?.listener = object : ConfirmButton.ProgressListener {
             override fun onActionDown() {
                 mAdapter.selectionAllowed = false
             }
@@ -59,7 +63,7 @@ class NominationFragment : Fragment() {
             }
 
             override fun onConfirm() {
-                nominations_confirmButton?.textView?.text = releaseButton
+                confirmButton?.textView?.text = releaseButton
             }
             override fun onFinish() {
                 (activity as? VotingActivity)?.showVotingFragment(nominator, nominee)
@@ -82,8 +86,8 @@ class NominationFragment : Fragment() {
         mAdapter.onPlayerSelected = {
             Log.d("selected", it.name)
 
-            nominations_confirmButton?.interactionEnabled = true
-            nominations_confirmButton?.textView?.text = holdToConfirm
+            confirmButton?.interactionEnabled = true
+            confirmButton?.textView?.text = holdToConfirm
             nominee = it
         }
         nominations_recyclerView?.adapter = mAdapter

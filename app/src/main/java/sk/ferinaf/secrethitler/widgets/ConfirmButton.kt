@@ -31,6 +31,8 @@ class ConfirmButton @JvmOverloads constructor(
     var interactionEnabled: Boolean? = true
     var shouldFade = true
 
+    var progressView: View? = null
+
     private val fadeOutAnim by lazy { AnimationUtils.loadAnimation(context, R.anim.fade_out) }
     private val progressButtonAnimation by lazy { AnimationUtils.loadAnimation(context, R.anim.translate_x) }
 
@@ -44,56 +46,10 @@ class ConfirmButton @JvmOverloads constructor(
             mListener = value
         }
 
-    private var mDuration = 1500L
-    var duration: Long
-        get() = mDuration
-        set(value) {
-            mDuration = value
-            progressButtonAnimation.duration = mDuration
+    var duration: Long = 1500L
 
-            timer = object: CountDownTimer(duration, duration) {
-                override fun onFinish() {
-                    // On confirm
-                    confirmed = true
-                    context.vibrate()
-                    listener?.onConfirm()
-                }
-
-                override fun onTick(millisUntilFinished: Long) { }
-            }
-        }
-
-    private var started = false
-
-    /**
-     * INITIALISATION
-     */
-    init {
-        View.inflate(context, R.layout.widget_confirm_button, this)
-
-        textView = findViewById(R.id.confirmButton_TextView)
-
-        val attributes = context.obtainStyledAttributes(attrs, R.styleable.ConfirmButton)
-        val colorId = attributes.getColor(R.styleable.ConfirmButton_ConfirmButton_TextColor, 0)
-        textView?.setTextColor(colorId)
-        attributes.recycle()
-
+    fun updateDuration() {
         progressButtonAnimation.duration = duration
-        confirmButton_progressView?.alpha = 0F
-        confirmButton_progressView?.visibility = View.VISIBLE
-
-        fadeOutAnim.setAnimationListener(object: Animation.AnimationListener{
-            override fun onAnimationRepeat(animation: Animation?) {}
-
-            override fun onAnimationEnd(animation: Animation?) {
-                confirmButton_progressView?.alpha = 0F
-            }
-
-            override fun onAnimationStart(animation: Animation?) {
-                confirmButton_progressView?.alpha = 1F
-            }
-
-        })
 
         timer = object: CountDownTimer(duration, duration) {
             override fun onFinish() {
@@ -105,6 +61,42 @@ class ConfirmButton @JvmOverloads constructor(
 
             override fun onTick(millisUntilFinished: Long) { }
         }
+    }
+
+    private var started = false
+
+    /**
+     * INITIALISATION
+     */
+    init {
+        View.inflate(context, R.layout.widget_confirm_button, this)
+
+        textView = findViewById(R.id.confirmButton_TextView)
+        progressView = findViewById(R.id.confirmButton_progressView)
+
+        val attributes = context.obtainStyledAttributes(attrs, R.styleable.ConfirmButton)
+        val colorId = attributes.getColor(R.styleable.ConfirmButton_ConfirmButton_TextColor, 0)
+        textView?.setTextColor(colorId)
+        attributes.recycle()
+
+        progressButtonAnimation.duration = duration
+        progressView?.alpha = 0F
+        progressView?.visibility = View.VISIBLE
+
+        fadeOutAnim.setAnimationListener(object: Animation.AnimationListener{
+            override fun onAnimationRepeat(animation: Animation?) {}
+
+            override fun onAnimationEnd(animation: Animation?) {
+                progressView?.alpha = 0F
+            }
+
+            override fun onAnimationStart(animation: Animation?) {
+                progressView?.alpha = 1F
+            }
+
+        })
+
+        updateDuration()
 
         widget_confirm_button?.setOnTouchListener { v, event ->
             if (interactionEnabled == false) return@setOnTouchListener true
@@ -120,8 +112,8 @@ class ConfirmButton @JvmOverloads constructor(
                     confirmed = false
                     listener?.onActionDown()
                     context.vibrate()
-                    confirmButton_progressView?.alpha = 1F
-                    confirmButton_progressView?.startAnimation(progressButtonAnimation)
+                    progressView?.alpha = 1F
+                    progressView?.startAnimation(progressButtonAnimation)
 
                     timer?.start()
                     listener?.onStart()
@@ -134,8 +126,8 @@ class ConfirmButton @JvmOverloads constructor(
                     listener?.onActionUp()
 
                     if (shouldFade) {
-                        confirmButton_progressView?.clearAnimation()
-                        confirmButton_progressView?.startAnimation(fadeOutAnim)
+                        progressView?.clearAnimation()
+                        progressView?.startAnimation(fadeOutAnim)
                     }
 
                     if (confirmed) {
@@ -152,5 +144,10 @@ class ConfirmButton @JvmOverloads constructor(
             true
         }
 
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        updateDuration()
     }
 }

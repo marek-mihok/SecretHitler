@@ -4,7 +4,6 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_game_results.*
 import sk.ferinaf.secrethitler.R
 import sk.ferinaf.secrethitler.common.BaseActivity
-import sk.ferinaf.secrethitler.common.GameState
 import sk.ferinaf.secrethitler.common.asColor
 import sk.ferinaf.secrethitler.widgets.ConfirmButton
 
