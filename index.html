@@ -1,0 +1,37 @@
+<html>
+
+<head>
+  <!-- <meta http-equiv="refresh" content="3; URL=https://github.com/michalgeci/SecretHitler" /> -->
+  <style>
+    h1 {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <br>
+  <h1>UNDER CONSTRUCTION - Redirecting to GIT</h1>
+  <br>
+  <h1 id="countdown"></h1>
+</body>
+
+<script>
+  var timeLeft = 3;
+  var elem = document.getElementById('countdown');
+  var timerId = setInterval(countdown, 1000);
+
+  function countdown() {
+    if (timeLeft == -1) {
+      clearTimeout(timerId);
+      window.location.replace("https://github.com/michalgeci/SecretHitler");
+    } else {
+      elem.innerHTML = timeLeft;
+      timeLeft--;
+    }
+  }
+
+  countdown()
+</script>
+
+</html>
